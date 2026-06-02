@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Arcel — Avance de Proyecto</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Spline+Sans:wght@400;500;600;700&family=Spline+Sans+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0d1626; --bg2:#0a111f; --panel:#16233c; --panel2:#1b2a47; --panelb:#243657;
+    --txt:#eaf0f9; --txt2:#aebcd4; --muted:#73839f;
+    --orange:#ff7a33; --cyan:#34d8e8; --green:#46d18a; --red:#ff5d6c; --blue:#5b8def; --gold:#ffc24d;
+    --display:'Bricolage Grotesque',sans-serif; --body:'Spline Sans',sans-serif; --mono:'Spline Sans Mono',monospace;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{height:100%}
+  body{background:#05080f;font-family:var(--body);color:var(--txt);display:flex;align-items:center;justify-content:center;overflow:hidden}
+  #stage{position:relative;width:100vw;height:56.25vw;max-height:100vh;max-width:177.78vh;overflow:hidden;background:var(--bg)}
+
+  .slide{position:absolute;inset:0;background:var(--bg);display:flex;flex-direction:column;
+    opacity:0;transform:scale(1.015);transition:opacity .45s ease,transform .45s ease;pointer-events:none;z-index:1}
+  .slide.active{opacity:1;transform:none;pointer-events:auto;z-index:2}
+
+  /* shared atmospheric glow */
+  .slide::after{content:"";position:absolute;width:60%;height:70%;right:-12%;top:-18%;
+    background:radial-gradient(closest-side,rgba(255,122,51,.10),transparent 70%);pointer-events:none;z-index:0}
+
+  /* ---- MASTER for content slides ---- */
+  .head{display:flex;align-items:flex-end;justify-content:space-between;padding:3.6% 4.8% 0;position:relative;z-index:2}
+  .head .ttl{display:flex;flex-direction:column}
+  .kick{font-family:var(--mono);font-size:.82rem;letter-spacing:.26em;text-transform:uppercase;color:var(--orange);font-weight:500;margin-bottom:.55rem;display:flex;align-items:center;gap:.7em}
+  .kick::before{content:"";width:2.2em;height:2px;background:var(--orange)}
+  h2{font-family:var(--display);font-weight:800;font-size:2.85rem;line-height:.98;letter-spacing:-.025em;color:#fff}
+  .folio{font-family:var(--display);font-weight:800;font-size:1.5rem;color:var(--panelb);letter-spacing:-.02em;line-height:1}
+  .folio b{color:var(--orange)}
+  .body{flex:1;display:flex;padding:2.4% 4.8% 4.4%;gap:1.5rem;position:relative;z-index:2;min-height:0}
+  .wmark{position:absolute;bottom:3.4%;left:4.8%;font-family:var(--mono);font-size:.66rem;letter-spacing:.2em;color:var(--muted);z-index:3}
+  .secmark{position:absolute;bottom:3.4%;right:4.8%;font-family:var(--mono);font-size:.66rem;letter-spacing:.2em;color:var(--muted);z-index:3}
+
+  /* panels */
+  .panel{background:var(--panel);border:1px solid var(--panelb);border-radius:16px;padding:1.7rem 1.8rem;display:flex;flex-direction:column;position:relative;overflow:hidden}
+  .panel .pn{position:absolute;right:1.1rem;top:.4rem;font-family:var(--display);font-weight:800;font-size:5.5rem;color:#fff;opacity:.05;line-height:1}
+  .panel h3{font-family:var(--display);font-weight:700;font-size:1.35rem;color:#fff;margin-bottom:.7rem;display:flex;align-items:center;gap:.6rem}
+  .panel p{font-size:1rem;line-height:1.55;color:var(--txt2)}
+  .chip{width:2.4rem;height:2.4rem;border-radius:11px;display:grid;place-items:center;flex:none;background:var(--orange);color:#0d1626}
+  .chip svg{width:1.35rem;height:1.35rem;stroke:#0d1626;stroke-width:1.8;fill:none;stroke-linecap:round;stroke-linejoin:round}
+  .lbl{font-family:var(--mono);font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;font-weight:600;margin-bottom:.7rem;display:inline-block}
+
+  /* ---------- COVER ---------- */
+  #s1{justify-content:center;background:linear-gradient(135deg,#0d1626 0%,#0a1a2e 55%,#0d1322 100%)}
+  #s1::after{width:80%;height:90%;right:-20%;top:-10%;background:radial-gradient(closest-side,rgba(255,122,51,.16),transparent 70%)}
+  .deco{position:absolute;inset:0;z-index:0;opacity:.5}
+  .cover{position:relative;z-index:2;padding:0 5%}
+  .cv-kick{font-family:var(--mono);font-size:.9rem;letter-spacing:.3em;text-transform:uppercase;color:var(--cyan);display:flex;align-items:center;gap:.8em;margin-bottom:1rem}
+  .cv-kick::before{content:"";width:2.6em;height:2px;background:var(--orange)}
+  .cv-brand{font-family:var(--display);font-weight:800;font-size:7rem;line-height:.9;letter-spacing:-.04em;color:#fff;display:flex;align-items:center}
+  .cv-brand .d{width:.42em;height:.42em;border-radius:50%;background:var(--orange);margin-left:.12em;box-shadow:0 0 40px rgba(255,122,51,.6)}
+  .cv-sub{font-size:1.45rem;color:var(--txt2);max-width:52%;line-height:1.45;margin:1.4rem 0 2.4rem}
+  .cv-team{margin-top:1.4rem;display:flex;flex-direction:column;gap:.55rem;max-width:78%}
+  .cv-team b{font-family:var(--mono);font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:var(--orange)}
+  .cv-team span{font-size:.95rem;color:var(--txt);line-height:1.7}
+  .cv-sub b{color:#fff;font-weight:600}
+  .cv-meta{display:flex;gap:0;border-top:1px solid var(--panelb);padding-top:1.4rem;max-width:75%}
+  .cv-meta div{flex:1;padding-right:1.5rem}
+  .cv-meta b{display:block;font-family:var(--mono);font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--orange);margin-bottom:.5rem}
+  .cv-meta span{font-size:.95rem;color:var(--txt)}
+  .sim{position:absolute;top:6.5%;right:5%;font-family:var(--mono);font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;color:#0d1626;background:var(--gold);padding:.5em 1em;border-radius:30px;z-index:4;font-weight:600}
+  .fs{position:absolute;bottom:7%;left:5%;display:flex;align-items:center;gap:.7em;font-family:var(--mono);font-size:.8rem;color:var(--txt2);letter-spacing:.05em;z-index:4;border:1px solid var(--panelb);padding:.75em 1.15em;border-radius:9px;background:rgba(255,255,255,.03)}
+  .fs svg{width:18px;height:18px;stroke:var(--cyan);stroke-width:1.7;fill:none}
+  .fs kbd{font-family:var(--mono);background:#1c2b47;border:1px solid #2f456b;border-radius:5px;padding:.12em .55em;color:var(--txt);font-size:.85em}
+  body:fullscreen .fs,body:-webkit-full-screen .fs{display:none}
+
+  /* ---------- EVIDENCIAS ---------- */
+  .evph{flex:1;display:grid;grid-template-columns:repeat(3,1fr);gap:1.3rem;min-height:0}
+  .evph figure{margin:0;display:flex;flex-direction:column;background:var(--panel2);border-radius:14px;overflow:hidden;border-top:3px solid var(--cyan);min-height:0}
+  .evph figure:nth-child(2){border-top-color:var(--green)}
+  .evph figure:nth-child(3){border-top-color:var(--orange)}
+  .evph .ph{flex:1;width:100%;object-fit:cover;display:block;min-height:0}
+  .evph figcaption{padding:1rem 1.2rem 1.2rem}
+  .evph .enum{font-family:var(--mono);font-size:.74rem;color:var(--muted);letter-spacing:.18em;margin-bottom:.5rem;display:block}
+  .evph b{font-family:var(--display);font-weight:700;font-size:1.12rem;color:#fff;display:block;margin-bottom:.3rem}
+  .evph figcaption span:not(.enum){font-size:.88rem;color:var(--txt2)}
+
+  /* ---------- EMPRESA ---------- */
+  .emp{flex:1;display:grid;grid-template-columns:1.25fr 1fr;gap:1.5rem}
+  .emp .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:auto}
+  .emp .stat{background:var(--panel2);border-radius:13px;padding:1.2rem 1.3rem;border-bottom:3px solid var(--orange)}
+  .emp .stat .n{font-family:var(--display);font-weight:800;font-size:3rem;line-height:.9;color:var(--orange)}
+  .emp .stat .l{font-size:.85rem;color:var(--txt2);margin-top:.5rem}
+  .prob{background:linear-gradient(160deg,#2a1620,#3a1820);border:1px solid #5c2730;border-radius:16px;padding:1.8rem;position:relative;overflow:hidden;display:flex;flex-direction:column}
+  .prob .chip{background:var(--red);color:#fff}
+  .prob .tags{margin-top:auto;display:flex;flex-direction:column;gap:.6rem;padding-top:1.2rem}
+  .prob .tg{display:flex;gap:.6rem;align-items:baseline;font-size:.95rem}
+  .prob .tg b{font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;padding:.25em .6em;border-radius:5px;flex:none}
+
+  /* ---------- triple panels (MVV / 3 ejes) ---------- */
+  .triple{flex:1;display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem}
+  .triple .panel{justify-content:center}
+  .triple .panel p{margin-top:.4rem}
+
+  /* ---------- OBJETIVOS ---------- */
+  .obj{flex:1;display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
+  .goalist{display:flex;flex-direction:column;gap:.85rem}
+  .goal{display:flex;gap:1rem;align-items:flex-start;background:var(--panel);border:1px solid var(--panelb);border-radius:12px;padding:1rem 1.2rem}
+  .goal .gn{font-family:var(--display);font-weight:800;font-size:1.5rem;color:var(--bg);background:var(--cyan);min-width:2.2rem;height:2.2rem;border-radius:8px;display:grid;place-items:center;flex:none}
+  .goal.meta .gn{background:var(--gold)}
+  .goal p{font-size:.98rem;color:var(--txt);line-height:1.4}
+
+  /* ---------- ACKOFF ---------- */
+  .ackf{flex:1;display:grid;grid-template-columns:1fr auto 1fr;gap:1.6rem;align-items:stretch}
+  .ackbox{border-radius:16px;padding:2rem;display:flex;flex-direction:column;position:relative;overflow:hidden}
+  .ackbox .big{font-family:var(--display);font-weight:800;font-size:2.3rem;line-height:1;color:#fff;margin:.3rem 0 1rem}
+  .ack-a{background:linear-gradient(160deg,#2a1620,#371a22);border:1px solid #5c2730}
+  .ack-b{background:linear-gradient(160deg,#0f2336,#102b44);border:1px solid #1e4d6b}
+  .ack-a .lbl{color:var(--red)}.ack-b .lbl{color:var(--cyan)}
+  .ackbox p{font-size:1.02rem;color:var(--txt2);line-height:1.55;margin-top:auto}
+  .ackbox .ig{position:absolute;right:-1rem;bottom:-1rem;font-family:var(--display);font-weight:800;font-size:7rem;opacity:.06;color:#fff}
+  .ackarrow{align-self:center;color:var(--orange);font-size:2.6rem;font-family:var(--mono)}
+
+  /* ---------- MODELO + 4 EJES ---------- */
+  .mod{flex:1;display:flex;flex-direction:column;gap:1.3rem;min-height:0}
+  .mod .lead{background:linear-gradient(120deg,var(--panel2),var(--panel));border:1px solid var(--panelb);border-left:4px solid var(--orange);border-radius:13px;padding:1.3rem 1.6rem;font-size:1.12rem;color:var(--txt);line-height:1.45}
+  .mod .lead b{color:var(--orange);font-weight:600}
+  .ejes4{flex:1;display:grid;grid-template-columns:repeat(4,1fr);gap:1.1rem}
+  .eje{background:var(--panel);border:1px solid var(--panelb);border-top:3px solid var(--blue);border-radius:13px;padding:1.3rem;display:flex;flex-direction:column}
+  .eje:nth-child(odd){border-top-color:var(--orange)}
+  .eje .en{font-family:var(--mono);font-size:.74rem;color:var(--muted);letter-spacing:.16em;margin-bottom:.5rem}
+  .eje b{font-family:var(--display);font-weight:700;font-size:1.2rem;color:#fff;margin-bottom:.5rem}
+  .eje span{font-size:.92rem;color:var(--txt2);line-height:1.45}
+
+  /* ---------- 7 FACTORES ---------- */
+  .fac{flex:1;display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:1fr 1fr;gap:1rem}
+  .fc{background:var(--panel);border:1px solid var(--panelb);border-radius:12px;padding:1.15rem 1.25rem;display:flex;flex-direction:column;justify-content:center;border-left:4px solid var(--cyan)}
+  .fc:nth-child(even){border-left-color:var(--orange)}
+  .fc b{font-family:var(--display);font-weight:700;font-size:1.08rem;color:#fff;margin-bottom:.4rem}
+  .fc span{font-size:.86rem;color:var(--txt2);line-height:1.4}
+
+  /* ---------- ESCENARIOS ---------- */
+  .scn{flex:1;display:grid;grid-template-columns:repeat(4,1fr);gap:1.2rem}
+  .sc{border-radius:16px;padding:1.6rem 1.5rem;display:flex;flex-direction:column;position:relative;overflow:hidden}
+  .sc .sn{font-family:var(--display);font-weight:800;font-size:4rem;opacity:.13;position:absolute;right:1rem;top:.3rem;line-height:1}
+  .sc .lab{font-family:var(--mono);font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;opacity:.9;margin-bottom:.5rem}
+  .sc h3{font-family:var(--display);font-weight:800;font-size:1.5rem;margin-bottom:.7rem;color:#fff}
+  .sc p{font-size:.9rem;line-height:1.45;margin-top:auto}
+  .sc1{background:linear-gradient(160deg,#2c3850,#222d42);color:#cdd8ec}
+  .sc2{background:linear-gradient(160deg,#0e4a52,#0c3a45);color:#d6f5f8}
+  .sc3{background:linear-gradient(160deg,#243f7a,#1d3460);color:#dde6ff}
+  .sc4{background:linear-gradient(160deg,#15663f,#10502f);color:#d6f7e4}
+  .sc4::before{content:"";position:absolute;inset:0;border:2px solid var(--green);border-radius:16px;opacity:.5}
+  .thanks{position:absolute;bottom:3.2%;left:0;right:0;text-align:center;font-family:var(--mono);font-size:.74rem;letter-spacing:.22em;color:var(--muted);z-index:3}
+</style>
+</head>
+<body>
+<div id="stage">
+
+  <!-- 1 COVER -->
+  <section class="slide active" id="s1">
+    <svg class="deco" viewBox="0 0 1280 720" preserveAspectRatio="xMaxYMid slice">
+      <g stroke="#22324f" stroke-width="1.5" fill="none" opacity=".9">
+        <path d="M1280 160 H980 a20 20 0 0 1-20 20 V340"/>
+        <path d="M1280 300 H1080 a20 20 0 0 0-20 20 V520"/>
+        <path d="M1280 470 H920 a20 20 0 0 1-20-20 V300"/>
+        <path d="M1140 720 V560 a20 20 0 0 1 20-20 H1280"/>
+      </g>
+      <g fill="#34d8e8">
+        <circle cx="960" cy="340" r="5"/><circle cx="1060" cy="520" r="5"/><circle cx="900" cy="300" r="5"/>
+      </g>
+      <g fill="#ff7a33">
+        <circle cx="1080" cy="320" r="5"/><circle cx="920" cy="450" r="5"/><circle cx="1160" cy="560" r="5"/>
+      </g>
+    </svg>
+    <div class="sim">Datos de ejemplo</div>
+    <div class="cover">
+      <div class="cv-kick">Avance de Proyecto · Unidad 1</div>
+      <div class="cv-brand">Arcel</div>
+      <p class="cv-sub">Planeación estratégica para un <b>taller de reparación de celulares</b> en Durango.</p>
+      <div class="cv-meta">
+        <div><b>Materia</b><span>Planeación y organización del trabajo</span></div>
+        <div><b>Empresa</b><span>Arcel · Reparación de celulares</span></div>
+      </div>
+      <div class="cv-team">
+        <b>Equipo 3 · Grupo 8TI</b>
+        <span>Juan Antonio Delgado Rodríguez&nbsp; ·&nbsp; Idaly Guadalupe García Flores&nbsp; ·&nbsp; Ángel Gustavo Ocampo Franco&nbsp; ·&nbsp; Jorge Antonio Reyes Reyes&nbsp; ·&nbsp; José Antonio Rodríguez Rivera</span>
+      </div>
+    </div>
+    <div class="fs">
+      <svg viewBox="0 0 24 24"><path d="M4 9V5a1 1 0 0 1 1-1h4M20 9V5a1 1 0 0 0-1-1h-4M4 15v4a1 1 0 0 0 1 1h4M20 15v4a1 1 0 0 1-1 1h-4"/></svg>
+      Clic para pantalla completa · tecla <kbd>F</kbd> · <kbd>←</kbd> <kbd>→</kbd>
+    </div>
+  </section>
+
+  <!-- 2 EVIDENCIAS -->
+  <section class="slide" id="s2">
+    <div class="head"><div class="ttl"><div class="kick">Contacto con la empresa</div><h2>Evidencias del acercamiento</h2></div><div class="folio"><b>02</b> / 10</div></div>
+    <div class="body">
+      <div class="evph">
+        <figure><img class="ph" src="image%20copy.png" alt="El equipo en el local de Arcel"><figcaption><span class="enum">01</span><b>Visita al local</b><span>El equipo en el taller Arcel, centro de Durango.</span></figcaption></figure>
+        <figure><img class="ph" src="image.png" alt="El equipo en el mostrador de Arcel"><figcaption><span class="enum">02</span><b>En el mostrador</b><span>Acercamiento con el negocio durante la visita.</span></figcaption></figure>
+        <figure><img class="ph" src="image%20copy%202.png" alt="El encargado atendiendo al equipo"><figcaption><span class="enum">03</span><b>Con el encargado</b><span>El encargado de Arcel atiende al equipo.</span></figcaption></figure>
+      </div>
+    </div>
+    <span class="wmark">ARCEL · AVANCE DE PROYECTO</span><span class="secmark">EVIDENCIAS</span>
+  </section>
+
+  <!-- 3 EMPRESA -->
+  <section class="slide" id="s3">
+    <div class="head"><div class="ttl"><div class="kick">La empresa</div><h2>Quién es Arcel y qué resolver</h2></div><div class="folio"><b>03</b> / 10</div></div>
+    <div class="body">
+      <div class="emp">
+        <div class="panel"><span class="pn">A</span>
+          <span class="lbl" style="color:var(--orange)">Perfil del negocio</span>
+          <p style="font-size:1.15rem;color:var(--txt)">Microempresa de servicio fundada en <b style="color:#fff">2018</b>, dedicada a la reparación de celulares, venta de accesorios y desbloqueos, ubicada en el centro de Durango.</p>
+          <div class="stats">
+            <div class="stat"><div class="n">4</div><div class="l">Empleados</div></div>
+            <div class="stat"><div class="n">~18</div><div class="l">Equipos / semana</div></div>
+            <div class="stat"><div class="n">1</div><div class="l">Sucursal</div></div>
+          </div>
+        </div>
+        <div class="prob">
+          <h3 style="color:#fff;font-family:var(--display);font-weight:700;font-size:1.4rem;display:flex;align-items:center;gap:.6rem;margin-bottom:.9rem"><span class="chip"><svg viewBox="0 0 24 24"><path d="M12 8v5M12 17h.01"/><circle cx="12" cy="12" r="9"/></svg></span>Problemática</h3>
+          <p style="color:var(--txt2);font-size:1.02rem;line-height:1.55">El registro de reparaciones se lleva en una <b style="color:#fff">libreta física</b>: sin seguimiento del estado de cada equipo, sin aviso automático al cliente, con notas que se extravían y sin control de refacciones ni garantías.</p>
+          <div class="tags">
+            <div class="tg"><b style="background:#5c2730;color:#ffb3ba">Hoy</b><span>Control manual y reactivo</span></div>
+            <div class="tg"><b style="background:#1e4d6b;color:#9fe4f0">Meta</b><span>Gestión digital de órdenes de servicio</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <span class="wmark">ARCEL · AVANCE DE PROYECTO</span><span class="secmark">DESCRIPCIÓN Y PROBLEMÁTICA</span>
+  </section>
+
+  <!-- 4 MVV -->
+  <section class="slide" id="s4">
+    <div class="head"><div class="ttl"><div class="kick">Planeación estratégica · I</div><h2>Misión, visión y valores</h2></div><div class="folio"><b>04</b> / 10</div></div>
+    <div class="body">
+      <div class="triple">
+        <div class="panel"><span class="pn">M</span><h3><span class="chip">M</span>Misión</h3><p>Ofrecer reparaciones de celulares rápidas, confiables y con garantía, dando a cada cliente certeza sobre el estado y el costo de su equipo.</p></div>
+        <div class="panel"><span class="pn">V</span><h3><span class="chip" style="background:var(--cyan)">V</span>Visión</h3><p>Ser para 2028 el taller de reparación de referencia en Durango, reconocido por su servicio ágil y su gestión digital de cada orden.</p></div>
+        <div class="panel"><span class="pn">★</span><h3><span class="chip" style="background:var(--gold)">★</span>Valores</h3>
+          <p style="display:flex;flex-direction:column;gap:.7rem;margin-top:.5rem">
+            <span style="color:var(--txt)"><b style="color:var(--gold)">01</b>&nbsp; Honestidad en diagnósticos</span>
+            <span style="color:var(--txt)"><b style="color:var(--gold)">02</b>&nbsp; Cumplimiento de tiempos</span>
+            <span style="color:var(--txt)"><b style="color:var(--gold)">03</b>&nbsp; Trato cercano al cliente</span>
+            <span style="color:var(--txt)"><b style="color:var(--gold)">04</b>&nbsp; Responsabilidad con el equipo</span>
+          </p>
+        </div>
+      </div>
+    </div>
+    <span class="wmark">ARCEL · AVANCE DE PROYECTO</span><span class="secmark">PLANEACIÓN ESTRATÉGICA</span>
+  </section>
+
+  <!-- 5 OBJETIVOS -->
+  <section class="slide" id="s5">
+    <div class="head"><div class="ttl"><div class="kick">Planeación estratégica · II</div><h2>Objetivos, metas y estrategias</h2></div><div class="folio"><b>05</b> / 10</div></div>
+    <div class="body">
+      <div class="obj">
+        <div style="display:flex;flex-direction:column;gap:1rem">
+          <span class="lbl" style="color:var(--cyan)">Objetivos · Metas</span>
+          <div class="goalist">
+            <div class="goal"><div class="gn">1</div><p>Digitalizar el <b>100% de las órdenes</b> de servicio en 6 meses.</p></div>
+            <div class="goal"><div class="gn">2</div><p>Reducir <b>40% el tiempo</b> de seguimiento a clientes.</p></div>
+            <div class="goal"><div class="gn">3</div><p>Eliminar la pérdida de notas y confusiones de equipo.</p></div>
+            <div class="goal meta"><div class="gn">M</div><p>Mes 3 sistema operando · Mes 4 avisos por WhatsApp · Mes 6 inventario controlado.</p></div>
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:1.1rem">
+          <span class="lbl" style="color:var(--orange)">Estrategias y tácticas</span>
+          <div class="panel" style="flex:1;border-left:4px solid var(--orange)"><h3><span class="chip">E1</span>Digitalización del servicio</h3><p>Implementar un sistema de órdenes · capacitar al personal · migrar la libreta a registro digital.</p></div>
+          <div class="panel" style="flex:1;border-left:4px solid var(--cyan)"><h3><span class="chip" style="background:var(--cyan)">E2</span>Comunicación con el cliente</h3><p>Avisos por WhatsApp · estatus consultable · encuesta de satisfacción tras la entrega.</p></div>
+        </div>
+      </div>
+    </div>
+    <span class="wmark">ARCEL · AVANCE DE PROYECTO</span><span class="secmark">OBJETIVOS · METAS · ESTRATEGIAS</span>
+  </section>
+
+  <!-- 6 ACKOFF -->
+  <section class="slide" id="s6">
+    <div class="head"><div class="ttl"><div class="kick">Estilo de planeación · Ackoff</div><h2>De reactivo a interactivo</h2></div><div class="folio"><b>06</b> / 10</div></div>
+    <div class="body">
+      <div class="ackf">
+        <div class="ackbox ack-a"><span class="ig">✕</span><span class="lbl">Estilo actual</span><div class="big">Reactivo · Inactivo</div><p>Arcel resuelve los problemas conforme aparecen y opera "como siempre se ha hecho", sin planear cambios ni anticipar la demanda.</p></div>
+        <div class="ackarrow">⟶</div>
+        <div class="ackbox ack-b"><span class="ig">✓</span><span class="lbl">Estilo recomendado</span><div class="big">Preactivo · Interactivo</div><p>Anticiparse con un sistema que prevea la carga de trabajo y diseñar activamente el futuro del taller, integrando la tecnología en la operación diaria.</p></div>
+      </div>
+    </div>
+    <span class="wmark">ARCEL · AVANCE DE PROYECTO</span><span class="secmark">CLASIFICACIÓN DE ACKOFF</span>
+  </section>
+
+  <!-- 7 MODELO + 4 EJES -->
+  <section class="slide" id="s7">
+    <div class="head"><div class="ttl"><div class="kick">Modelo organizacional</div><h2>Enfoque: Producción / Operaciones</h2></div><div class="folio"><b>07</b> / 10</div></div>
+    <div class="body">
+      <div class="mod">
+        <div class="lead">Se eligió el modelo de <b>producción y operaciones</b> porque el problema central de Arcel está en su <b>proceso de servicio</b>: cómo entra, fluye y se entrega cada reparación.</div>
+        <div class="ejes4">
+          <div class="eje"><div class="en">EJE 01</div><b>Social</b><span>Técnicos y encargado; trato directo con el cliente que deja su equipo.</span></div>
+          <div class="eje"><div class="en">EJE 02</div><b>Estratégico</b><span>Diferenciarse por rapidez y confianza frente a otros talleres.</span></div>
+          <div class="eje"><div class="en">EJE 03</div><b>Administrativo</b><span>Control de órdenes, cobros, garantías y refacciones.</span></div>
+          <div class="eje"><div class="en">EJE 04</div><b>Tecnológico</b><span>Herramientas de reparación + sistema digital de gestión.</span></div>
+        </div>
+      </div>
+    </div>
+    <span class="wmark">ARCEL · AVANCE DE PROYECTO</span><span class="secmark">MODELO ORGANIZACIONAL · 4 EJES</span>
+  </section>
+
+  <!-- 8 3 EJES -->
+  <section class="slide" id="s8">
+    <div class="head"><div class="ttl"><div class="kick">Modelo organizacional</div><h2>Los 3 ejes fundamentales</h2></div><div class="folio"><b>08</b> / 10</div></div>
+    <div class="body">
+      <div class="triple">
+        <div class="panel" style="border-top:3px solid var(--orange)"><span class="pn">1</span><h3><span class="chip">1</span>Misión</h3><p>Reparar con rapidez y confianza, dando certeza al cliente sobre su equipo en todo momento.</p></div>
+        <div class="panel" style="border-top:3px solid var(--cyan)"><span class="pn">2</span><h3><span class="chip" style="background:var(--cyan)">2</span>Diseño de transformación</h3><p>Pasar del registro en libreta a un flujo digital: recepción → diagnóstico → reparación → aviso → entrega.</p></div>
+        <div class="panel" style="border-top:3px solid var(--green)"><span class="pn">3</span><h3><span class="chip" style="background:var(--green)">3</span>Estructura</h3><p>Encargado que coordina y asigna; técnicos que ejecutan; un mismo sistema que conecta a ambos.</p></div>
+      </div>
+    </div>
+    <span class="wmark">ARCEL · AVANCE DE PROYECTO</span><span class="secmark">3 EJES FUNDAMENTALES</span>
+  </section>
+
+  <!-- 9 ENTORNO -->
+  <section class="slide" id="s9">
+    <div class="head"><div class="ttl"><div class="kick">Análisis del entorno</div><h2>Los 7 factores</h2></div><div class="folio"><b>09</b> / 10</div></div>
+    <div class="body">
+      <div class="fac">
+        <div class="fc"><b>Educativo</b><span>Clientes cada vez más familiarizados con apps y avisos digitales.</span></div>
+        <div class="fc"><b>Cultural</b><span>El celular es indispensable; se busca repararlo antes que reemplazarlo.</span></div>
+        <div class="fc"><b>Económico</b><span>Reparar es más barato que comprar nuevo; demanda estable.</span></div>
+        <div class="fc"><b>Político</b><span>Normas de protección al consumidor y garantías de servicio.</span></div>
+        <div class="fc"><b>Social</b><span>La recomendación de boca en boca define la reputación local.</span></div>
+        <div class="fc"><b>Ambiental</b><span>Reparar alarga la vida útil y reduce residuos electrónicos.</span></div>
+        <div class="fc"><b>Tecnológico</b><span>Equipos más complejos y herramientas digitales accesibles.</span></div>
+        <div class="fc" style="background:linear-gradient(140deg,var(--panel2),var(--panel));border-left-color:var(--gold);justify-content:center"><b style="color:var(--gold)">7 fuerzas</b><span>moldean el entorno donde opera Arcel.</span></div>
+      </div>
+    </div>
+    <span class="wmark">ARCEL · AVANCE DE PROYECTO</span><span class="secmark">ANÁLISIS DEL ENTORNO</span>
+  </section>
+
+  <!-- 10 ESCENARIOS -->
+  <section class="slide" id="s10b">
+    <div class="head"><div class="ttl"><div class="kick">Prospectiva</div><h2>Los cuatro escenarios</h2></div><div class="folio"><b>10</b> / 10</div></div>
+    <div class="body">
+      <div class="scn">
+        <div class="sc sc1"><span class="sn">01</span><div class="lab">Real</div><h3>Hoy</h3><p>Control manual en libreta, seguimiento por memoria y avisos por llamada.</p></div>
+        <div class="sc sc2"><span class="sn">02</span><div class="lab">Posible</div><h3>Podría pasar</h3><p>Adoptar una hoja de cálculo o un cuaderno mejor organizado, aún manual.</p></div>
+        <div class="sc sc3"><span class="sn">03</span><div class="lab">Probable</div><h3>Lo más seguro</h3><p>Usar WhatsApp de forma más ordenada para avisar, sin un sistema real.</p></div>
+        <div class="sc sc4"><span class="sn">04</span><div class="lab">Deseable</div><h3>La meta</h3><p>Sistema digital de órdenes con avisos automáticos, historial y refacciones.</p></div>
+      </div>
+    </div>
+    <div class="thanks">GRACIAS · ¿PREGUNTAS? · EQUIPO 3 · 8TI</div>
+    <span class="wmark">ARCEL · AVANCE DE PROYECTO</span><span class="secmark">ESCENARIOS PROSPECTIVOS</span>
+  </section>
+
+</div>
+
+<script>
+  const slides=[...document.querySelectorAll('.slide')];
+  let i=0;
+  function show(n){n=Math.max(0,Math.min(slides.length-1,n));if(n===i)return;slides[i].classList.remove('active');slides[n].classList.add('active');i=n;}
+  function toggleFull(){if(!document.fullscreenElement){(document.documentElement.requestFullscreen||document.documentElement.webkitRequestFullscreen).call(document.documentElement);}else{document.exitFullscreen&&document.exitFullscreen();}}
+  document.addEventListener('keydown',e=>{
+    if(['ArrowRight',' ','PageDown'].includes(e.key)){show(i+1);e.preventDefault();}
+    else if(['ArrowLeft','PageUp'].includes(e.key)){show(i-1);}
+    else if(e.key==='f'||e.key==='F'){toggleFull();}
+    else if(e.key==='Home'){show(0);}else if(e.key==='End'){show(slides.length-1);}
+  });
+  document.getElementById('stage').addEventListener('click',()=>{if(i===0){toggleFull();show(1);}else{show(i+1);}});
+</script>
+</body>
+</html>
