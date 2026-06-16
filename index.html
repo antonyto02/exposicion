@@ -726,8 +726,14 @@
   #clip5 .layer > *{transition:opacity .6s, transform .6s, filter .6s;}
 
   /* escena: navegador GRANDE y CENTRADO (lo demás entra cuando toca) */
-  #clip5 .c5-scene2{position:relative; width:100%; display:flex; justify-content:center; align-items:center; opacity:0; transform:scale(.85); filter:blur(6px);}
+  #clip5 .c5-scene2{position:relative; width:100%; display:flex; justify-content:center; align-items:center; gap:clamp(1rem,3vw,2.6rem); opacity:0; transform:scale(.85); filter:blur(6px);}
   #clip5.s2 .c5-scene2{opacity:1; transform:none; filter:none;}
+  #clip5 .c5-code{font-family:var(--mono); font-size:clamp(.68rem,1.4vw,1.02rem); line-height:1.65; white-space:pre; text-align:left;
+    background:#0f1b24; color:#cbd8df; border-radius:14px; padding:clamp(1rem,2.2vw,1.5rem) clamp(1.2rem,2.6vw,1.9rem); box-shadow:var(--shadow); z-index:2;}
+  #clip5 .c5-code .cc-tag{color:#7d909b;}
+  #clip5 .c5-code .cc-kw{color:#c792ea;}
+  #clip5 .c5-code .cc-fn{color:#82aaff;}
+  #clip5 .c5-code .cc-vif{color:#ff9a9e; background:rgba(229,72,77,.2); border-radius:4px; padding:0 .25em;}
   #clip5 .c5-browser{width:clamp(330px,46vw,600px); background:#fff; border:1px solid var(--line); border-radius:16px; box-shadow:var(--shadow); overflow:hidden; z-index:2;}
   #clip5 .cb-bar{display:flex; align-items:center; gap:8px; padding:.6em 1em; background:#f3f7f5; border-bottom:1px solid var(--line);}
   #clip5 .cb-bar .d{width:11px;height:11px;border-radius:50%;}
@@ -1366,6 +1372,15 @@
       <!-- navegador grande + servidor -->
       <div class="layer">
         <div class="c5-scene2">
+          <div class="c5-code"><span class="cc-tag">&lt;template&gt;</span>
+  &lt;button <span class="cc-vif">v-if="role === 'admin'"</span>&gt;
+    Eliminar usuario
+  &lt;/button&gt;
+<span class="cc-tag">&lt;/template&gt;</span>
+
+<span class="cc-tag">&lt;script setup&gt;</span>
+<span class="cc-kw">const</span> role = <span class="cc-fn">useUser</span>().role
+<span class="cc-tag">&lt;/script&gt;</span></div>
           <div class="c5-browser">
             <div class="cb-bar"><span class="d r"></span><span class="d y"></span><span class="d g"></span><span class="cb-url">panel.empresa.com</span></div>
             <div class="cb-body">
