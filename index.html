@@ -531,64 +531,80 @@
   .mvv-val .vt{font-family:var(--display);font-weight:600;font-size:1.32rem;color:#161616;line-height:1.15}
 
   /* ================= Slide OT · OE1 (buscador → táctico → metas) ================= */
-  #oeStrat{overflow:hidden}
-  /* page-turn */
-  .ot-flip{position:absolute;inset:0;z-index:10;transform-origin:right center;backface-visibility:hidden;
-    background-color:#f4f0e7;background-image:linear-gradient(rgba(40,30,12,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(40,30,12,.04) 1px,transparent 1px);background-size:2.4rem 2.4rem,2.4rem 2.4rem;
-    box-shadow:-34px 0 70px rgba(40,30,10,.14)}
-  .slide.active#oeStrat .ot-flip{animation:otFlip 1.15s ease-in-out 13s both}
+  /* ===== Detalle tácticos: 3 OE · 9 OT · metas (cronometrado) ===== */
+  .oeblock{position:absolute;inset:0}
+  .oeblock.b1{--gc:var(--orange);z-index:12} .oeblock.b2{--gc:var(--cyan);z-index:16} .oeblock.b3{--gc:var(--green);z-index:20}
+  .ot-flip{position:absolute;inset:0;transform-origin:right center;backface-visibility:hidden;background-color:#f4f0e7;background-image:linear-gradient(rgba(40,30,12,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(40,30,12,.04) 1px,transparent 1px);background-size:2.4rem 2.4rem,2.4rem 2.4rem;box-shadow:-34px 0 70px rgba(40,30,10,.14)}
+  .ot-flip.f1{z-index:10} .ot-flip.f2{z-index:14} .ot-flip.f3{z-index:18}
   @keyframes otFlip{0%{transform:perspective(2200px) rotateY(100deg)}100%{transform:perspective(2200px) rotateY(0)}}
-  /* barra de búsqueda */
-  .srchbar{position:absolute;left:50%;top:44%;transform:translate(-50%,-50%);opacity:0;z-index:12;
-    display:flex;align-items:center;gap:1rem;background:#fff;border:2px solid var(--panelb);border-radius:44px;
-    padding:1rem 1.9rem;box-shadow:0 20px 54px -30px rgba(40,30,10,.5);max-width:92%}
-  .slide.active#oeStrat .srchbar{animation:otBar 5.6s cubic-bezier(.6,.05,.2,1) 14s both}
-  @keyframes otBar{
-    0%{opacity:0;top:44%;transform:translate(-50%,-50%) scale(.92)}
-    7%{opacity:1;transform:translate(-50%,-50%) scale(1)}
-    52%{opacity:1;top:44%;transform:translate(-50%,-50%) scale(1)}
-    100%{opacity:1;top:8%;transform:translate(-50%,-50%) scale(.52)}}
-  .srchbar .sb-ic{width:1.7rem;height:1.7rem;color:var(--muted);flex:none}
-  .srchbar .sb-ic svg{width:100%;height:100%;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
-  .srchtext{font-family:var(--mono);font-size:1.9rem;font-weight:500;color:#161616;letter-spacing:-.01em;
-    overflow:hidden;white-space:nowrap;width:0;border-right:.09em solid var(--orange)}
-  .slide.active#oeStrat .srchtext{animation:otType 2.1s steps(30,end) 14.6s both, otCaret .7s step-end 14.6s 7 both}
-  @keyframes otType{to{width:30ch}}
-  @keyframes otCaret{50%{border-color:transparent}}
-  /* escenario táctico + metas */
-  .ot-stage{position:absolute;left:6%;right:6%;top:19%;bottom:6%;display:flex;flex-direction:column;align-items:center;gap:1.4rem;z-index:12}
-  .ot-rev{opacity:0}
-  .slide.active#oeStrat .ot-rev{animation:otRev .75s cubic-bezier(.2,.8,.2,1) both;animation-delay:var(--d,0s)}
-  @keyframes otRev{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:none}}
-  .ot-main{display:flex;flex-direction:column;align-items:center;gap:.7rem;flex:none;margin-top:1.4rem}
-  .otg{height:17vh;display:grid;place-items:center}
+  .ohdr{position:absolute;left:50%;top:44%;transform:translate(-50%,-50%);opacity:0;display:flex;align-items:center;gap:1rem;max-width:92%;white-space:nowrap}
+  .ohdr .sb-ic{width:1.7rem;height:1.7rem;flex:none}
+  .ohdr .sb-ic svg{width:100%;height:100%;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+  .htext{font-family:var(--mono);font-size:1.9rem;font-weight:500;letter-spacing:-.01em;overflow:hidden;white-space:nowrap;width:0;border-right:.09em solid}
+  .ohdr.search{background:#fff;border:2px solid var(--panelb);border-radius:44px;padding:1rem 1.9rem;box-shadow:0 20px 54px -30px rgba(40,30,10,.5)}
+  .ohdr.search .sb-ic{color:var(--muted)} .ohdr.search .htext{color:#161616;border-right-color:var(--orange)}
+  .ohdr.maps{background:#fff;border:2px solid var(--panelb);border-radius:44px;padding:1rem 1.9rem;box-shadow:0 20px 54px -30px rgba(40,30,10,.5)}
+  .ohdr.maps .sb-ic{color:var(--green)} .ohdr.maps .htext{color:#161616;border-right-color:var(--green)}
+  .ohdr.wa{background:#25d366;border-radius:24px;padding:1rem 1.7rem;box-shadow:0 18px 50px -26px rgba(20,90,40,.6)}
+  .ohdr.wa .htext{color:#fff;border-right-color:#fff}
+  .ohdr.wa::after{content:"";position:absolute;right:22px;bottom:-9px;width:0;height:0;border:11px solid transparent;border-top-color:#25d366;border-bottom:0}
+  @keyframes hdrSeq{0%{opacity:0;top:44%;transform:translate(-50%,-50%) scale(.92)}7%{opacity:1;transform:translate(-50%,-50%) scale(1)}58%{opacity:1;top:44%;transform:translate(-50%,-50%) scale(1)}100%{opacity:1;top:7.5%;transform:translate(-50%,-50%) scale(.5)}}
+  @keyframes ocaret{50%{border-color:transparent}}
+  .ot-stage{position:absolute;left:6%;right:6%;top:18%;bottom:6%}
+  .otpanel{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;gap:1.3rem;opacity:0}
+  @keyframes panelIn{0%{opacity:0;transform:translateY(26px)}8%{opacity:1;transform:none}88%{opacity:1;transform:none}100%{opacity:0;transform:translateY(-20px)}}
+  @keyframes panelHold{0%{opacity:0;transform:translateY(26px)}12%{opacity:1;transform:none}100%{opacity:1;transform:none}}
+  .ot-main{display:flex;flex-direction:column;align-items:center;gap:.6rem;flex:none;margin-top:1rem}
+  .otg{height:16vh;display:grid;place-items:center}
   .otg-svg{height:100%;width:auto}
-  .ot-code{font-family:var(--mono);font-weight:600;font-size:1rem;color:#fff;background:var(--orange);padding:.32em .7em;border-radius:7px}
-  .ot-t{font-family:var(--display);font-weight:800;font-size:2.5rem;line-height:1.05;color:#161616;text-align:center}
-  .ot-who{font-family:var(--mono);font-size:1.05rem;color:var(--muted);letter-spacing:.02em;display:flex;align-items:center;gap:.6em}
-  .ot-who b{color:var(--orange);font-weight:600}
-  .ot-metas{flex:1;display:grid;grid-template-columns:1fr 1fr;gap:2.4rem;width:100%;max-width:62rem;min-height:0}
-  .ot-meta{display:flex;flex-direction:column;align-items:center;text-align:center;gap:.5rem;min-height:0}
-  .om-gif{flex:1;display:grid;place-items:center;min-height:0;width:100%;
-    background:radial-gradient(circle at 50% 45%,color-mix(in srgb,var(--cyan) 12%,transparent),transparent 62%)}
-  .om-gif svg{height:100%;max-height:15vh;width:auto}
-  .om-lbl{font-family:var(--mono);font-size:.8rem;letter-spacing:.18em;text-transform:uppercase;font-weight:600;color:var(--cyan)}
-  .om-t{font-family:var(--display);font-weight:700;font-size:1.5rem;color:#161616;line-height:1.1}
-  .om-s{font-family:var(--mono);font-size:.92rem;color:var(--muted);line-height:1.5}
-  .om-s b{color:var(--cyan);font-weight:600}
-  /* gif del táctico: módulos que aparecen */
+  .otg .gp{height:100%;width:auto;color:var(--gc);transform-box:fill-box;transform-origin:center}
+  .otg .gp,.om-gif .gp{fill:none;stroke:currentColor;stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round}
+  .slide.active#oeStrat .gp{animation:gPulse 2.6s ease-in-out infinite}
+  @keyframes gPulse{0%,100%{transform:scale(.9)}50%{transform:scale(1.04)}}
+  .ot-code{font-family:var(--mono);font-weight:600;font-size:1rem;color:#fff;background:var(--gc);padding:.32em .7em;border-radius:7px}
+  .ot-t{font-family:var(--display);font-weight:800;font-size:2.4rem;line-height:1.05;color:#161616;text-align:center}
+  .ot-who{font-family:var(--mono);font-size:1.02rem;color:var(--muted);letter-spacing:.02em}
+  .ot-who b{color:var(--gc);font-weight:600}
+  .ot-metas{flex:1;display:grid;grid-template-columns:1fr 1fr;gap:2.2rem;width:100%;max-width:62rem;min-height:0;margin:0 auto}
+  .ot-meta{display:flex;flex-direction:column;align-items:center;text-align:center;gap:.4rem;min-height:0}
+  .om-gif{flex:1;display:grid;place-items:center;min-height:0;width:100%;background:radial-gradient(circle at 50% 45%,color-mix(in srgb,var(--gc) 13%,transparent),transparent 62%)}
+  .om-gif svg{height:100%;max-height:14vh;width:auto}
+  .om-gif .gp{color:var(--gc);transform-box:fill-box;transform-origin:center}
+  .om-lbl{font-family:var(--mono);font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;font-weight:600;color:var(--gc)}
+  .om-t{font-family:var(--display);font-weight:700;font-size:1.45rem;color:#161616;line-height:1.1}
+  .om-s{font-family:var(--mono);font-size:.9rem;color:var(--muted);line-height:1.5}
+  .om-s b{color:var(--gc);font-weight:600}
   .otg .otm{transform-box:fill-box;transform-origin:center}
   .slide.active#oeStrat .otg .otm{animation:otMod 3.2s ease-in-out infinite}
   .otg .m2{animation-delay:.35s} .otg .m3{animation-delay:.7s} .otg .m4{animation-delay:1.05s}
   @keyframes otMod{0%,100%{transform:scale(.2);opacity:0}14%{transform:scale(1);opacity:1}82%{transform:scale(1);opacity:1}92%{opacity:0}}
-  /* gif meta 1: anillo de progreso */
   .omring{animation:omFill 2.6s ease-in-out infinite}
   @keyframes omFill{0%,100%{stroke-dashoffset:251}50%{stroke-dashoffset:14}}
-  /* gif meta 2: checklist */
   .omchk{stroke-dasharray:30;stroke-dashoffset:30}
   .slide.active#oeStrat .omchk{animation:omCheck 3s ease-in-out infinite}
   .omchk.c2{animation-delay:.4s} .omchk.c3{animation-delay:.8s}
   @keyframes omCheck{0%,10%{stroke-dashoffset:30}32%,85%{stroke-dashoffset:0}100%{stroke-dashoffset:30}}
+  .slide.active#oeStrat .ot-flip.f1{animation:otFlip 1.15s ease-in-out 13.0s both}
+  .slide.active#oeStrat .ot-flip.f2{animation:otFlip 1.15s ease-in-out 36.8s both}
+  .slide.active#oeStrat .ot-flip.f3{animation:otFlip 1.15s ease-in-out 60.6s both}
+  .slide.active#oeStrat .h0{animation:hdrSeq 6s cubic-bezier(.6,.05,.2,1) 14.3s both}
+  .slide.active#oeStrat .h0 .htext{animation:type0 2.7s steps(30,end) 14.8s both, ocaret .7s step-end 14.8s 7 both}
+  @keyframes type0{to{width:30ch}}
+  .slide.active#oeStrat .h1{animation:hdrSeq 6s cubic-bezier(.6,.05,.2,1) 38.1s both}
+  .slide.active#oeStrat .h1 .htext{animation:type1 2.8s steps(32,end) 38.6s both, ocaret .7s step-end 38.6s 7 both}
+  @keyframes type1{to{width:32ch}}
+  .slide.active#oeStrat .h2{animation:hdrSeq 6s cubic-bezier(.6,.05,.2,1) 61.9s both}
+  .slide.active#oeStrat .h2 .htext{animation:type2 2.25s steps(25,end) 62.4s both, ocaret .7s step-end 62.4s 7 both}
+  @keyframes type2{to{width:25ch}}
+  .slide.active#oeStrat .otpanel.p0{animation:panelIn 5.6s cubic-bezier(.2,.8,.2,1) 19.3s both}
+  .slide.active#oeStrat .otpanel.p1{animation:panelIn 5.6s cubic-bezier(.2,.8,.2,1) 24.9s both}
+  .slide.active#oeStrat .otpanel.p2{animation:panelHold 5.6s cubic-bezier(.2,.8,.2,1) 30.5s both}
+  .slide.active#oeStrat .otpanel.p3{animation:panelIn 5.6s cubic-bezier(.2,.8,.2,1) 43.1s both}
+  .slide.active#oeStrat .otpanel.p4{animation:panelIn 5.6s cubic-bezier(.2,.8,.2,1) 48.7s both}
+  .slide.active#oeStrat .otpanel.p5{animation:panelHold 5.6s cubic-bezier(.2,.8,.2,1) 54.3s both}
+  .slide.active#oeStrat .otpanel.p6{animation:panelIn 5.6s cubic-bezier(.2,.8,.2,1) 66.9s both}
+  .slide.active#oeStrat .otpanel.p7{animation:panelIn 5.6s cubic-bezier(.2,.8,.2,1) 72.5s both}
+  .slide.active#oeStrat .otpanel.p8{animation:panelHold 5.6s cubic-bezier(.2,.8,.2,1) 78.1s both}
 </style>
 </head>
 <body>
@@ -793,34 +809,35 @@
 
     </div>
   
-    <div class="ot-flip"></div>
-    <div class="srchbar">
-      <span class="sb-ic"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg></span>
-      <span class="srchtext">OE1 · Digitalizar la operación</span>
-    </div>
-    <div class="ot-stage">
-      <div class="ot-main ot-rev" style="--d:19.8s">
-        <div class="otg"><svg class="otg-svg" viewBox="0 0 260 190" fill="none"><rect x="16" y="16" width="228" height="158" rx="14" fill="#fff" stroke="#161616" stroke-width="4"/><path d="M16 48 H244" stroke="#161616" stroke-width="4"/><circle cx="34" cy="32" r="4" fill="#e07a4a"/><circle cx="50" cy="32" r="4" fill="#e7b94a"/><circle cx="66" cy="32" r="4" fill="#5db87e"/><rect class="otm" x="36" y="66" width="86" height="42" rx="9" fill="#f2641a"/><rect class="otm m2" x="138" y="66" width="86" height="42" rx="9" fill="#f6b78f"/><rect class="otm m3" x="36" y="120" width="86" height="42" rx="9" fill="#f6b78f"/><rect class="otm m4" x="138" y="120" width="86" height="42" rx="9" fill="#f2641a"/></svg></div>
-        <div class="ot-code">OT1.1</div>
-        <div class="ot-t">Implementar sistema de órdenes</div>
-        <div class="ot-who"><b>Responsable:</b> Equipo de desarrollo&nbsp; ·&nbsp; <b>Plazo:</b> Mes 1–2</div>
-      </div>
-      <div class="ot-metas">
-        <div class="ot-meta ot-rev" style="--d:21.4s">
-          <div class="om-gif"><svg viewBox="0 0 140 140" fill="none"><circle cx="70" cy="70" r="40" fill="none" stroke="#e6dac6" stroke-width="13"/><circle class="omring" cx="70" cy="70" r="40" fill="none" stroke="#f2641a" stroke-width="13" stroke-linecap="round" stroke-dasharray="251" stroke-dashoffset="251" transform="rotate(-90 70 70)"/></svg></div>
-          <div class="om-lbl">Meta 1</div>
-          <div class="om-t">Sistema en operación</div>
-          <div class="om-s"><b>Mide:</b> % de módulos listos&nbsp; ·&nbsp; <b>Plazo:</b> Mes 2</div>
-        </div>
-        <div class="ot-meta ot-rev" style="--d:21.75s">
-          <div class="om-gif"><svg viewBox="0 0 200 150" fill="none" stroke-linecap="round" stroke-linejoin="round"><g stroke="#161616" stroke-width="4"><rect x="24" y="22" width="28" height="28" rx="6"/><rect x="24" y="61" width="28" height="28" rx="6"/><rect x="24" y="100" width="28" height="28" rx="6"/><line x1="66" y1="36" x2="172" y2="36"/><line x1="66" y1="75" x2="150" y2="75"/><line x1="66" y1="114" x2="164" y2="114"/></g><path class="omchk" d="M30 37 l7 7 l13 -15" stroke="#2fa56a" stroke-width="5" fill="none"/><path class="omchk c2" d="M30 76 l7 7 l13 -15" stroke="#2fa56a" stroke-width="5" fill="none"/><path class="omchk c3" d="M30 115 l7 7 l13 -15" stroke="#2fa56a" stroke-width="5" fill="none"/></svg></div>
-          <div class="om-lbl">Meta 2</div>
-          <div class="om-t">Pruebas superadas</div>
-          <div class="om-s"><b>Mide:</b> checklist 100%&nbsp; ·&nbsp; <b>Plazo:</b> Mes 2</div>
-        </div>
+
+    <div class="ot-flip f1"></div>
+    <div class="oeblock b1">
+      <div class="ohdr search h0"><span class="sb-ic"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg></span><span class="htext">OE1 · Digitalizar la operación</span></div>
+      <div class="ot-stage">
+        <div class="otpanel p0"><div class="ot-main"><div class="otg"><svg class="otg-svg" viewBox="0 0 260 190" fill="none"><rect x="16" y="16" width="228" height="158" rx="14" fill="#fff" stroke="#161616" stroke-width="4"/><path d="M16 48 H244" stroke="#161616" stroke-width="4"/><circle cx="34" cy="32" r="4" fill="#e07a4a"/><circle cx="50" cy="32" r="4" fill="#e7b94a"/><circle cx="66" cy="32" r="4" fill="#5db87e"/><rect class="otm" x="36" y="66" width="86" height="42" rx="9" fill="#f2641a"/><rect class="otm m2" x="138" y="66" width="86" height="42" rx="9" fill="#f6b78f"/><rect class="otm m3" x="36" y="120" width="86" height="42" rx="9" fill="#f6b78f"/><rect class="otm m4" x="138" y="120" width="86" height="42" rx="9" fill="#f2641a"/></svg></div><div class="ot-code">OT1.1</div><div class="ot-t">Implementar sistema de órdenes</div><div class="ot-who"><b>Responsable:</b> Equipo de desarrollo&nbsp; ·&nbsp; <b>Plazo:</b> Mes 1–2</div></div><div class="ot-metas"><div class="ot-meta"><div class="om-gif"><svg viewBox="0 0 140 140" fill="none"><circle cx="70" cy="70" r="40" fill="none" stroke="#e6dac6" stroke-width="13"/><circle class="omring" cx="70" cy="70" r="40" fill="none" stroke="#f2641a" stroke-width="13" stroke-linecap="round" stroke-dasharray="251" stroke-dashoffset="251" transform="rotate(-90 70 70)"/></svg></div><div class="om-lbl">Meta 1</div><div class="om-t">Sistema en operación</div><div class="om-s"><b>Mide:</b> % de módulos listos&nbsp; ·&nbsp; <b>Plazo:</b> Mes 2</div></div><div class="ot-meta"><div class="om-gif"><svg viewBox="0 0 200 150" fill="none" stroke-linecap="round" stroke-linejoin="round"><g stroke="#161616" stroke-width="4"><rect x="24" y="22" width="28" height="28" rx="6"/><rect x="24" y="61" width="28" height="28" rx="6"/><rect x="24" y="100" width="28" height="28" rx="6"/><line x1="66" y1="36" x2="172" y2="36"/><line x1="66" y1="75" x2="150" y2="75"/><line x1="66" y1="114" x2="164" y2="114"/></g><path class="omchk" d="M30 37 l7 7 l13 -15" stroke="#2fa56a" stroke-width="5" fill="none"/><path class="omchk c2" d="M30 76 l7 7 l13 -15" stroke="#2fa56a" stroke-width="5" fill="none"/><path class="omchk c3" d="M30 115 l7 7 l13 -15" stroke="#2fa56a" stroke-width="5" fill="none"/></svg></div><div class="om-lbl">Meta 2</div><div class="om-t">Pruebas superadas</div><div class="om-s"><b>Mide:</b> checklist 100%&nbsp; ·&nbsp; <b>Plazo:</b> Mes 2</div></div></div></div>
+        <div class="otpanel p1"><div class="ot-main"><div class="otg"><svg class="gp" viewBox="0 0 24 24"><use href="#i-db"/></svg></div><div class="ot-code">OT1.2</div><div class="ot-t">Migrar la libreta a digital</div><div class="ot-who"><b>Responsable:</b> Encargado + Técnico&nbsp; ·&nbsp; <b>Plazo:</b> Mes 2–3</div></div><div class="ot-metas"><div class="ot-meta"><div class="om-gif"><svg class="gp" viewBox="0 0 24 24"><use href="#i-db"/></svg></div><div class="om-lbl">Meta 1</div><div class="om-t">Historial cargado</div><div class="om-s"><b>Mide:</b> % órdenes migradas&nbsp; ·&nbsp; <b>Plazo:</b> Mes 3</div></div><div class="ot-meta"><div class="om-gif"><svg class="gp" viewBox="0 0 24 24"><use href="#i-box"/></svg></div><div class="om-lbl">Meta 2</div><div class="om-t">Cero papel nuevo</div><div class="om-s"><b>Mide:</b> órdenes en papel/sem&nbsp; ·&nbsp; <b>Plazo:</b> Mes 3</div></div></div></div>
+        <div class="otpanel p2"><div class="ot-main"><div class="otg"><svg class="gp" viewBox="0 0 24 24"><use href="#i-shield"/></svg></div><div class="ot-code">OT1.3</div><div class="ot-t">Control de refacciones y garantías</div><div class="ot-who"><b>Responsable:</b> Encargado&nbsp; ·&nbsp; <b>Plazo:</b> Mes 4–5</div></div><div class="ot-metas"><div class="ot-meta"><div class="om-gif"><svg class="gp" viewBox="0 0 24 24"><use href="#i-box"/></svg></div><div class="om-lbl">Meta 1</div><div class="om-t">Inventario digital</div><div class="om-s"><b>Mide:</b> % refacciones reg.&nbsp; ·&nbsp; <b>Plazo:</b> Mes 5</div></div><div class="ot-meta"><div class="om-gif"><svg class="gp" viewBox="0 0 24 24"><use href="#i-shield"/></svg></div><div class="om-lbl">Meta 2</div><div class="om-t">Garantías rastreables</div><div class="om-s"><b>Mide:</b> % con registro&nbsp; ·&nbsp; <b>Plazo:</b> Mes 5</div></div></div></div>
       </div>
     </div>
-  </section>
+    <div class="ot-flip f2"></div>
+    <div class="oeblock b2">
+      <div class="ohdr wa h1"><span class="htext">OE2 · Experiencia y comunicación</span></div>
+      <div class="ot-stage">
+        <div class="otpanel p3"><div class="ot-main"><div class="otg"><svg class="gp" viewBox="0 0 24 24"><use href="#i-chat"/></svg></div><div class="ot-code">OT2.1</div><div class="ot-t">Avisos automáticos por WhatsApp</div><div class="ot-who"><b>Responsable:</b> Responsable TI&nbsp; ·&nbsp; <b>Plazo:</b> Mes 3</div></div><div class="ot-metas"><div class="ot-meta"><div class="om-gif"><svg class="gp" viewBox="0 0 24 24"><use href="#i-chat"/></svg></div><div class="om-lbl">Meta 1</div><div class="om-t">Avisos activos</div><div class="om-s"><b>Mide:</b> % órdenes con aviso&nbsp; ·&nbsp; <b>Plazo:</b> Mes 3</div></div><div class="ot-meta"><div class="om-gif"><svg class="gp" viewBox="0 0 24 24"><use href="#i-search"/></svg></div><div class="om-lbl">Meta 2</div><div class="om-t">Menos llamadas</div><div class="om-s"><b>Mide:</b> llamadas/semana&nbsp; ·&nbsp; <b>Plazo:</b> Mes 4</div></div></div></div>
+        <div class="otpanel p4"><div class="ot-main"><div class="otg"><svg class="gp" viewBox="0 0 24 24"><use href="#i-link"/></svg></div><div class="ot-code">OT2.2</div><div class="ot-t">Consulta de estatus en línea</div><div class="ot-who"><b>Responsable:</b> Equipo de desarrollo&nbsp; ·&nbsp; <b>Plazo:</b> Mes 4</div></div><div class="ot-metas"><div class="ot-meta"><div class="om-gif"><svg class="gp" viewBox="0 0 24 24"><use href="#i-link"/></svg></div><div class="om-lbl">Meta 1</div><div class="om-t">Enlace activo</div><div class="om-s"><b>Mide:</b> consultas registradas&nbsp; ·&nbsp; <b>Plazo:</b> Mes 4</div></div><div class="ot-meta"><div class="om-gif"><svg class="gp" viewBox="0 0 24 24"><use href="#i-star"/></svg></div><div class="om-lbl">Meta 2</div><div class="om-t">Satisfacción</div><div class="om-s"><b>Mide:</b> encuesta ≥ 8/10&nbsp; ·&nbsp; <b>Plazo:</b> Mes 6</div></div></div></div>
+        <div class="otpanel p5"><div class="ot-main"><div class="otg"><svg class="gp" viewBox="0 0 24 24"><use href="#i-cap"/></svg></div><div class="ot-code">OT2.3</div><div class="ot-t">Capacitar al personal</div><div class="ot-who"><b>Responsable:</b> Encargado&nbsp; ·&nbsp; <b>Plazo:</b> Mes 3</div></div><div class="ot-metas"><div class="ot-meta"><div class="om-gif"><svg class="gp" viewBox="0 0 24 24"><use href="#i-cap"/></svg></div><div class="om-lbl">Meta 1</div><div class="om-t">Personal capacitado</div><div class="om-s"><b>Mide:</b> % de empleados&nbsp; ·&nbsp; <b>Plazo:</b> Mes 3</div></div><div class="ot-meta"><div class="om-gif"><svg class="gp" viewBox="0 0 24 24"><use href="#i-search"/></svg></div><div class="om-lbl">Meta 2</div><div class="om-t">Uso autónomo</div><div class="om-s"><b>Mide:</b> órdenes sin ayuda&nbsp; ·&nbsp; <b>Plazo:</b> Mes 4</div></div></div></div>
+      </div>
+    </div>
+    <div class="ot-flip f3"></div>
+    <div class="oeblock b3">
+      <div class="ohdr maps h2"><span class="sb-ic"><svg viewBox="0 0 24 24"><path d="M12 21s7-5.6 7-11a7 7 0 0 0-14 0c0 5.4 7 11 7 11z"/><circle cx="12" cy="10" r="2.6"/></svg></span><span class="htext">OE3 · Crecer y posicionar</span></div>
+      <div class="ot-stage">
+        <div class="otpanel p6"><div class="ot-main"><div class="otg"><svg class="gp" viewBox="0 0 24 24"><use href="#i-mega"/></svg></div><div class="ot-code">OT3.1</div><div class="ot-t">Promoción de apertura digital</div><div class="ot-who"><b>Responsable:</b> Encargado&nbsp; ·&nbsp; <b>Plazo:</b> Mes 5</div></div><div class="ot-metas"><div class="ot-meta"><div class="om-gif"><svg class="gp" viewBox="0 0 24 24"><use href="#i-mega"/></svg></div><div class="om-lbl">Meta 1</div><div class="om-t">Campaña activa</div><div class="om-s"><b>Mide:</b> publicada y en redes&nbsp; ·&nbsp; <b>Plazo:</b> Mes 5</div></div><div class="ot-meta"><div class="om-gif"><svg class="gp" viewBox="0 0 24 24"><use href="#i-tag"/></svg></div><div class="om-lbl">Meta 2</div><div class="om-t">Clientes nuevos</div><div class="om-s"><b>Mide:</b> clientes nuevos/mes&nbsp; ·&nbsp; <b>Plazo:</b> Mes 6</div></div></div></div>
+        <div class="otpanel p7"><div class="ot-main"><div class="otg"><svg class="gp" viewBox="0 0 24 24"><use href="#i-star"/></svg></div><div class="ot-code">OT3.2</div><div class="ot-t">Encuesta de satisfacción y reseñas</div><div class="ot-who"><b>Responsable:</b> Responsable TI&nbsp; ·&nbsp; <b>Plazo:</b> Mes 6</div></div><div class="ot-metas"><div class="ot-meta"><div class="om-gif"><svg class="gp" viewBox="0 0 24 24"><use href="#i-star"/></svg></div><div class="om-lbl">Meta 1</div><div class="om-t">Reseñas recolectadas</div><div class="om-s"><b>Mide:</b> N° reseñas/mes&nbsp; ·&nbsp; <b>Plazo:</b> Mes 6</div></div><div class="ot-meta"><div class="om-gif"><svg class="gp" viewBox="0 0 24 24"><use href="#i-chart"/></svg></div><div class="om-lbl">Meta 2</div><div class="om-t">Buena calificación</div><div class="om-s"><b>Mide:</b> ≥ 4.5 / 5&nbsp; ·&nbsp; <b>Plazo:</b> Mes 12</div></div></div></div>
+        <div class="otpanel p8"><div class="ot-main"><div class="otg"><svg class="gp" viewBox="0 0 24 24"><use href="#i-chart"/></svg></div><div class="ot-code">OT3.3</div><div class="ot-t">Medir equipos atendidos / semana</div><div class="ot-who"><b>Responsable:</b> Encargado&nbsp; ·&nbsp; <b>Plazo:</b> Mes 6–12</div></div><div class="ot-metas"><div class="ot-meta"><div class="om-gif"><svg class="gp" viewBox="0 0 24 24"><use href="#i-chart"/></svg></div><div class="om-lbl">Meta 1</div><div class="om-t">Crecimiento sostenido</div><div class="om-s"><b>Mide:</b> equipos/semana (+30%)&nbsp; ·&nbsp; <b>Plazo:</b> Mes 12</div></div><div class="ot-meta"><div class="om-gif"><svg class="gp" viewBox="0 0 24 24"><use href="#i-list"/></svg></div><div class="om-lbl">Meta 2</div><div class="om-t">Reporte mensual</div><div class="om-s"><b>Mide:</b> de equipos atendidos&nbsp; ·&nbsp; <b>Plazo:</b> Mes 6–12</div></div></div></div>
+      </div>
+    </div>
+    </section>
 
 
 
