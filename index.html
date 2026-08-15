@@ -55,6 +55,31 @@
   .mk-title .trust{color:var(--felt)}
   .mk-sub{font-family:var(--mono);font-size:1.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink2)}
   .mk-sub b{color:var(--danger);font-weight:600}
+
+  /* ---------- SLIDE 2: nadie lee los permisos ---------- */
+  .p2-globe{width:11rem;height:11rem;object-fit:contain;position:relative;z-index:2;
+    filter:drop-shadow(0 18px 30px rgba(20,18,10,.22));
+    opacity:0;transform:scale(.5) translateY(20px)}
+  .slide.active#s2 .p2-globe{animation:p2GlobeIn .7s cubic-bezier(.34,1.56,.64,1) both}
+  @keyframes p2GlobeIn{to{opacity:1;transform:scale(1) translateY(0)}}
+
+  .p2-title{font-family:var(--display);font-weight:400;text-transform:uppercase;letter-spacing:.01em;
+    font-size:4.4rem;line-height:1.05;color:var(--ink);text-align:center;margin:1.8rem 0 3.6rem;
+    position:relative;z-index:2;opacity:0;transform:translateY(14px)}
+  .p2-title b{color:var(--felt);font-weight:400}
+  .slide.active#s2 .p2-title{animation:p2TitleIn .6s ease .25s both}
+  @keyframes p2TitleIn{to{opacity:1;transform:none}}
+
+  .p2-icons{display:flex;gap:3.4rem;align-items:flex-start;position:relative;z-index:2}
+  .p2-ic{display:flex;flex-direction:column;align-items:center;gap:1rem;opacity:0;transform:translateY(28px)}
+  .p2-ic img{width:7rem;height:7rem;object-fit:contain;filter:drop-shadow(0 14px 20px rgba(20,18,10,.2))}
+  .p2-ic span{font-family:var(--mono);font-size:.95rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink2)}
+  .slide.active#s2 .p2-ic{animation:p2IcIn .55s cubic-bezier(.34,1.56,.64,1) both}
+  .slide.active#s2 .p2-ic:nth-child(1){animation-delay:4s}
+  .slide.active#s2 .p2-ic:nth-child(2){animation-delay:4.35s}
+  .slide.active#s2 .p2-ic:nth-child(3){animation-delay:4.7s}
+  .slide.active#s2 .p2-ic:nth-child(4){animation-delay:5.05s}
+  @keyframes p2IcIn{to{opacity:1;transform:none}}
 </style>
 </head>
 <body>
@@ -82,6 +107,33 @@
     </div>
   </section>
 
+  <section class="slide" id="s2">
+    <svg class="wm-suit s1 wm" viewBox="0 0 24 24"><path d="M12 3.5l2.5 5.4 5.9.8-4.3 4.1 1.1 5.9L12 16.9 6.8 19.7l1.1-5.9L3.6 9.7l5.9-.8L12 3.5z"/></svg>
+    <svg class="wm-suit s2 wm" viewBox="0 0 24 24"><path d="M12 21s7-5.6 7-11a7 7 0 0 0-14 0c0 5.4 7 11 7 11z"/></svg>
+
+    <div class="mk-kick">Problemática</div>
+    <img class="p2-globe" src="icons/globe.png" alt="Internet">
+    <h2 class="p2-title">Casi nadie lee<br>los permisos que <b>acepta</b></h2>
+    <div class="p2-icons">
+      <div class="p2-ic"><img src="icons/camera.png" alt="Cámara"><span>Cámara</span></div>
+      <div class="p2-ic"><img src="icons/location.png" alt="Ubicación"><span>Ubicación</span></div>
+      <div class="p2-ic"><img src="icons/notification.png" alt="Notificaciones"><span>Notificaciones</span></div>
+      <div class="p2-ic"><img src="icons/cookie.png" alt="Cookies"><span>Cookies</span></div>
+    </div>
+  </section>
+
 </div>
+<script>
+  const slides=[...document.querySelectorAll('.slide')];
+  let i=0;
+  function show(n){n=Math.max(0,Math.min(slides.length-1,n));if(n===i)return;slides[i].classList.remove('active');slides[n].classList.add('active');i=n;}
+  function toggleFull(){if(!document.fullscreenElement){(document.documentElement.requestFullscreen||document.documentElement.webkitRequestFullscreen).call(document.documentElement);}else{document.exitFullscreen&&document.exitFullscreen();}}
+  document.addEventListener('keydown',e=>{
+    if(['ArrowRight',' ','PageDown'].includes(e.key)){show(i+1);e.preventDefault();}
+    else if(['ArrowLeft','PageUp'].includes(e.key)){show(i-1);}
+    else if(e.key==='f'||e.key==='F'){toggleFull();}
+    else if(e.key==='Home'){show(0);}else if(e.key==='End'){show(slides.length-1);}
+  });
+</script>
 </body>
 </html>
