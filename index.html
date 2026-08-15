@@ -82,39 +82,104 @@
   .slide.active .rv-item:nth-child(4){animation-delay:5.05s}
   @keyframes rvItemIn{to{opacity:1;transform:none}}
 
-  /* ---------- SLIDE 4: tablero Kanban ---------- */
-  .kb-title{font-family:var(--display);font-weight:400;text-transform:uppercase;letter-spacing:.01em;
-    font-size:4.2rem;line-height:1;color:var(--ink);text-align:center;margin:1.2rem 0 2.6rem;
-    position:relative;z-index:2;opacity:0;transform:translateY(14px)}
-  .kb-title b{color:var(--felt);font-weight:400}
-  .slide.active .kb-title{animation:rvTitleIn .6s ease .2s both}
+  /* ---------- SLIDE 4: secuencia cronometrada dentro de un navegador con Jira ---------- */
+  .jira-frame{width:58rem;max-width:92vw;border-radius:16px;background:#fff;position:relative;z-index:2;
+    box-shadow:0 34px 64px -30px rgba(20,18,10,.4);border:1px solid rgba(20,18,10,.08);overflow:hidden;
+    opacity:0;transform:scale(.85) translateY(24px)}
+  .slide.active#s4 .jira-frame{animation:jrFrameIn .7s cubic-bezier(.34,1.56,.64,1) both}
+  @keyframes jrFrameIn{to{opacity:1;transform:scale(1) translateY(0)}}
 
-  .kb-board{display:flex;gap:1.5rem;position:relative;z-index:2}
-  .kb-col{width:13rem;display:flex;flex-direction:column}
-  .kb-col-h{font-family:var(--mono);font-size:.82rem;letter-spacing:.13em;text-transform:uppercase;color:var(--ink2);
-    text-align:center;padding-bottom:.6rem;margin-bottom:.9rem;border-bottom:2px solid rgba(20,18,10,.14)}
-  .kb-col.done .kb-col-h{color:var(--felt);border-bottom-color:var(--felt)}
-  .kb-cards{display:flex;flex-direction:column;gap:.55rem}
-  .kb-card{background:#fffdf7;border:1px solid rgba(20,18,10,.1);border-left:4px solid var(--gold);border-radius:9px;
-    padding:.6rem .9rem;font-family:var(--body);font-weight:500;font-size:.82rem;line-height:1.2;color:var(--ink);
-    box-shadow:0 8px 16px -12px rgba(20,18,10,.3);opacity:0;transform:translateY(-32px) scale(.9)}
-  .slide.active .kb-card{animation:kbCardIn .5s cubic-bezier(.34,1.56,.64,1) both}
-  .slide.active .kb-card:nth-child(1){animation-delay:1.6s}
-  .slide.active .kb-card:nth-child(2){animation-delay:1.95s}
-  .slide.active .kb-card:nth-child(3){animation-delay:2.3s}
-  .slide.active .kb-card:nth-child(4){animation-delay:2.65s}
-  .slide.active .kb-card:nth-child(5){animation-delay:3s}
-  .slide.active .kb-card:nth-child(6){animation-delay:3.35s}
-  @keyframes kbCardIn{to{opacity:1;transform:translateY(0) scale(1)}}
-
-  .kb-empty{font-family:var(--mono);font-size:.78rem;color:var(--muted);text-align:center;padding-top:.4rem}
-
-  .kb-stat{margin-top:2rem;display:flex;align-items:baseline;gap:1rem;position:relative;z-index:2;
+  .jira-chrome{height:3.4rem;background:#f1ede2;display:flex;align-items:center;gap:.9rem;
+    padding:0 1.3rem;border-bottom:1px solid rgba(20,18,10,.08)}
+  .jira-dots{display:flex;gap:.4rem;flex:none}
+  .jira-dots i{width:.62rem;height:.62rem;border-radius:50%;background:rgba(20,18,10,.16)}
+  .jira-addr{flex:1;height:1.6rem;background:#fff;border:1px solid rgba(20,18,10,.1);border-radius:20px}
+  .jira-badge{font-family:var(--display);font-weight:400;letter-spacing:.03em;font-size:1.05rem;color:#fff;
+    background:#0052cc;padding:.28em .85em;border-radius:6px;text-transform:uppercase;flex:none;
     opacity:0;transform:scale(.7)}
-  .kb-stat .n{font-family:var(--display);font-weight:400;font-size:4.4rem;line-height:1;color:var(--felt)}
-  .kb-stat .p{font-family:var(--mono);font-size:1.15rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink2)}
-  .slide.active .kb-stat{animation:kbStatIn .6s cubic-bezier(.34,1.56,.64,1) 3.9s both}
+  .slide.active#s4 .jira-badge{animation:jrBadgeIn .4s cubic-bezier(.34,1.56,.64,1) .35s both}
+  @keyframes jrBadgeIn{to{opacity:1;transform:scale(1)}}
+
+  .jira-body{position:relative;height:24rem}
+  .jr-phase{position:absolute;inset:0;background:#fff;padding:1.7rem 2rem;opacity:0;transform:translateY(10px)}
+  .slide.active#s4 .jr-phase{animation:jrPhaseIn .5s ease both}
+  @keyframes jrPhaseIn{to{opacity:1;transform:none}}
+  .p-tasks{z-index:1}
+  .p-sprints{z-index:2;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.1rem}
+  .p-board{z-index:3}
+  .slide.active#s4 .p-tasks{animation-delay:2s}
+  .slide.active#s4 .p-sprints{animation-delay:6s}
+  .slide.active#s4 .p-board{animation-delay:11.2s}
+
+  .jr-row{display:flex;align-items:center;gap:1rem;background:#faf7ef;border:1px solid rgba(20,18,10,.07);
+    border-radius:9px;padding:.75rem 1.1rem;margin-bottom:.6rem;opacity:0;transform:translateX(-18px)}
+  .slide.active#s4 .jr-row{animation:jrRowIn .45s ease both}
+  .slide.active#s4 .jr-row:nth-child(1){animation-delay:2s}
+  .slide.active#s4 .jr-row:nth-child(2){animation-delay:2.18s}
+  .slide.active#s4 .jr-row:nth-child(3){animation-delay:2.36s}
+  .slide.active#s4 .jr-row:nth-child(4){animation-delay:2.54s}
+  @keyframes jrRowIn{to{opacity:1;transform:none}}
+  .jr-row .rt{flex:1;font-family:var(--body);font-weight:500;font-size:1.02rem;color:var(--ink)}
+  .jr-pill{font-family:var(--mono);font-size:.72rem;font-weight:600;letter-spacing:.05em;text-transform:uppercase;
+    padding:.3em .7em;border-radius:6px;flex:none;opacity:0;transform:scale(.4)}
+  .jr-avatar{width:2rem;height:2rem;border-radius:50%;color:#fff;font-family:var(--mono);font-weight:700;
+    font-size:.72rem;display:flex;align-items:center;justify-content:center;flex:none;opacity:0;transform:scale(.4)}
+  .slide.active#s4 .jr-pill,.slide.active#s4 .jr-avatar{animation:jrPopIn .4s cubic-bezier(.34,1.56,.64,1) both}
+  .slide.active#s4 .jr-row:nth-child(1) .jr-pill,.slide.active#s4 .jr-row:nth-child(1) .jr-avatar{animation-delay:3.3s}
+  .slide.active#s4 .jr-row:nth-child(2) .jr-pill,.slide.active#s4 .jr-row:nth-child(2) .jr-avatar{animation-delay:3.5s}
+  .slide.active#s4 .jr-row:nth-child(3) .jr-pill,.slide.active#s4 .jr-row:nth-child(3) .jr-avatar{animation-delay:3.7s}
+  .slide.active#s4 .jr-row:nth-child(4) .jr-pill,.slide.active#s4 .jr-row:nth-child(4) .jr-avatar{animation-delay:3.9s}
+  @keyframes jrPopIn{to{opacity:1;transform:scale(1)}}
+  .pr-highest{background:#fbdedb;color:#a3271f}
+  .pr-high{background:#fbe6cf;color:#95500a}
+  .pr-medium{background:#f7ecc4;color:#7a5e05}
+  .pr-low{background:#d9f0e0;color:#1f7a45}
+
+  .jr-caption{font-family:var(--mono);font-size:.85rem;letter-spacing:.12em;text-transform:uppercase;
+    color:var(--ink2);text-align:center}
+  .jr-sprints-row{display:flex;flex-wrap:wrap;gap:.8rem;justify-content:center;max-width:52rem}
+  .jr-chip{font-family:var(--body);font-weight:600;font-size:1rem;color:var(--ink);background:#f4efe0;
+    border:1px solid rgba(20,18,10,.1);border-radius:30px;padding:.55em 1.2em;opacity:0;transform:translateY(14px) scale(.85)}
+  .slide.active#s4 .jr-chip{animation:jrChipIn .45s cubic-bezier(.34,1.56,.64,1) both}
+  .slide.active#s4 .jr-chip:nth-child(1){animation-delay:6.2s}
+  .slide.active#s4 .jr-chip:nth-child(2){animation-delay:7.05s}
+  .slide.active#s4 .jr-chip:nth-child(3){animation-delay:7.9s}
+  .slide.active#s4 .jr-chip:nth-child(4){animation-delay:8.75s}
+  .slide.active#s4 .jr-chip:nth-child(5){animation-delay:9.6s}
+  .slide.active#s4 .jr-chip:nth-child(6){animation-delay:10.45s}
+  @keyframes jrChipIn{to{opacity:1;transform:none}}
+
+  .kb-board{display:flex;gap:1.3rem;justify-content:center}
+  .kb-col{width:11.6rem;display:flex;flex-direction:column}
+  .kb-col-h{font-family:var(--mono);font-size:.76rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink2);
+    text-align:center;padding-bottom:.55rem;margin-bottom:.75rem;border-bottom:2px solid rgba(20,18,10,.14)}
+  .kb-col.done .kb-col-h{color:var(--felt);border-bottom-color:var(--felt)}
+  .kb-cards{display:flex;flex-direction:column;gap:.45rem}
+  .kb-card{background:#fffdf7;border:1px solid rgba(20,18,10,.1);border-left:4px solid var(--gold);border-radius:8px;
+    padding:.5rem .75rem;font-family:var(--body);font-weight:500;font-size:.72rem;line-height:1.2;color:var(--ink);
+    box-shadow:0 8px 16px -12px rgba(20,18,10,.3);opacity:0;transform:translateY(-28px) scale(.9)}
+  .slide.active#s4 .kb-card{animation:kbCardIn .45s cubic-bezier(.34,1.56,.64,1) both}
+  .slide.active#s4 .kb-card:nth-child(1){animation-delay:11.4s}
+  .slide.active#s4 .kb-card:nth-child(2){animation-delay:11.75s}
+  .slide.active#s4 .kb-card:nth-child(3){animation-delay:12.1s}
+  .slide.active#s4 .kb-card:nth-child(4){animation-delay:12.45s}
+  .slide.active#s4 .kb-card:nth-child(5){animation-delay:12.8s}
+  .slide.active#s4 .kb-card:nth-child(6){animation-delay:13.15s}
+  @keyframes kbCardIn{to{opacity:1;transform:translateY(0) scale(1)}}
+  .kb-empty{font-family:var(--mono);font-size:.72rem;color:var(--muted);text-align:center;padding-top:.3rem}
+
+  .jr-stat{margin-top:1rem;display:flex;align-items:baseline;gap:.9rem;justify-content:center;
+    opacity:0;transform:scale(.7)}
+  .jr-stat .n{font-family:var(--display);font-weight:400;font-size:3.6rem;line-height:1;color:var(--felt)}
+  .jr-stat .p{font-family:var(--mono);font-size:1rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink2)}
+  .slide.active#s4 .jr-stat{animation:kbStatIn .55s cubic-bezier(.34,1.56,.64,1) 14s both}
   @keyframes kbStatIn{0%{opacity:0;transform:scale(.6)}70%{opacity:1;transform:scale(1.08)}100%{opacity:1;transform:scale(1)}}
+
+  .jr-close{margin-top:1.8rem;display:flex;gap:1rem;position:relative;z-index:2;opacity:0}
+  .slide.active#s4 .jr-close{animation:jrCloseIn .5s ease 16.5s both}
+  @keyframes jrCloseIn{to{opacity:1}}
+  .jr-tag{font-family:var(--mono);font-size:.9rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink);
+    background:transparent;border:1px solid rgba(20,18,10,.18);border-radius:20px;padding:.5em 1.1em}
 </style>
 </head>
 <body>
@@ -177,35 +242,87 @@
     <svg class="wm-suit s2 wm" viewBox="0 0 24 24"><path d="M12 21s7-5.6 7-11a7 7 0 0 0-14 0c0 5.4 7 11 7 11z"/></svg>
 
     <div class="mk-kick">Metodología ágil y Jira</div>
-    <h2 class="kb-title">Seis sprints,<br><b>veinte historias</b></h2>
 
-    <div class="kb-board">
-      <div class="kb-col">
-        <div class="kb-col-h">Por hacer</div>
-        <div class="kb-empty">—</div>
+    <div class="jira-frame">
+      <div class="jira-chrome">
+        <div class="jira-dots"><i></i><i></i><i></i></div>
+        <div class="jira-addr"></div>
+        <div class="jira-badge">Jira</div>
       </div>
-      <div class="kb-col">
-        <div class="kb-col-h">En curso</div>
-        <div class="kb-empty">—</div>
-      </div>
-      <div class="kb-col">
-        <div class="kb-col-h">En revisión</div>
-        <div class="kb-empty">—</div>
-      </div>
-      <div class="kb-col done">
-        <div class="kb-col-h">Finalizado</div>
-        <div class="kb-cards">
-          <div class="kb-card">Acceso y autenticación</div>
-          <div class="kb-card">Privacidad y consentimiento</div>
-          <div class="kb-card">Gestión de permisos</div>
-          <div class="kb-card">Juegos del casino</div>
-          <div class="kb-card">Dashboard de privacidad</div>
-          <div class="kb-card">Backend y seguridad</div>
+      <div class="jira-body">
+
+        <div class="jr-phase p-tasks">
+          <div class="jr-row">
+            <span class="rt">Acceso al laboratorio</span>
+            <span class="jr-pill pr-highest">Highest</span>
+            <span class="jr-avatar" style="background:var(--felt)">JD</span>
+          </div>
+          <div class="jr-row">
+            <span class="rt">Registro de usuario</span>
+            <span class="jr-pill pr-highest">Highest</span>
+            <span class="jr-avatar" style="background:var(--gold-dim)">GO</span>
+          </div>
+          <div class="jr-row">
+            <span class="rt">Modal educativo de permisos</span>
+            <span class="jr-pill pr-high">High</span>
+            <span class="jr-avatar" style="background:#0052cc">IG</span>
+          </div>
+          <div class="jr-row">
+            <span class="rt">Bitácora de permisos</span>
+            <span class="jr-pill pr-medium">Medium</span>
+            <span class="jr-avatar" style="background:var(--danger)">ES</span>
+          </div>
         </div>
+
+        <div class="jr-phase p-sprints">
+          <div class="jr-caption">Repartidas en seis sprints</div>
+          <div class="jr-sprints-row">
+            <div class="jr-chip">Acceso y autenticación</div>
+            <div class="jr-chip">Privacidad y consentimiento</div>
+            <div class="jr-chip">Gestión de permisos</div>
+            <div class="jr-chip">Juegos del casino</div>
+            <div class="jr-chip">Dashboard de privacidad</div>
+            <div class="jr-chip">Backend y seguridad</div>
+          </div>
+        </div>
+
+        <div class="jr-phase p-board">
+          <div class="kb-board">
+            <div class="kb-col">
+              <div class="kb-col-h">Por hacer</div>
+              <div class="kb-empty">—</div>
+            </div>
+            <div class="kb-col">
+              <div class="kb-col-h">En curso</div>
+              <div class="kb-empty">—</div>
+            </div>
+            <div class="kb-col">
+              <div class="kb-col-h">En revisión</div>
+              <div class="kb-empty">—</div>
+            </div>
+            <div class="kb-col done">
+              <div class="kb-col-h">Finalizado</div>
+              <div class="kb-cards">
+                <div class="kb-card">Acceso y autenticación</div>
+                <div class="kb-card">Privacidad y consentimiento</div>
+                <div class="kb-card">Gestión de permisos</div>
+                <div class="kb-card">Juegos del casino</div>
+                <div class="kb-card">Dashboard de privacidad</div>
+                <div class="kb-card">Backend y seguridad</div>
+              </div>
+            </div>
+          </div>
+          <div class="jr-stat"><span class="n">20 / 20</span><span class="p">actividades · 100%</span></div>
+        </div>
+
       </div>
     </div>
 
-    <div class="kb-stat"><span class="n">20 / 20</span><span class="p">actividades · 100%</span></div>
+    <div class="jr-close">
+      <span class="jr-tag">Backend</span>
+      <span class="jr-tag">Mockups</span>
+      <span class="jr-tag">Juegos</span>
+    </div>
   </section>
 
 </div>
