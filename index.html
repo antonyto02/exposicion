@@ -266,6 +266,40 @@
   .slide.active#s6 .be-row .stack-item:nth-child(3){animation-delay:7.6s}
   .slide.active#s6 .be-row .stack-item:nth-child(4){animation-delay:7.9s}
 
+  /* ---------- SLIDE 7: modelo de datos, 3 tablas reales ---------- */
+  .db-canvas{position:relative;width:52rem;max-width:94vw;height:25rem}
+  .db-svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+  .db-svg path{fill:none;stroke:var(--gold-dim);stroke-width:.16;stroke-dasharray:40;stroke-dashoffset:40}
+  .slide.active#s7 .db-svg path{animation:dbDraw .7s ease 1.2s both}
+  @keyframes dbDraw{to{stroke-dashoffset:0}}
+
+  .db-table{position:absolute;width:16rem;background:#fff;border-radius:10px;overflow:hidden;
+    border:1px solid rgba(20,18,10,.1);box-shadow:0 18px 32px -18px rgba(20,18,10,.38);
+    opacity:0;transform:translateY(22px) scale(.94)}
+  .slide.active#s7 .db-table{animation:dbTableIn .55s cubic-bezier(.34,1.56,.64,1) both}
+  .db-table.tbl-users{left:50%;top:0;margin-left:-8rem}
+  .slide.active#s7 .db-table.tbl-users{animation-delay:0s}
+  .db-table.tbl-perm{left:0;top:9.5rem}
+  .slide.active#s7 .db-table.tbl-perm{animation-delay:1.8s}
+  .db-table.tbl-consent{right:0;top:9.5rem}
+  .slide.active#s7 .db-table.tbl-consent{animation-delay:2s}
+  @keyframes dbTableIn{to{opacity:1;transform:translateY(0) scale(1)}}
+
+  .db-head{background:var(--felt);color:#fff;font-family:var(--display);font-weight:400;letter-spacing:.02em;
+    font-size:1.2rem;padding:.6rem 1.1rem}
+  .db-rows{padding:.35rem 0}
+  .db-row{display:flex;justify-content:space-between;align-items:baseline;gap:.6rem;padding:.3rem 1.1rem;
+    font-family:var(--mono);font-size:.74rem;border-bottom:1px solid #f0ede4}
+  .db-row:last-child{border-bottom:none}
+  .db-row .fname{color:var(--ink)}
+  .db-row .ftype{color:var(--muted);flex:none}
+  .db-row.pk .fname{font-weight:700;color:var(--gold-dim)}
+  .db-row.fk .fname{color:#0052cc}
+
+  .db-note{position:absolute;left:50%;bottom:-2.6rem;transform:translateX(-50%);white-space:nowrap;
+    font-family:var(--mono);font-size:.85rem;letter-spacing:.06em;color:var(--ink2);opacity:0}
+  .slide.active#s7 .db-note{animation:s5FadeIn .5s ease 3.2s both}
+
   /* tablero: cabeceras fijas + pista donde las tarjetas nacen repartidas y se deslizan a Finalizado */
   .kb-heads{display:flex;gap:1.7rem;margin-bottom:.9rem;width:59.1rem}
   .kb-h{width:13.5rem;font-family:var(--mono);font-size:.86rem;letter-spacing:.12em;text-transform:uppercase;
@@ -512,6 +546,58 @@
         <div class="stack-item"><img src="logos/sqlite.svg" alt="SQLite"><span>SQLite</span></div>
         <div class="stack-item"><img src="logos/railway.svg" alt="Railway"><span>Railway</span></div>
       </div>
+    </div>
+  </section>
+
+  <section class="slide" id="s7">
+    <svg class="wm-suit s1 wm" viewBox="0 0 24 24"><path d="M12 3l7 2.8v5.7c0 4-2.9 6.9-7 8.7-4.1-1.8-7-4.7-7-8.7V5.8L12 3z"/><path d="M9 12l2 2 4-4"/></svg>
+    <svg class="wm-suit s2 wm" viewBox="0 0 24 24"><path d="M6 3h9l3 3v15H6z"/></svg>
+
+    <div class="mk-kick">Modelo de datos</div>
+
+    <div class="db-canvas">
+      <svg class="db-svg" viewBox="0 0 52 25" preserveAspectRatio="none">
+        <path d="M26,10.9 C26,12 16,12 16,13.5"></path>
+        <path d="M26,10.9 C26,12 36,12 36,13.5"></path>
+      </svg>
+
+      <div class="db-table tbl-users">
+        <div class="db-head">users</div>
+        <div class="db-rows">
+          <div class="db-row pk"><span class="fname">id</span><span class="ftype">integer</span></div>
+          <div class="db-row"><span class="fname">username</span><span class="ftype">varchar</span></div>
+          <div class="db-row"><span class="fname">passwordHash</span><span class="ftype">varchar</span></div>
+          <div class="db-row"><span class="fname">chips</span><span class="ftype">integer</span></div>
+          <div class="db-row"><span class="fname">createdAt</span><span class="ftype">timestamp</span></div>
+        </div>
+      </div>
+
+      <div class="db-table tbl-perm">
+        <div class="db-head">permission_events</div>
+        <div class="db-rows">
+          <div class="db-row pk"><span class="fname">id</span><span class="ftype">integer</span></div>
+          <div class="db-row fk"><span class="fname">userId</span><span class="ftype">integer</span></div>
+          <div class="db-row"><span class="fname">sessionId</span><span class="ftype">varchar</span></div>
+          <div class="db-row"><span class="fname">type</span><span class="ftype">varchar</span></div>
+          <div class="db-row"><span class="fname">status</span><span class="ftype">varchar</span></div>
+          <div class="db-row"><span class="fname">context</span><span class="ftype">varchar</span></div>
+          <div class="db-row"><span class="fname">createdAt</span><span class="ftype">timestamp</span></div>
+        </div>
+      </div>
+
+      <div class="db-table tbl-consent">
+        <div class="db-head">consent_records</div>
+        <div class="db-rows">
+          <div class="db-row pk"><span class="fname">id</span><span class="ftype">integer</span></div>
+          <div class="db-row fk"><span class="fname">userId</span><span class="ftype">integer</span></div>
+          <div class="db-row"><span class="fname">sessionId</span><span class="ftype">varchar</span></div>
+          <div class="db-row"><span class="fname">category</span><span class="ftype">varchar</span></div>
+          <div class="db-row"><span class="fname">accepted</span><span class="ftype">boolean</span></div>
+          <div class="db-row"><span class="fname">createdAt</span><span class="ftype">timestamp</span></div>
+        </div>
+      </div>
+
+      <div class="db-note">+ 5 tablas más documentadas para fases futuras · aún no implementadas</div>
     </div>
   </section>
 
