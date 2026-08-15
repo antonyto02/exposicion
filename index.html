@@ -152,6 +152,76 @@
   .slide.active#s4 .jr-sprint:nth-child(6){animation-delay:16.75s}
   @keyframes jrChipIn{to{opacity:1;transform:none}}
 
+  /* ---------- SLIDE 5: wireframe generico -> mockup generico -> pantallas reales ---------- */
+  .s5-stage{position:relative;height:27rem;width:100%}
+  .s5-phase{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.2rem}
+
+  .p-generic{opacity:0}
+  .slide.active#s5 .p-generic{animation:s5GenericSeq 6.3s cubic-bezier(.4,0,.2,1) both}
+  @keyframes s5GenericSeq{
+    0%{opacity:0;transform:scale(.92) translateY(16px)}
+    8%{opacity:1;transform:scale(1) translateY(0)}
+    88%{opacity:1;transform:scale(1) translateY(0)}
+    100%{opacity:0;transform:scale(.95) translateY(-10px)}
+  }
+  .s5-label{font-family:var(--mono);font-size:.95rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink2)}
+
+  .wf-canvas{width:46rem;max-width:92vw;height:21rem;position:relative;border-radius:14px;overflow:hidden;
+    box-shadow:0 30px 60px -28px rgba(20,18,10,.4);border:1px solid rgba(20,18,10,.08)}
+  .wf-skin{position:absolute;inset:0;display:flex;flex-direction:column}
+  .wf-skin.wire{background:#fff;opacity:1}
+  .wf-skin.mock{background:#0a0a12;opacity:0}
+  .slide.active#s5 .wf-skin.mock{animation:wfMockIn .9s ease 3.2s both}
+  @keyframes wfMockIn{to{opacity:1}}
+  .slide.active#s5 .wf-skin.wire{animation:wfWireOut .9s ease 3.2s both}
+  @keyframes wfWireOut{to{opacity:0}}
+
+  .wf-top{height:3.2rem;display:flex;align-items:center;gap:.9rem;padding:0 1.5rem;flex:none}
+  .wire .wf-top{background:#eceae4;border-bottom:1px solid #ddd}
+  .mock .wf-top{border-bottom:1px solid rgba(212,175,55,.25)}
+  .wf-logo{width:1.8rem;height:1.8rem;border-radius:6px;flex:none}
+  .wire .wf-logo{background:#9a9a9a}
+  .mock .wf-logo{background:#d4af37}
+  .wf-nav{flex:1;height:.7rem;border-radius:4px;max-width:14rem}
+  .wire .wf-nav{background:#c7c7c7}
+  .mock .wf-nav{background:rgba(255,255,255,.15)}
+
+  .wf-body{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.1rem}
+  .wf-kicker{width:15rem;height:1.7rem;border-radius:20px}
+  .wire .wf-kicker{border:1px dashed #bbb}
+  .mock .wf-kicker{border:1px solid #d4af37}
+  .wf-hero-bar{width:24rem;height:2.5rem;border-radius:6px}
+  .wire .wf-hero-bar{background:#d6d6d6}
+  .mock .wf-hero-bar{background:#d4af37}
+  .wf-line{height:.55rem;border-radius:4px}
+  .wire .wf-line{background:#e3e3e3}
+  .mock .wf-line{background:rgba(255,255,255,.18)}
+  .wf-line.l1{width:20rem}
+  .wf-line.l2{width:15rem}
+  .wf-cta{width:12rem;height:2.7rem;border-radius:6px;margin-top:.3rem}
+  .wire .wf-cta{background:#b8b8b8}
+  .mock .wf-cta{background:#ffd76a}
+  .wf-cardsrow{display:flex;gap:1.1rem;margin-top:.7rem}
+  .wf-card{width:8.2rem;height:3.8rem;border-radius:8px}
+  .wire .wf-card{background:#ececec;border:1px solid #ddd}
+  .mock .wf-card{background:#171029;border:1px solid rgba(212,175,55,.25)}
+
+  .p-grid{opacity:0;transform:translateY(10px)}
+  .slide.active#s5 .p-grid{animation:jrPhaseIn .5s ease 6.3s both}
+  .shots-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.3rem 1.4rem}
+  .shot{display:flex;flex-direction:column;align-items:center;gap:.6rem;width:12.6rem;
+    opacity:0;transform:translateY(20px) scale(.92)}
+  .slide.active#s5 .shot{animation:rvItemIn .5s cubic-bezier(.34,1.56,.64,1) both}
+  .slide.active#s5 .shot:nth-child(1){animation-delay:6.5s}
+  .slide.active#s5 .shot:nth-child(2){animation-delay:6.75s}
+  .slide.active#s5 .shot:nth-child(3){animation-delay:7s}
+  .slide.active#s5 .shot:nth-child(4){animation-delay:7.25s}
+  .slide.active#s5 .shot:nth-child(5){animation-delay:7.5s}
+  .slide.active#s5 .shot:nth-child(6){animation-delay:7.75s}
+  .shot img{width:100%;height:8rem;object-fit:cover;object-position:top;border-radius:10px;
+    border:1px solid rgba(20,18,10,.12);box-shadow:0 14px 26px -16px rgba(20,18,10,.4)}
+  .shot span{font-family:var(--mono);font-size:.85rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink2)}
+
   /* tablero: cabeceras fijas + pista donde las tarjetas nacen repartidas y se deslizan a Finalizado */
   .kb-heads{display:flex;gap:1.7rem;margin-bottom:.9rem;width:59.1rem}
   .kb-h{width:13.5rem;font-family:var(--mono);font-size:.86rem;letter-spacing:.12em;text-transform:uppercase;
@@ -302,6 +372,55 @@
           <div class="jr-stat"><span class="n">20 / 20</span><span class="p">actividades · 100%</span></div>
         </div>
 
+      </div>
+    </div>
+  </section>
+
+  <section class="slide" id="s5">
+    <svg class="wm-suit s1 wm" viewBox="0 0 24 24"><path d="M6 3h9l3 3v15H6z"/></svg>
+    <svg class="wm-suit s2 wm" viewBox="0 0 24 24"><path d="M12 21s7-5.6 7-11a7 7 0 0 0-14 0c0 5.4 7 11 7 11z"/></svg>
+
+    <div class="mk-kick">Diseño UX/UI</div>
+
+    <div class="s5-stage">
+      <div class="s5-phase p-generic">
+        <div class="s5-label">Baja fidelidad → alta fidelidad</div>
+        <div class="wf-canvas">
+          <div class="wf-skin wire">
+            <div class="wf-top"><div class="wf-logo"></div><div class="wf-nav"></div></div>
+            <div class="wf-body">
+              <div class="wf-kicker"></div>
+              <div class="wf-hero-bar"></div>
+              <div class="wf-line l1"></div>
+              <div class="wf-line l2"></div>
+              <div class="wf-cta"></div>
+              <div class="wf-cardsrow"><div class="wf-card"></div><div class="wf-card"></div><div class="wf-card"></div></div>
+            </div>
+          </div>
+          <div class="wf-skin mock">
+            <div class="wf-top"><div class="wf-logo"></div><div class="wf-nav"></div></div>
+            <div class="wf-body">
+              <div class="wf-kicker"></div>
+              <div class="wf-hero-bar"></div>
+              <div class="wf-line l1"></div>
+              <div class="wf-line l2"></div>
+              <div class="wf-cta"></div>
+              <div class="wf-cardsrow"><div class="wf-card"></div><div class="wf-card"></div><div class="wf-card"></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="s5-phase p-grid">
+        <div class="s5-label">Pantallas clave</div>
+        <div class="shots-grid">
+          <div class="shot"><img src="shots/home.png" alt="Inicio"><span>Inicio</span></div>
+          <div class="shot"><img src="shots/login.png" alt="Login"><span>Login</span></div>
+          <div class="shot"><img src="shots/registro.png" alt="Registro"><span>Registro</span></div>
+          <div class="shot"><img src="shots/juegos.png" alt="Juegos secundarios"><span>Juegos secundarios</span></div>
+          <div class="shot"><img src="shots/dashboard.png" alt="Dashboard"><span>Dashboard</span></div>
+          <div class="shot"><img src="shots/privacidad.png" alt="Aviso de privacidad"><span>Aviso de privacidad</span></div>
+        </div>
       </div>
     </div>
   </section>
