@@ -267,6 +267,12 @@
   .slide.active#s6 .be-row .stack-item:nth-child(4){animation-delay:7.9s}
 
   /* ---------- SLIDE 7: modelo de datos, 3 tablas reales ---------- */
+  .db-hero{display:flex;align-items:baseline;gap:1rem;margin-bottom:1.2rem;opacity:0;transform:scale(.7)}
+  .slide.active#s7 .db-hero{animation:kbStatIn .6s cubic-bezier(.34,1.56,.64,1) both}
+  .db-hero .n{font-family:var(--display);font-weight:400;font-size:6rem;line-height:1;color:var(--felt)}
+  .db-hero .lbl{font-family:var(--mono);font-size:1.15rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink2);line-height:1.5}
+  .db-hero .lbl b{color:var(--gold-dim);font-weight:600}
+
   .db-canvas{position:relative;width:52rem;max-width:94vw;height:31rem}
   .db-svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
   .db-svg path{fill:none;stroke:var(--gold-dim);stroke-width:.16;stroke-dasharray:40;stroke-dashoffset:40}
@@ -564,6 +570,7 @@
     <svg class="wm-suit s2 wm" viewBox="0 0 24 24"><path d="M6 3h9l3 3v15H6z"/></svg>
 
     <div class="mk-kick">Modelo de datos</div>
+    <div class="db-hero"><span class="n">8</span><span class="lbl">tablas diseñadas<br><b>3 en producción</b> + 5 para las siguientes fases</span></div>
 
     <div class="db-canvas">
       <svg class="db-svg" viewBox="0 0 52 31" preserveAspectRatio="none">
