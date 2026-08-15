@@ -56,30 +56,29 @@
   .mk-sub{font-family:var(--mono);font-size:1.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink2)}
   .mk-sub b{color:var(--danger);font-weight:600}
 
-  /* ---------- SLIDE 2: nadie lee los permisos ---------- */
-  .p2-globe{width:11rem;height:11rem;object-fit:contain;position:relative;z-index:2;
+  /* ---------- patrón reutilizable "reveal": icono hero arriba, título, 4 iconos entran en fila ---------- */
+  .rv-hero{width:11rem;height:11rem;object-fit:contain;position:relative;z-index:2;
     filter:drop-shadow(0 18px 30px rgba(20,18,10,.22));
     opacity:0;transform:scale(.5) translateY(20px)}
-  .slide.active#s2 .p2-globe{animation:p2GlobeIn .7s cubic-bezier(.34,1.56,.64,1) both}
-  @keyframes p2GlobeIn{to{opacity:1;transform:scale(1) translateY(0)}}
-
-  .p2-title{font-family:var(--display);font-weight:400;text-transform:uppercase;letter-spacing:.01em;
+  .rv-title{font-family:var(--display);font-weight:400;text-transform:uppercase;letter-spacing:.01em;
     font-size:4.4rem;line-height:1.05;color:var(--ink);text-align:center;margin:1.8rem 0 3.6rem;
     position:relative;z-index:2;opacity:0;transform:translateY(14px)}
-  .p2-title b{color:var(--felt);font-weight:400}
-  .slide.active#s2 .p2-title{animation:p2TitleIn .6s ease .25s both}
-  @keyframes p2TitleIn{to{opacity:1;transform:none}}
+  .rv-title b{color:var(--felt);font-weight:400}
+  .rv-row{display:flex;gap:3.4rem;align-items:flex-start;position:relative;z-index:2}
+  .rv-item{display:flex;flex-direction:column;align-items:center;gap:1rem;opacity:0;transform:translateY(28px)}
+  .rv-item img{width:7rem;height:7rem;object-fit:contain;filter:drop-shadow(0 14px 20px rgba(20,18,10,.2))}
+  .rv-item span{font-family:var(--mono);font-size:.95rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink2)}
 
-  .p2-icons{display:flex;gap:3.4rem;align-items:flex-start;position:relative;z-index:2}
-  .p2-ic{display:flex;flex-direction:column;align-items:center;gap:1rem;opacity:0;transform:translateY(28px)}
-  .p2-ic img{width:7rem;height:7rem;object-fit:contain;filter:drop-shadow(0 14px 20px rgba(20,18,10,.2))}
-  .p2-ic span{font-family:var(--mono);font-size:.95rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink2)}
-  .slide.active#s2 .p2-ic{animation:p2IcIn .55s cubic-bezier(.34,1.56,.64,1) both}
-  .slide.active#s2 .p2-ic:nth-child(1){animation-delay:4s}
-  .slide.active#s2 .p2-ic:nth-child(2){animation-delay:4.35s}
-  .slide.active#s2 .p2-ic:nth-child(3){animation-delay:4.7s}
-  .slide.active#s2 .p2-ic:nth-child(4){animation-delay:5.05s}
-  @keyframes p2IcIn{to{opacity:1;transform:none}}
+  .slide.active .rv-hero{animation:rvHeroIn .7s cubic-bezier(.34,1.56,.64,1) both}
+  @keyframes rvHeroIn{to{opacity:1;transform:scale(1) translateY(0)}}
+  .slide.active .rv-title{animation:rvTitleIn .6s ease .25s both}
+  @keyframes rvTitleIn{to{opacity:1;transform:none}}
+  .slide.active .rv-item{animation:rvItemIn .55s cubic-bezier(.34,1.56,.64,1) both}
+  .slide.active .rv-item:nth-child(1){animation-delay:4s}
+  .slide.active .rv-item:nth-child(2){animation-delay:4.35s}
+  .slide.active .rv-item:nth-child(3){animation-delay:4.7s}
+  .slide.active .rv-item:nth-child(4){animation-delay:5.05s}
+  @keyframes rvItemIn{to{opacity:1;transform:none}}
 </style>
 </head>
 <body>
@@ -112,13 +111,28 @@
     <svg class="wm-suit s2 wm" viewBox="0 0 24 24"><path d="M12 21s7-5.6 7-11a7 7 0 0 0-14 0c0 5.4 7 11 7 11z"/></svg>
 
     <div class="mk-kick">Problemática</div>
-    <img class="p2-globe" src="icons/globe.png" alt="Internet">
-    <h2 class="p2-title">Casi nadie lee<br>los permisos que <b>acepta</b></h2>
-    <div class="p2-icons">
-      <div class="p2-ic"><img src="icons/camera.png" alt="Cámara"><span>Cámara</span></div>
-      <div class="p2-ic"><img src="icons/location.png" alt="Ubicación"><span>Ubicación</span></div>
-      <div class="p2-ic"><img src="icons/notification.png" alt="Notificaciones"><span>Notificaciones</span></div>
-      <div class="p2-ic"><img src="icons/cookie.png" alt="Cookies"><span>Cookies</span></div>
+    <img class="rv-hero" src="icons/globe.png" alt="Internet">
+    <h2 class="rv-title">Casi nadie lee<br>los permisos que <b>acepta</b></h2>
+    <div class="rv-row">
+      <div class="rv-item"><img src="icons/camera.png" alt="Cámara"><span>Cámara</span></div>
+      <div class="rv-item"><img src="icons/location.png" alt="Ubicación"><span>Ubicación</span></div>
+      <div class="rv-item"><img src="icons/notification.png" alt="Notificaciones"><span>Notificaciones</span></div>
+      <div class="rv-item"><img src="icons/cookie.png" alt="Cookies"><span>Cookies</span></div>
+    </div>
+  </section>
+
+  <section class="slide" id="s3">
+    <svg class="wm-suit s1 wm" viewBox="0 0 24 24"><path d="M6 3h9l3 3v15H6z"/></svg>
+    <svg class="wm-suit s2 wm" viewBox="0 0 24 24"><path d="M12 21s7-5.6 7-11a7 7 0 0 0-14 0c0 5.4 7 11 7 11z"/></svg>
+
+    <div class="mk-kick">Objetivos y alcance</div>
+    <img class="rv-hero" src="icons/target.png" alt="Objetivo">
+    <h2 class="rv-title">Convertir el problema<br>en una <b>plataforma real</b></h2>
+    <div class="rv-row">
+      <div class="rv-item"><img src="icons/checklist.png" alt="Scrum y Jira"><span>Scrum / Jira</span></div>
+      <div class="rv-item"><img src="icons/palette.png" alt="Diseño"><span>Diseño</span></div>
+      <div class="rv-item"><img src="icons/padlock.png" alt="Backend"><span>Backend</span></div>
+      <div class="rv-item"><img src="icons/browser.png" alt="Frontend"><span>Frontend</span></div>
     </div>
   </section>
 
