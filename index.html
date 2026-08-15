@@ -278,65 +278,38 @@
   .stack-link .arrow{font-family:var(--display);font-size:2.4rem;color:var(--gold-dim);line-height:1}
   .stack-link span{font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink2)}
 
-  /* ---------- SLIDE 7: modelo de datos, las 8 tablas reales ---------- */
-  .db-hero{display:flex;align-items:baseline;gap:.8rem;margin-bottom:1rem;opacity:0;transform:scale(.7)}
+  /* ---------- SLIDE 7: modelo de datos, cuadricula pareja de las 8 tablas ---------- */
+  .db-hero{display:flex;align-items:baseline;gap:.8rem;margin-bottom:1.8rem;opacity:0;transform:scale(.7)}
   .slide.active#s7 .db-hero{animation:kbStatIn .6s cubic-bezier(.34,1.56,.64,1) both}
-  .db-hero .n{font-family:var(--display);font-weight:400;font-size:3.4rem;line-height:1;color:var(--felt)}
-  .db-hero .lbl{font-family:var(--mono);font-size:1.05rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink2)}
-  .db-hero .lbl b{color:var(--gold-dim);font-weight:600}
+  .db-hero .n{font-family:var(--display);font-weight:400;font-size:3.8rem;line-height:1;color:var(--felt)}
+  .db-hero .lbl{font-family:var(--mono);font-size:1.1rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink2)}
 
-  .db-canvas{position:relative;width:52rem;max-width:94vw;height:34.5rem}
-  .db-svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
-  .db-svg path{fill:none;stroke:var(--gold-dim);stroke-width:.16;stroke-dasharray:40;stroke-dashoffset:40}
-  .slide.active#s7 .db-svg path{animation:dbDraw .7s ease 1.2s both}
-  @keyframes dbDraw{to{stroke-dashoffset:0}}
-
-  .db-table{position:absolute;width:16rem;background:#fff;border-radius:10px;overflow:hidden;
-    border:1px solid rgba(20,18,10,.1);box-shadow:0 18px 32px -18px rgba(20,18,10,.38);
+  .db-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.6rem;width:56rem;max-width:94vw}
+  .db-card{background:#fff;border-radius:10px;overflow:hidden;
+    border:1px solid rgba(20,18,10,.1);box-shadow:0 16px 28px -18px rgba(20,18,10,.35);
     opacity:0;transform:translateY(22px) scale(.94)}
-  .slide.active#s7 .db-table{animation:dbTableIn .55s cubic-bezier(.34,1.56,.64,1) both}
-  .db-table.tbl-users{left:50%;top:0;margin-left:-8rem}
-  .slide.active#s7 .db-table.tbl-users{animation-delay:0s}
-  .db-table.tbl-perm{left:0;top:12rem}
-  .slide.active#s7 .db-table.tbl-perm{animation-delay:1.8s}
-  .db-table.tbl-consent{right:0;top:12rem}
-  .slide.active#s7 .db-table.tbl-consent{animation-delay:2s}
+  .slide.active#s7 .db-card{animation:dbTableIn .5s cubic-bezier(.34,1.56,.64,1) both}
+  .slide.active#s7 .db-card:nth-child(1){animation-delay:.5s}
+  .slide.active#s7 .db-card:nth-child(2){animation-delay:.7s}
+  .slide.active#s7 .db-card:nth-child(3){animation-delay:.9s}
+  .slide.active#s7 .db-card:nth-child(4){animation-delay:1.1s}
+  .slide.active#s7 .db-card:nth-child(5){animation-delay:1.3s}
+  .slide.active#s7 .db-card:nth-child(6){animation-delay:1.5s}
+  .slide.active#s7 .db-card:nth-child(7){animation-delay:1.7s}
+  .slide.active#s7 .db-card:nth-child(8){animation-delay:1.9s}
   @keyframes dbTableIn{to{opacity:1;transform:translateY(0) scale(1)}}
 
   .db-head{background:var(--felt);color:#fff;font-family:var(--display);font-weight:400;letter-spacing:.02em;
-    font-size:1.2rem;padding:.6rem 1.1rem}
-  .db-rows{padding:.35rem 0}
-  .db-row{display:flex;justify-content:space-between;align-items:baseline;gap:.6rem;padding:.3rem 1.1rem;
-    font-family:var(--mono);font-size:.74rem;border-bottom:1px solid #f0ede4}
+    font-size:.98rem;padding:.5rem .8rem}
+  .db-rows{padding:.25rem 0}
+  .db-row{display:flex;justify-content:space-between;align-items:baseline;gap:.5rem;padding:.24rem .8rem;
+    font-family:var(--mono);font-size:.68rem;border-bottom:1px solid #f0ede4}
   .db-row:last-child{border-bottom:none}
   .db-row .fname{color:var(--ink)}
   .db-row .ftype{color:var(--muted);flex:none}
   .db-row.pk .fname{font-weight:700;color:var(--gold-dim)}
   .db-row.fk .fname{color:#0052cc}
-
-  .db-extended{position:absolute;left:50%;top:27.6rem;transform:translateX(-50%);
-    display:flex;flex-direction:column;align-items:center;gap:.8rem;opacity:0;width:100%}
-  .slide.active#s7 .db-extended{animation:s5FadeIn .4s ease 3.4s both}
-  .db-ext-lbl{font-family:var(--mono);font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink2)}
-  .db-ext-row{display:flex;gap:.9rem;justify-content:center}
-
-  .db-mini{width:9.7rem;background:#fff;border-radius:8px;overflow:hidden;flex:none;
-    border:1px solid rgba(20,18,10,.1);box-shadow:0 12px 22px -14px rgba(20,18,10,.35);
-    opacity:0;transform:translateY(18px) scale(.92)}
-  .slide.active#s7 .db-mini{animation:dbTableIn .5s cubic-bezier(.34,1.56,.64,1) both}
-  .slide.active#s7 .db-mini:nth-child(1){animation-delay:3.6s}
-  .slide.active#s7 .db-mini:nth-child(2){animation-delay:3.75s}
-  .slide.active#s7 .db-mini:nth-child(3){animation-delay:3.9s}
-  .slide.active#s7 .db-mini:nth-child(4){animation-delay:4.05s}
-  .slide.active#s7 .db-mini:nth-child(5){animation-delay:4.2s}
-  .db-mini-head{background:var(--felt);color:#fff;font-family:var(--display);font-weight:400;
-    font-size:.85rem;letter-spacing:.01em;padding:.4rem .65rem}
-  .db-mini-rows{padding:.2rem 0}
-  .db-mini-row{font-family:var(--mono);font-size:.6rem;color:var(--ink2);padding:.16rem .65rem;
-    border-bottom:1px solid #f2efe6}
-  .db-mini-row:last-child{border-bottom:none}
-  .db-mini-row.pk{color:var(--gold-dim);font-weight:700}
-  .db-mini-row.more{color:var(--muted);font-style:italic}
+  .db-row.more{color:var(--muted);font-style:italic}
 
   /* tablero: cabeceras fijas + pista donde las tarjetas nacen repartidas y se deslizan a Finalizado */
   .kb-heads{display:flex;gap:1.7rem;margin-bottom:.9rem;width:59.1rem}
@@ -602,96 +575,84 @@
     <div class="mk-kick">Modelo de datos</div>
     <div class="db-hero"><span class="n">8</span><span class="lbl">tablas <b>en producción</b></span></div>
 
-    <div class="db-canvas">
-      <svg class="db-svg" viewBox="0 0 52 34.5" preserveAspectRatio="none">
-        <path d="M26,10.9 C26,12.2 16,12.2 16,14"></path>
-        <path d="M26,10.9 C26,12.2 36,12.2 36,14"></path>
-      </svg>
-
-      <div class="db-table tbl-users">
+    <div class="db-grid">
+      <div class="db-card">
         <div class="db-head">users</div>
         <div class="db-rows">
           <div class="db-row pk"><span class="fname">id</span><span class="ftype">integer</span></div>
           <div class="db-row"><span class="fname">username</span><span class="ftype">varchar</span></div>
           <div class="db-row"><span class="fname">passwordHash</span><span class="ftype">varchar</span></div>
           <div class="db-row"><span class="fname">chips</span><span class="ftype">integer</span></div>
-          <div class="db-row"><span class="fname">createdAt</span><span class="ftype">timestamp</span></div>
+          <div class="db-row more"><span class="fname">+1 campo</span></div>
         </div>
       </div>
-
-      <div class="db-table tbl-perm">
+      <div class="db-card">
         <div class="db-head">permission_events</div>
         <div class="db-rows">
           <div class="db-row pk"><span class="fname">id</span><span class="ftype">integer</span></div>
           <div class="db-row fk"><span class="fname">userId</span><span class="ftype">integer</span></div>
           <div class="db-row"><span class="fname">sessionId</span><span class="ftype">varchar</span></div>
           <div class="db-row"><span class="fname">type</span><span class="ftype">varchar</span></div>
-          <div class="db-row"><span class="fname">status</span><span class="ftype">varchar</span></div>
-          <div class="db-row"><span class="fname">context</span><span class="ftype">varchar</span></div>
-          <div class="db-row"><span class="fname">createdAt</span><span class="ftype">timestamp</span></div>
+          <div class="db-row more"><span class="fname">+3 campos</span></div>
         </div>
       </div>
-
-      <div class="db-table tbl-consent">
+      <div class="db-card">
         <div class="db-head">consent_records</div>
         <div class="db-rows">
           <div class="db-row pk"><span class="fname">id</span><span class="ftype">integer</span></div>
           <div class="db-row fk"><span class="fname">userId</span><span class="ftype">integer</span></div>
           <div class="db-row"><span class="fname">sessionId</span><span class="ftype">varchar</span></div>
           <div class="db-row"><span class="fname">category</span><span class="ftype">varchar</span></div>
-          <div class="db-row"><span class="fname">accepted</span><span class="ftype">boolean</span></div>
-          <div class="db-row"><span class="fname">createdAt</span><span class="ftype">timestamp</span></div>
+          <div class="db-row more"><span class="fname">+2 campos</span></div>
         </div>
       </div>
-
-      <div class="db-extended">
-        <div class="db-ext-lbl">También en producción</div>
-        <div class="db-ext-row">
-          <div class="db-mini">
-            <div class="db-mini-head">games</div>
-            <div class="db-mini-rows">
-              <div class="db-mini-row pk">id</div>
-              <div class="db-mini-row">slug</div>
-              <div class="db-mini-row">name</div>
-              <div class="db-mini-row more">+2 campos</div>
-            </div>
-          </div>
-          <div class="db-mini">
-            <div class="db-mini-head">game_rounds</div>
-            <div class="db-mini-rows">
-              <div class="db-mini-row pk">id</div>
-              <div class="db-mini-row">game_id</div>
-              <div class="db-mini-row">result</div>
-              <div class="db-mini-row more">+5 campos</div>
-            </div>
-          </div>
-          <div class="db-mini">
-            <div class="db-mini-head">cookie_catalog</div>
-            <div class="db-mini-rows">
-              <div class="db-mini-row pk">id</div>
-              <div class="db-mini-row">cookie_name</div>
-              <div class="db-mini-row">category</div>
-              <div class="db-mini-row more">+2 campos</div>
-            </div>
-          </div>
-          <div class="db-mini">
-            <div class="db-mini-head">privacy_policy_versions</div>
-            <div class="db-mini-rows">
-              <div class="db-mini-row pk">id</div>
-              <div class="db-mini-row">version</div>
-              <div class="db-mini-row">content</div>
-              <div class="db-mini-row more">+1 campo</div>
-            </div>
-          </div>
-          <div class="db-mini">
-            <div class="db-mini-head">security_findings</div>
-            <div class="db-mini-rows">
-              <div class="db-mini-row pk">id</div>
-              <div class="db-mini-row">title</div>
-              <div class="db-mini-row">severity</div>
-              <div class="db-mini-row more">+4 campos</div>
-            </div>
-          </div>
+      <div class="db-card">
+        <div class="db-head">games</div>
+        <div class="db-rows">
+          <div class="db-row pk"><span class="fname">id</span><span class="ftype">integer</span></div>
+          <div class="db-row"><span class="fname">slug</span><span class="ftype">varchar</span></div>
+          <div class="db-row"><span class="fname">name</span><span class="ftype">varchar</span></div>
+          <div class="db-row"><span class="fname">permission_type</span><span class="ftype">varchar</span></div>
+          <div class="db-row more"><span class="fname">+1 campo</span></div>
+        </div>
+      </div>
+      <div class="db-card">
+        <div class="db-head">game_rounds</div>
+        <div class="db-rows">
+          <div class="db-row pk"><span class="fname">id</span><span class="ftype">integer</span></div>
+          <div class="db-row"><span class="fname">userId</span><span class="ftype">integer</span></div>
+          <div class="db-row fk"><span class="fname">game_id</span><span class="ftype">integer</span></div>
+          <div class="db-row"><span class="fname">sessionId</span><span class="ftype">varchar</span></div>
+          <div class="db-row more"><span class="fname">+4 campos</span></div>
+        </div>
+      </div>
+      <div class="db-card">
+        <div class="db-head">cookie_catalog</div>
+        <div class="db-rows">
+          <div class="db-row pk"><span class="fname">id</span><span class="ftype">integer</span></div>
+          <div class="db-row"><span class="fname">cookie_name</span><span class="ftype">varchar</span></div>
+          <div class="db-row"><span class="fname">category</span><span class="ftype">varchar</span></div>
+          <div class="db-row"><span class="fname">purpose</span><span class="ftype">varchar</span></div>
+          <div class="db-row more"><span class="fname">+1 campo</span></div>
+        </div>
+      </div>
+      <div class="db-card">
+        <div class="db-head">privacy_policy_versions</div>
+        <div class="db-rows">
+          <div class="db-row pk"><span class="fname">id</span><span class="ftype">integer</span></div>
+          <div class="db-row"><span class="fname">version</span><span class="ftype">varchar</span></div>
+          <div class="db-row"><span class="fname">content</span><span class="ftype">varchar</span></div>
+          <div class="db-row"><span class="fname">published_at</span><span class="ftype">timestamp</span></div>
+        </div>
+      </div>
+      <div class="db-card">
+        <div class="db-head">security_findings</div>
+        <div class="db-rows">
+          <div class="db-row pk"><span class="fname">id</span><span class="ftype">integer</span></div>
+          <div class="db-row"><span class="fname">title</span><span class="ftype">varchar</span></div>
+          <div class="db-row"><span class="fname">severity</span><span class="ftype">varchar</span></div>
+          <div class="db-row"><span class="fname">description</span><span class="ftype">varchar</span></div>
+          <div class="db-row more"><span class="fname">+3 campos</span></div>
         </div>
       </div>
     </div>
