@@ -106,17 +106,17 @@
   .p-tasks{z-index:1}
   .p-sprints{z-index:2;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.3rem}
   .p-board{z-index:3;display:flex;flex-direction:column;align-items:center}
-  .slide.active#s4 .p-tasks{animation-delay:2s}
-  .slide.active#s4 .p-sprints{animation-delay:6s}
-  .slide.active#s4 .p-board{animation-delay:11.2s}
+  .slide.active#s4 .p-tasks{animation-delay:4s}
+  .slide.active#s4 .p-sprints{animation-delay:12s}
+  .slide.active#s4 .p-board{animation-delay:19.5s}
 
   .jr-row{display:flex;align-items:center;gap:1.2rem;background:#fff;border:1px solid rgba(20,18,10,.07);
     border-radius:10px;padding:.9rem 1.3rem;margin-bottom:.7rem;opacity:0;transform:translateX(-18px)}
   .slide.active#s4 .jr-row{animation:jrRowIn .45s ease both}
-  .slide.active#s4 .jr-row:nth-child(1){animation-delay:2s}
-  .slide.active#s4 .jr-row:nth-child(2){animation-delay:2.18s}
-  .slide.active#s4 .jr-row:nth-child(3){animation-delay:2.36s}
-  .slide.active#s4 .jr-row:nth-child(4){animation-delay:2.54s}
+  .slide.active#s4 .jr-row:nth-child(1){animation-delay:4s}
+  .slide.active#s4 .jr-row:nth-child(2){animation-delay:4.2s}
+  .slide.active#s4 .jr-row:nth-child(3){animation-delay:4.4s}
+  .slide.active#s4 .jr-row:nth-child(4){animation-delay:4.6s}
   @keyframes jrRowIn{to{opacity:1;transform:none}}
   .jr-row .rt{flex:1;font-family:var(--body);font-weight:500;font-size:1.2rem;color:var(--ink)}
   .jr-pill{font-family:var(--mono);font-size:.82rem;font-weight:600;letter-spacing:.05em;text-transform:uppercase;
@@ -124,10 +124,10 @@
   .jr-avatar{width:2.4rem;height:2.4rem;border-radius:50%;color:#fff;font-family:var(--mono);font-weight:700;
     font-size:.82rem;display:flex;align-items:center;justify-content:center;flex:none;opacity:0;transform:scale(.4)}
   .slide.active#s4 .jr-pill,.slide.active#s4 .jr-avatar{animation:jrPopIn .4s cubic-bezier(.34,1.56,.64,1) both}
-  .slide.active#s4 .jr-row:nth-child(1) .jr-pill,.slide.active#s4 .jr-row:nth-child(1) .jr-avatar{animation-delay:3.3s}
-  .slide.active#s4 .jr-row:nth-child(2) .jr-pill,.slide.active#s4 .jr-row:nth-child(2) .jr-avatar{animation-delay:3.5s}
-  .slide.active#s4 .jr-row:nth-child(3) .jr-pill,.slide.active#s4 .jr-row:nth-child(3) .jr-avatar{animation-delay:3.7s}
-  .slide.active#s4 .jr-row:nth-child(4) .jr-pill,.slide.active#s4 .jr-row:nth-child(4) .jr-avatar{animation-delay:3.9s}
+  .slide.active#s4 .jr-row:nth-child(1) .jr-pill,.slide.active#s4 .jr-row:nth-child(1) .jr-avatar{animation-delay:7.3s}
+  .slide.active#s4 .jr-row:nth-child(2) .jr-pill,.slide.active#s4 .jr-row:nth-child(2) .jr-avatar{animation-delay:7.5s}
+  .slide.active#s4 .jr-row:nth-child(3) .jr-pill,.slide.active#s4 .jr-row:nth-child(3) .jr-avatar{animation-delay:7.7s}
+  .slide.active#s4 .jr-row:nth-child(4) .jr-pill,.slide.active#s4 .jr-row:nth-child(4) .jr-avatar{animation-delay:7.9s}
   @keyframes jrPopIn{to{opacity:1;transform:scale(1)}}
   .pr-highest{background:#fbdedb;color:#a3271f}
   .pr-high{background:#fbe6cf;color:#95500a}
@@ -144,12 +144,12 @@
     font-size:2.3rem;letter-spacing:.02em;box-shadow:0 16px 28px -14px rgba(0,50,150,.55)}
   .jr-sprint .sl{font-family:var(--body);font-weight:600;font-size:.98rem;color:var(--ink);text-align:center;line-height:1.25}
   .slide.active#s4 .jr-sprint{animation:jrChipIn .45s cubic-bezier(.34,1.56,.64,1) both}
-  .slide.active#s4 .jr-sprint:nth-child(1){animation-delay:6.2s}
-  .slide.active#s4 .jr-sprint:nth-child(2){animation-delay:7.05s}
-  .slide.active#s4 .jr-sprint:nth-child(3){animation-delay:7.9s}
-  .slide.active#s4 .jr-sprint:nth-child(4){animation-delay:8.75s}
-  .slide.active#s4 .jr-sprint:nth-child(5){animation-delay:9.6s}
-  .slide.active#s4 .jr-sprint:nth-child(6){animation-delay:10.45s}
+  .slide.active#s4 .jr-sprint:nth-child(1){animation-delay:12s}
+  .slide.active#s4 .jr-sprint:nth-child(2){animation-delay:12.95s}
+  .slide.active#s4 .jr-sprint:nth-child(3){animation-delay:13.9s}
+  .slide.active#s4 .jr-sprint:nth-child(4){animation-delay:14.85s}
+  .slide.active#s4 .jr-sprint:nth-child(5){animation-delay:15.8s}
+  .slide.active#s4 .jr-sprint:nth-child(6){animation-delay:16.75s}
   @keyframes jrChipIn{to{opacity:1;transform:none}}
 
   /* tablero: cabeceras fijas + pista donde las tarjetas nacen repartidas y se deslizan a Finalizado */
@@ -176,7 +176,7 @@
     opacity:0;transform:scale(.7)}
   .jr-stat .n{font-family:var(--display);font-weight:400;font-size:4.4rem;line-height:1;color:var(--felt)}
   .jr-stat .p{font-family:var(--mono);font-size:1.15rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink2)}
-  .slide.active#s4 .jr-stat{animation:kbStatIn .55s cubic-bezier(.34,1.56,.64,1) 15.7s both}
+  .slide.active#s4 .jr-stat{animation:kbStatIn .55s cubic-bezier(.34,1.56,.64,1) 26s both}
   @keyframes kbStatIn{0%{opacity:0;transform:scale(.6)}70%{opacity:1;transform:scale(1.08)}100%{opacity:1;transform:scale(1)}}
 </style>
 </head>
@@ -292,12 +292,12 @@
             <div class="kb-h done">Finalizado</div>
           </div>
           <div class="kb-track">
-            <div class="kb-card" style="--c0:0;--r0:0;--c1:3;--r1:0;--d:11.2s">Acceso y autenticación</div>
-            <div class="kb-card" style="--c0:0;--r0:1;--c1:3;--r1:1;--d:11.35s">Privacidad y consentimiento</div>
-            <div class="kb-card" style="--c0:1;--r0:0;--c1:3;--r1:2;--d:11.5s">Gestión de permisos</div>
-            <div class="kb-card" style="--c0:1;--r0:1;--c1:3;--r1:3;--d:11.65s">Juegos del casino</div>
-            <div class="kb-card" style="--c0:2;--r0:0;--c1:3;--r1:4;--d:11.8s">Dashboard de privacidad</div>
-            <div class="kb-card" style="--c0:2;--r0:1;--c1:3;--r1:5;--d:11.95s">Backend y seguridad</div>
+            <div class="kb-card" style="--c0:0;--r0:0;--c1:3;--r1:0;--d:19.5s">Acceso y autenticación</div>
+            <div class="kb-card" style="--c0:0;--r0:1;--c1:3;--r1:1;--d:19.65s">Privacidad y consentimiento</div>
+            <div class="kb-card" style="--c0:1;--r0:0;--c1:3;--r1:2;--d:19.8s">Gestión de permisos</div>
+            <div class="kb-card" style="--c0:1;--r0:1;--c1:3;--r1:3;--d:19.95s">Juegos del casino</div>
+            <div class="kb-card" style="--c0:2;--r0:0;--c1:3;--r1:4;--d:20.1s">Dashboard de privacidad</div>
+            <div class="kb-card" style="--c0:2;--r0:1;--c1:3;--r1:5;--d:20.25s">Backend y seguridad</div>
           </div>
           <div class="jr-stat"><span class="n">20 / 20</span><span class="p">actividades · 100%</span></div>
         </div>
