@@ -45,9 +45,11 @@
   .wm-suit.s2{right:9%;bottom:14%}
 
   .mark{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;gap:1.1rem}
-  .mk-kick{font-family:var(--mono);font-size:1.3rem;letter-spacing:.32em;text-transform:uppercase;color:var(--felt);
-    display:flex;align-items:center;gap:.9em}
+  .mk-kick{font-family:var(--mono);font-size:1.9rem;letter-spacing:.32em;text-transform:uppercase;color:var(--felt);
+    display:flex;align-items:center;gap:.9em;
+    position:absolute;top:3.2rem;left:50%;transform:translateX(-50%);z-index:5;white-space:nowrap}
   .mk-kick::before,.mk-kick::after{content:"";width:2.6em;height:3px;background:var(--gold-dim)}
+  .mark .mk-kick{position:static;transform:none;font-size:1.3rem;white-space:normal}
   .mk-title{font-family:var(--display);font-weight:400;letter-spacing:.02em;font-size:13.5rem;line-height:.9;
     color:var(--ink);text-transform:uppercase;display:flex;align-items:baseline;gap:.05em;
     flex-wrap:wrap;justify-content:center;max-width:94vw}
