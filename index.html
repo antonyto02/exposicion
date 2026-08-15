@@ -100,7 +100,7 @@
   .slide.active#s4 .jira-badge{animation:jrBadgeIn .4s cubic-bezier(.34,1.56,.64,1) .35s both}
   @keyframes jrBadgeIn{to{opacity:1;transform:scale(1)}}
 
-  .jira-body{position:relative;height:24rem}
+  .jira-body{position:relative;height:25rem}
   .jr-phase{position:absolute;inset:0;background:#fff;padding:1.7rem 2rem;opacity:0;transform:translateY(10px)}
   .slide.active#s4 .jr-phase{animation:jrPhaseIn .5s ease both}
   @keyframes jrPhaseIn{to{opacity:1;transform:none}}
@@ -149,37 +149,32 @@
   .slide.active#s4 .jr-chip:nth-child(6){animation-delay:10.45s}
   @keyframes jrChipIn{to{opacity:1;transform:none}}
 
-  .kb-board{display:flex;gap:1.3rem;justify-content:center}
-  .kb-col{width:11.6rem;display:flex;flex-direction:column}
-  .kb-col-h{font-family:var(--mono);font-size:.76rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink2);
-    text-align:center;padding-bottom:.55rem;margin-bottom:.75rem;border-bottom:2px solid rgba(20,18,10,.14)}
-  .kb-col.done .kb-col-h{color:var(--felt);border-bottom-color:var(--felt)}
-  .kb-cards{display:flex;flex-direction:column;gap:.45rem}
-  .kb-card{background:#fffdf7;border:1px solid rgba(20,18,10,.1);border-left:4px solid var(--gold);border-radius:8px;
-    padding:.5rem .75rem;font-family:var(--body);font-weight:500;font-size:.72rem;line-height:1.2;color:var(--ink);
-    box-shadow:0 8px 16px -12px rgba(20,18,10,.3);opacity:0;transform:translateY(-28px) scale(.9)}
-  .slide.active#s4 .kb-card{animation:kbCardIn .45s cubic-bezier(.34,1.56,.64,1) both}
-  .slide.active#s4 .kb-card:nth-child(1){animation-delay:11.4s}
-  .slide.active#s4 .kb-card:nth-child(2){animation-delay:11.75s}
-  .slide.active#s4 .kb-card:nth-child(3){animation-delay:12.1s}
-  .slide.active#s4 .kb-card:nth-child(4){animation-delay:12.45s}
-  .slide.active#s4 .kb-card:nth-child(5){animation-delay:12.8s}
-  .slide.active#s4 .kb-card:nth-child(6){animation-delay:13.15s}
-  @keyframes kbCardIn{to{opacity:1;transform:translateY(0) scale(1)}}
-  .kb-empty{font-family:var(--mono);font-size:.72rem;color:var(--muted);text-align:center;padding-top:.3rem}
+  /* tablero: cabeceras fijas + pista donde las tarjetas nacen repartidas y se deslizan a Finalizado */
+  .kb-heads{display:flex;gap:1.3rem;margin-bottom:.7rem}
+  .kb-h{width:11.6rem;font-family:var(--mono);font-size:.76rem;letter-spacing:.12em;text-transform:uppercase;
+    color:var(--ink2);text-align:center;padding-bottom:.45rem;border-bottom:2px solid rgba(20,18,10,.14)}
+  .kb-h.done{color:var(--felt);border-bottom-color:var(--felt)}
 
-  .jr-stat{margin-top:1rem;display:flex;align-items:baseline;gap:.9rem;justify-content:center;
+  .kb-track{position:relative;height:14.2rem}
+  .kb-card{position:absolute;width:11.6rem;
+    left:calc(var(--c1) * 12.9rem);top:calc(var(--r1) * 2.42rem);
+    background:#fffdf7;border:1px solid rgba(20,18,10,.1);border-left:4px solid var(--gold);border-radius:8px;
+    padding:.5rem .75rem;font-family:var(--body);font-weight:500;font-size:.72rem;line-height:1.2;color:var(--ink);
+    box-shadow:0 8px 16px -12px rgba(20,18,10,.3);opacity:0}
+  .slide.active#s4 .kb-card{animation:kbMove 3.3s cubic-bezier(.5,0,.15,1) var(--d) both}
+  @keyframes kbMove{
+    0%{opacity:0;transform:translate(calc((var(--c0) - var(--c1)) * 12.9rem), calc((var(--r0) - var(--r1)) * 2.42rem)) scale(.94)}
+    9%{opacity:1;transform:translate(calc((var(--c0) - var(--c1)) * 12.9rem), calc((var(--r0) - var(--r1)) * 2.42rem)) scale(1)}
+    52%{opacity:1;transform:translate(calc((var(--c0) - var(--c1)) * 12.9rem), calc((var(--r0) - var(--r1)) * 2.42rem)) scale(1)}
+    100%{opacity:1;transform:translate(0,0) scale(1)}
+  }
+
+  .jr-stat{margin-top:.6rem;display:flex;align-items:baseline;gap:.9rem;justify-content:center;
     opacity:0;transform:scale(.7)}
   .jr-stat .n{font-family:var(--display);font-weight:400;font-size:3.6rem;line-height:1;color:var(--felt)}
   .jr-stat .p{font-family:var(--mono);font-size:1rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink2)}
-  .slide.active#s4 .jr-stat{animation:kbStatIn .55s cubic-bezier(.34,1.56,.64,1) 14s both}
+  .slide.active#s4 .jr-stat{animation:kbStatIn .55s cubic-bezier(.34,1.56,.64,1) 15.7s both}
   @keyframes kbStatIn{0%{opacity:0;transform:scale(.6)}70%{opacity:1;transform:scale(1.08)}100%{opacity:1;transform:scale(1)}}
-
-  .jr-close{margin-top:1.8rem;display:flex;gap:1rem;position:relative;z-index:2;opacity:0}
-  .slide.active#s4 .jr-close{animation:jrCloseIn .5s ease 16.5s both}
-  @keyframes jrCloseIn{to{opacity:1}}
-  .jr-tag{font-family:var(--mono);font-size:.9rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink);
-    background:transparent;border:1px solid rgba(20,18,10,.18);border-radius:20px;padding:.5em 1.1em}
 </style>
 </head>
 <body>
@@ -287,41 +282,24 @@
         </div>
 
         <div class="jr-phase p-board">
-          <div class="kb-board">
-            <div class="kb-col">
-              <div class="kb-col-h">Por hacer</div>
-              <div class="kb-empty">—</div>
-            </div>
-            <div class="kb-col">
-              <div class="kb-col-h">En curso</div>
-              <div class="kb-empty">—</div>
-            </div>
-            <div class="kb-col">
-              <div class="kb-col-h">En revisión</div>
-              <div class="kb-empty">—</div>
-            </div>
-            <div class="kb-col done">
-              <div class="kb-col-h">Finalizado</div>
-              <div class="kb-cards">
-                <div class="kb-card">Acceso y autenticación</div>
-                <div class="kb-card">Privacidad y consentimiento</div>
-                <div class="kb-card">Gestión de permisos</div>
-                <div class="kb-card">Juegos del casino</div>
-                <div class="kb-card">Dashboard de privacidad</div>
-                <div class="kb-card">Backend y seguridad</div>
-              </div>
-            </div>
+          <div class="kb-heads">
+            <div class="kb-h">Por hacer</div>
+            <div class="kb-h">En curso</div>
+            <div class="kb-h">En revisión</div>
+            <div class="kb-h done">Finalizado</div>
+          </div>
+          <div class="kb-track">
+            <div class="kb-card" style="--c0:0;--r0:0;--c1:3;--r1:0;--d:11.2s">Acceso y autenticación</div>
+            <div class="kb-card" style="--c0:0;--r0:1;--c1:3;--r1:1;--d:11.35s">Privacidad y consentimiento</div>
+            <div class="kb-card" style="--c0:1;--r0:0;--c1:3;--r1:2;--d:11.5s">Gestión de permisos</div>
+            <div class="kb-card" style="--c0:1;--r0:1;--c1:3;--r1:3;--d:11.65s">Juegos del casino</div>
+            <div class="kb-card" style="--c0:2;--r0:0;--c1:3;--r1:4;--d:11.8s">Dashboard de privacidad</div>
+            <div class="kb-card" style="--c0:2;--r0:1;--c1:3;--r1:5;--d:11.95s">Backend y seguridad</div>
           </div>
           <div class="jr-stat"><span class="n">20 / 20</span><span class="p">actividades · 100%</span></div>
         </div>
 
       </div>
-    </div>
-
-    <div class="jr-close">
-      <span class="jr-tag">Backend</span>
-      <span class="jr-tag">Mockups</span>
-      <span class="jr-tag">Juegos</span>
     </div>
   </section>
 
