@@ -3,9 +3,84 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Hola Mundo</title>
+<title>Casino Zero Trust — Exposición</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&family=Roboto+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    /* paleta tomada de frontend/src/index.css, para continuidad de marca */
+    --gold:#d4af37; --gold-bright:#ffd76a; --gold-dim:#8a6d1f;
+    --felt:#0f3d28; --felt2:#0a2a1b;
+    --danger:#ef4444; --success:#2dd47a;
+
+    --bg:#f5f1e7; --grid:rgba(20,18,10,.05);
+    --ink:#17140f; --ink2:#57503f; --muted:#9a8f78;
+
+    --display:'Bebas Neue',sans-serif; --body:'Inter',system-ui,sans-serif; --mono:'Roboto Mono',monospace;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{height:100%;font-size:min(1.25vw,2.2222vh)}
+  body{height:100%;background:#efe9da;font-family:var(--body);color:var(--ink);display:flex;align-items:center;justify-content:center;overflow:hidden}
+  #stage{position:relative;width:100vw;height:100vh;overflow:hidden;background:var(--bg)}
+
+  .slide{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;
+    background-color:var(--bg);
+    background-image:
+      linear-gradient(var(--grid) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid) 1px, transparent 1px),
+      radial-gradient(62% 55% at 100% 0%, rgba(212,175,55,.16), transparent 65%),
+      radial-gradient(58% 52% at 0% 100%, rgba(15,61,40,.14), transparent 62%),
+      radial-gradient(38% 30% at 50% 100%, rgba(239,68,68,.05), transparent 70%);
+    background-size:2.4rem 2.4rem, 2.4rem 2.4rem, 100% 100%, 100% 100%, 100% 100%;
+    opacity:0;transform:scale(1.015);transition:opacity .5s ease,transform .5s ease}
+  .slide.active{opacity:1;transform:none}
+
+  /* ---- marcas de agua decorativas: aluden a casino (ficha/ruleta) + zero trust (escudo) ---- */
+  .wm{position:absolute;pointer-events:none;stroke:var(--ink);fill:none;stroke-width:1.1}
+  .wm-chip{width:34rem;height:34rem;left:-9rem;bottom:-9rem;opacity:.05}
+  .wm-shield{width:24rem;height:24rem;right:-5rem;top:-5rem;opacity:.05}
+  .wm-suit{width:9rem;height:9rem;opacity:.06;fill:var(--ink);stroke:none}
+  .wm-suit.s1{left:6%;top:10%}
+  .wm-suit.s2{right:9%;bottom:14%}
+
+  .mark{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;gap:1.1rem}
+  .mk-kick{font-family:var(--mono);font-size:.85rem;letter-spacing:.34em;text-transform:uppercase;color:var(--felt);
+    display:flex;align-items:center;gap:.9em}
+  .mk-kick::before,.mk-kick::after{content:"";width:2.6em;height:2px;background:var(--gold-dim)}
+  .mk-title{font-family:var(--display);font-weight:400;letter-spacing:.02em;font-size:7.5rem;line-height:.9;
+    color:var(--ink);text-transform:uppercase;display:flex;align-items:baseline;gap:.05em}
+  .mk-title .zero{color:var(--gold-dim);font-size:.42em;letter-spacing:.2em;margin:0 .3em}
+  .mk-title .trust{color:var(--felt)}
+  .mk-sub{font-family:var(--mono);font-size:.92rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ink2)}
+  .mk-sub b{color:var(--danger);font-weight:600}
+</style>
 </head>
 <body>
-  <h1>Hola Mundo</h1>
+<div id="stage">
+
+  <section class="slide active" id="s1">
+    <svg class="wm wm-chip" viewBox="0 0 200 200"><circle cx="100" cy="100" r="92"/><circle cx="100" cy="100" r="70"/>
+      <g>
+        <rect x="96" y="6" width="8" height="26"/><rect x="96" y="168" width="8" height="26"/>
+        <rect x="6" y="96" width="26" height="8"/><rect x="168" y="96" width="26" height="8"/>
+        <rect x="96" y="6" width="8" height="26" transform="rotate(45 100 100)"/>
+        <rect x="96" y="6" width="8" height="26" transform="rotate(135 100 100)"/>
+        <rect x="96" y="6" width="8" height="26" transform="rotate(225 100 100)"/>
+        <rect x="96" y="6" width="8" height="26" transform="rotate(315 100 100)"/>
+      </g>
+    </svg>
+    <svg class="wm wm-shield" viewBox="0 0 200 200"><path d="M100 14 L172 42 V96 C172 142 142 172 100 188 C58 172 28 142 28 96 V42 Z"/><path d="M64 100 L90 126 L140 74"/></svg>
+    <svg class="wm-suit s1 wm" viewBox="0 0 24 24"><path d="M12 21s7-5.6 7-11a7 7 0 0 0-14 0c0 5.4 7 11 7 11z"/></svg>
+    <svg class="wm-suit s2 wm" viewBox="0 0 24 24"><path d="M12 3.5l2.5 5.4 5.9.8-4.3 4.1 1.1 5.9L12 16.9 6.8 19.7l1.1-5.9L3.6 9.7l5.9-.8L12 3.5z"/></svg>
+
+    <div class="mark">
+      <div class="mk-kick">Proyecto final integrador</div>
+      <div class="mk-title">Casino<span class="zero">/ zero /</span><span class="trust">Trust</span></div>
+      <div class="mk-sub">Laboratorio de <b>privacidad</b> y ciberseguridad</div>
+    </div>
+  </section>
+
+</div>
 </body>
 </html>
