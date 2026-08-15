@@ -24,7 +24,7 @@
   body{height:100%;background:#efe9da;font-family:var(--body);color:var(--ink);display:flex;align-items:center;justify-content:center;overflow:hidden}
   #stage{position:relative;width:100vw;height:100vh;overflow:hidden;background:var(--bg)}
 
-  .slide{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  .slide{position:absolute;inset:0;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;
     background-color:var(--bg);
     background-image:
       repeating-linear-gradient(45deg, var(--grid) 0 1px, transparent 1px 1.65rem),
@@ -153,7 +153,7 @@
   @keyframes jrChipIn{to{opacity:1;transform:none}}
 
   /* ---------- SLIDE 5: wireframe generico -> mockup generico -> pantallas reales ---------- */
-  .s5-stage{position:relative;height:37rem;width:100%}
+  .s5-stage{position:relative;height:34rem;width:100%}
   .s5-phase{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.2rem}
 
   .p-generic{opacity:0}
@@ -166,7 +166,7 @@
   }
   .s5-label{font-family:var(--mono);font-size:.95rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink2)}
 
-  .wf-canvas{width:46rem;max-width:92vw;height:21rem;position:relative;border-radius:14px;overflow:hidden;
+  .wf-canvas{width:58rem;max-width:92vw;height:26rem;position:relative;border-radius:14px;overflow:hidden;
     box-shadow:0 30px 60px -28px rgba(20,18,10,.4);border:1px solid rgba(20,18,10,.08)}
   .wf-skin{position:absolute;inset:0;display:flex;flex-direction:column}
   .wf-skin.wire{background:#fff;opacity:1}
@@ -176,33 +176,33 @@
   .slide.active#s5 .wf-skin.wire{animation:wfWireOut .9s ease 3.2s both}
   @keyframes wfWireOut{to{opacity:0}}
 
-  .wf-top{height:3.2rem;display:flex;align-items:center;gap:.9rem;padding:0 1.5rem;flex:none}
+  .wf-top{height:3.9rem;display:flex;align-items:center;gap:1.1rem;padding:0 1.8rem;flex:none}
   .wire .wf-top{background:#eceae4;border-bottom:1px solid #ddd}
   .mock .wf-top{border-bottom:1px solid rgba(212,175,55,.25)}
-  .wf-logo{width:1.8rem;height:1.8rem;border-radius:6px;flex:none}
+  .wf-logo{width:2.2rem;height:2.2rem;border-radius:7px;flex:none}
   .wire .wf-logo{background:#9a9a9a}
   .mock .wf-logo{background:#d4af37}
-  .wf-nav{flex:1;height:.7rem;border-radius:4px;max-width:14rem}
+  .wf-nav{flex:1;height:.85rem;border-radius:4px;max-width:17rem}
   .wire .wf-nav{background:#c7c7c7}
   .mock .wf-nav{background:rgba(255,255,255,.15)}
 
-  .wf-body{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.1rem}
-  .wf-kicker{width:15rem;height:1.7rem;border-radius:20px}
+  .wf-body{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.3rem}
+  .wf-kicker{width:18rem;height:2.1rem;border-radius:20px}
   .wire .wf-kicker{border:1px dashed #bbb}
   .mock .wf-kicker{border:1px solid #d4af37}
-  .wf-hero-bar{width:24rem;height:2.5rem;border-radius:6px}
+  .wf-hero-bar{width:29rem;height:3.1rem;border-radius:7px}
   .wire .wf-hero-bar{background:#d6d6d6}
   .mock .wf-hero-bar{background:#d4af37}
-  .wf-line{height:.55rem;border-radius:4px}
+  .wf-line{height:.68rem;border-radius:4px}
   .wire .wf-line{background:#e3e3e3}
   .mock .wf-line{background:rgba(255,255,255,.18)}
-  .wf-line.l1{width:20rem}
-  .wf-line.l2{width:15rem}
-  .wf-cta{width:12rem;height:2.7rem;border-radius:6px;margin-top:.3rem}
+  .wf-line.l1{width:24rem}
+  .wf-line.l2{width:18rem}
+  .wf-cta{width:15rem;height:3.3rem;border-radius:7px;margin-top:.4rem}
   .wire .wf-cta{background:#b8b8b8}
   .mock .wf-cta{background:#ffd76a}
-  .wf-cardsrow{display:flex;gap:1.1rem;margin-top:.7rem}
-  .wf-card{width:8.2rem;height:3.8rem;border-radius:8px}
+  .wf-cardsrow{display:flex;gap:1.3rem;margin-top:.8rem}
+  .wf-card{width:10rem;height:4.6rem;border-radius:9px}
   .wire .wf-card{background:#ececec;border:1px solid #ddd}
   .mock .wf-card{background:#171029;border:1px solid rgba(212,175,55,.25)}
 
