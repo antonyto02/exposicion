@@ -234,37 +234,49 @@
   @keyframes pairMockIn{to{width:12.5rem;margin-left:1.1rem;opacity:1}}
   .pair span{font-family:var(--mono);font-size:.85rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink2)}
 
-  /* ---------- SLIDE 6: stack tecnologico, logos reales en dos filas ---------- */
+  /* ---------- SLIDE 6: stack tecnologico, dos columnas frontend/backend ---------- */
   .stack-title{font-family:var(--display);font-weight:400;text-transform:uppercase;letter-spacing:.01em;
-    font-size:4.6rem;line-height:1;color:var(--ink);text-align:center;margin:0 0 2.6rem;
+    font-size:5rem;line-height:1;color:var(--ink);text-align:center;margin:0 0 2.8rem;
     opacity:0;transform:translateY(14px)}
-  .stack-title b{color:var(--felt);font-weight:400}
   .slide.active#s6 .stack-title{animation:rvTitleIn .6s ease .2s both}
 
-  .stack-row{display:flex;flex-direction:column;align-items:center;gap:1.1rem;margin-bottom:2.4rem}
-  .stack-row:last-child{margin-bottom:0}
-  .stack-lbl{font-family:var(--mono);font-size:.9rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ink2);
-    opacity:0}
-  .stack-items{display:flex;gap:3.4rem}
+  .stack-cols{display:flex;align-items:center;justify-content:center;gap:2rem}
+  .stack-col{display:flex;flex-direction:column;align-items:center;gap:1.8rem;width:19rem;padding:2.2rem 1.6rem;
+    background:#fff;border-radius:16px;border-top:5px solid var(--accent);
+    box-shadow:0 24px 42px -26px rgba(20,18,10,.32);border-left:1px solid rgba(20,18,10,.06);
+    border-right:1px solid rgba(20,18,10,.06);border-bottom:1px solid rgba(20,18,10,.06);
+    opacity:0;transform:translateY(24px) scale(.95)}
+  .stack-col.fe{--accent:var(--gold)}
+  .stack-col.be{--accent:var(--felt)}
+  .slide.active#s6 .stack-col{animation:dbTableIn .55s cubic-bezier(.34,1.56,.64,1) both}
+  .slide.active#s6 .stack-col.fe{animation-delay:.6s}
+  .slide.active#s6 .stack-col.be{animation-delay:3.5s}
+
+  .stack-col-h{display:flex;flex-direction:column;align-items:center;gap:.35rem}
+  .stack-col-tag{font-family:var(--mono);font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+  .stack-col-name{font-family:var(--display);font-weight:400;font-size:1.9rem;color:var(--ink);letter-spacing:.01em}
+
+  .stack-items{display:flex;gap:1.8rem}
   .stack-item{display:flex;flex-direction:column;align-items:center;gap:.9rem;opacity:0;transform:translateY(26px) scale(.85)}
-  .stack-item img{width:5.4rem;height:5.4rem;object-fit:contain;filter:drop-shadow(0 12px 18px rgba(20,18,10,.2))}
-  .stack-item span{font-family:var(--mono);font-size:.95rem;letter-spacing:.06em;color:var(--ink2)}
+  .stack-item img{width:5rem;height:5rem;object-fit:contain;filter:drop-shadow(0 12px 18px rgba(20,18,10,.2))}
+  .stack-item span{font-family:var(--mono);font-size:.85rem;letter-spacing:.04em;color:var(--ink2)}
 
-  .slide.active#s6 .fe-lbl{animation:s5FadeIn .4s ease 3.8s both}
-  .slide.active#s6 .be-lbl{animation:s5FadeIn .4s ease 6.8s both}
+  .slide.active#s6 .fe-items .stack-item{animation:rvItemIn .5s cubic-bezier(.34,1.56,.64,1) both}
+  .slide.active#s6 .fe-items .stack-item:nth-child(1){animation-delay:1.5s}
+  .slide.active#s6 .fe-items .stack-item:nth-child(2){animation-delay:1.8s}
+  .slide.active#s6 .fe-items .stack-item:nth-child(3){animation-delay:2.1s}
+
+  .slide.active#s6 .be-items .stack-item{animation:rvItemIn .5s cubic-bezier(.34,1.56,.64,1) both}
+  .slide.active#s6 .be-items .stack-item:nth-child(1){animation-delay:4.4s}
+  .slide.active#s6 .be-items .stack-item:nth-child(2){animation-delay:4.7s}
+  .slide.active#s6 .be-items .stack-item:nth-child(3){animation-delay:5s}
+
+  .stack-link{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.5rem;
+    flex:none;opacity:0}
+  .slide.active#s6 .stack-link{animation:s5FadeIn .5s ease 6s both}
   @keyframes s5FadeIn{to{opacity:1}}
-
-  .slide.active#s6 .fe-row .stack-item{animation:rvItemIn .5s cubic-bezier(.34,1.56,.64,1) both}
-  .slide.active#s6 .fe-row .stack-item:nth-child(1){animation-delay:4s}
-  .slide.active#s6 .fe-row .stack-item:nth-child(2){animation-delay:4.3s}
-  .slide.active#s6 .fe-row .stack-item:nth-child(3){animation-delay:4.6s}
-  .slide.active#s6 .fe-row .stack-item:nth-child(4){animation-delay:4.9s}
-
-  .slide.active#s6 .be-row .stack-item{animation:rvItemIn .5s cubic-bezier(.34,1.56,.64,1) both}
-  .slide.active#s6 .be-row .stack-item:nth-child(1){animation-delay:7s}
-  .slide.active#s6 .be-row .stack-item:nth-child(2){animation-delay:7.3s}
-  .slide.active#s6 .be-row .stack-item:nth-child(3){animation-delay:7.6s}
-  .slide.active#s6 .be-row .stack-item:nth-child(4){animation-delay:7.9s}
+  .stack-link .arrow{font-family:var(--display);font-size:2.4rem;color:var(--gold-dim);line-height:1}
+  .stack-link span{font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink2)}
 
   /* ---------- SLIDE 7: modelo de datos, las 8 tablas reales ---------- */
   .db-hero{display:flex;align-items:baseline;gap:.8rem;margin-bottom:1rem;opacity:0;transform:scale(.7)}
@@ -552,25 +564,33 @@
     <svg class="wm-suit s2 wm" viewBox="0 0 24 24"><path d="M6 3h9l3 3v15H6z"/></svg>
 
     <div class="mk-kick">Arquitectura y stack</div>
-    <h2 class="stack-title">Dos repositorios,<br><b>un mismo stack</b></h2>
+    <h2 class="stack-title">Stack</h2>
 
-    <div class="stack-row fe-row">
-      <div class="stack-lbl fe-lbl">Frontend · casino-app</div>
-      <div class="stack-items">
-        <div class="stack-item"><img src="logos/react.svg" alt="React"><span>React</span></div>
-        <div class="stack-item"><img src="logos/typescript.svg" alt="TypeScript"><span>TypeScript</span></div>
-        <div class="stack-item"><img src="logos/vite.svg" alt="Vite"><span>Vite</span></div>
-        <div class="stack-item"><img src="logos/vercel.svg" alt="Vercel"><span>Vercel</span></div>
+    <div class="stack-cols">
+      <div class="stack-col fe">
+        <div class="stack-col-h">
+          <div class="stack-col-tag">Frontend</div>
+          <div class="stack-col-name">casino-app</div>
+        </div>
+        <div class="stack-items fe-items">
+          <div class="stack-item"><img src="logos/react.svg" alt="React"><span>React</span></div>
+          <div class="stack-item"><img src="logos/typescript.svg" alt="TypeScript"><span>TypeScript</span></div>
+          <div class="stack-item"><img src="logos/vite.svg" alt="Vite"><span>Vite</span></div>
+        </div>
       </div>
-    </div>
 
-    <div class="stack-row be-row">
-      <div class="stack-lbl be-lbl">Backend · casino-backend</div>
-      <div class="stack-items">
-        <div class="stack-item"><img src="logos/nestjs.svg" alt="NestJS"><span>NestJS</span></div>
-        <div class="stack-item"><img src="logos/typeorm.svg" alt="TypeORM"><span>TypeORM</span></div>
-        <div class="stack-item"><img src="logos/sqlite.svg" alt="SQLite"><span>SQLite</span></div>
-        <div class="stack-item"><img src="logos/railway.svg" alt="Railway"><span>Railway</span></div>
+      <div class="stack-link"><span class="arrow">⇄</span><span>API REST</span></div>
+
+      <div class="stack-col be">
+        <div class="stack-col-h">
+          <div class="stack-col-tag">Backend</div>
+          <div class="stack-col-name">casino-backend</div>
+        </div>
+        <div class="stack-items be-items">
+          <div class="stack-item"><img src="logos/nestjs.svg" alt="NestJS"><span>NestJS</span></div>
+          <div class="stack-item"><img src="logos/typeorm.svg" alt="TypeORM"><span>TypeORM</span></div>
+          <div class="stack-item"><img src="logos/sqlite.svg" alt="SQLite"><span>SQLite</span></div>
+        </div>
       </div>
     </div>
   </section>
