@@ -48,9 +48,7 @@ El proyecto se divide en dos repositorios separados. El frontend, casino-app, es
 
 Integrante 6 — Modelo de datos
 
-Diseñamos un modelo de datos completo de ocho tablas. De esas, tres ya están implementadas y funcionando en producción: users, que guarda cuenta y fichas; permission_events, la bitácora de cada permiso pedido, concedido o negado; y consent_records, las decisiones de cookies por sesión.
-
-Las otras cinco —juegos, historial de jugadas, catálogo de cookies, versiones del aviso de privacidad y hallazgos de seguridad— ya las dejamos modeladas y documentadas, listas para las siguientes fases del laboratorio.
+Diseñamos e implementamos un modelo de datos completo de ocho tablas: users, que guarda cuenta y fichas; permission_events, la bitácora de cada permiso pedido, concedido o negado; consent_records, las decisiones de cookies por sesión; y ya sumamos también games, game_rounds, cookie_catalog, privacy_policy_versions y security_findings.
 
 
 
