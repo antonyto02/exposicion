@@ -83,47 +83,46 @@
   @keyframes rvItemIn{to{opacity:1;transform:none}}
 
   /* ---------- SLIDE 4: secuencia cronometrada dentro de un navegador con Jira ---------- */
-  .jira-frame{width:58rem;max-width:92vw;border-radius:16px;background:#fff;position:relative;z-index:2;
-    box-shadow:0 34px 64px -30px rgba(20,18,10,.4);border:1px solid rgba(20,18,10,.08);overflow:hidden;
+  .jira-frame{width:70rem;max-width:94vw;border-radius:18px;background:#fff;position:relative;z-index:2;
+    box-shadow:0 38px 72px -30px rgba(20,18,10,.42);border:1px solid rgba(20,18,10,.08);overflow:hidden;
     opacity:0;transform:scale(.85) translateY(24px)}
   .slide.active#s4 .jira-frame{animation:jrFrameIn .7s cubic-bezier(.34,1.56,.64,1) both}
   @keyframes jrFrameIn{to{opacity:1;transform:scale(1) translateY(0)}}
 
-  .jira-chrome{height:3.4rem;background:#f1ede2;display:flex;align-items:center;gap:.9rem;
-    padding:0 1.3rem;border-bottom:1px solid rgba(20,18,10,.08)}
-  .jira-dots{display:flex;gap:.4rem;flex:none}
-  .jira-dots i{width:.62rem;height:.62rem;border-radius:50%;background:rgba(20,18,10,.16)}
-  .jira-addr{flex:1;height:1.6rem;background:#fff;border:1px solid rgba(20,18,10,.1);border-radius:20px}
-  .jira-badge{font-family:var(--display);font-weight:400;letter-spacing:.03em;font-size:1.05rem;color:#fff;
-    background:#0052cc;padding:.28em .85em;border-radius:6px;text-transform:uppercase;flex:none;
-    opacity:0;transform:scale(.7)}
+  .jira-chrome{height:4.4rem;background:linear-gradient(135deg,#0065ff,#0052cc);display:flex;align-items:center;gap:1.1rem;
+    padding:0 1.6rem}
+  .jira-dots{display:flex;gap:.45rem;flex:none}
+  .jira-dots i{width:.7rem;height:.7rem;border-radius:50%;background:rgba(255,255,255,.35)}
+  .jira-addr{flex:1;height:1.9rem;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.22);border-radius:20px}
+  .jira-badge{font-family:var(--display);font-weight:400;letter-spacing:.02em;font-size:1.7rem;color:#fff;
+    text-transform:uppercase;flex:none;opacity:0;transform:scale(.7)}
   .slide.active#s4 .jira-badge{animation:jrBadgeIn .4s cubic-bezier(.34,1.56,.64,1) .35s both}
   @keyframes jrBadgeIn{to{opacity:1;transform:scale(1)}}
 
-  .jira-body{position:relative;height:25rem}
-  .jr-phase{position:absolute;inset:0;background:#fff;padding:1.7rem 2rem;opacity:0;transform:translateY(10px)}
+  .jira-body{position:relative;height:32rem;background:#f4f5f7}
+  .jr-phase{position:absolute;inset:0;background:#f4f5f7;padding:2.1rem 2.4rem;opacity:0;transform:translateY(10px)}
   .slide.active#s4 .jr-phase{animation:jrPhaseIn .5s ease both}
   @keyframes jrPhaseIn{to{opacity:1;transform:none}}
   .p-tasks{z-index:1}
-  .p-sprints{z-index:2;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.1rem}
-  .p-board{z-index:3}
+  .p-sprints{z-index:2;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.3rem}
+  .p-board{z-index:3;display:flex;flex-direction:column;align-items:center}
   .slide.active#s4 .p-tasks{animation-delay:2s}
   .slide.active#s4 .p-sprints{animation-delay:6s}
   .slide.active#s4 .p-board{animation-delay:11.2s}
 
-  .jr-row{display:flex;align-items:center;gap:1rem;background:#faf7ef;border:1px solid rgba(20,18,10,.07);
-    border-radius:9px;padding:.75rem 1.1rem;margin-bottom:.6rem;opacity:0;transform:translateX(-18px)}
+  .jr-row{display:flex;align-items:center;gap:1.2rem;background:#fff;border:1px solid rgba(20,18,10,.07);
+    border-radius:10px;padding:.9rem 1.3rem;margin-bottom:.7rem;opacity:0;transform:translateX(-18px)}
   .slide.active#s4 .jr-row{animation:jrRowIn .45s ease both}
   .slide.active#s4 .jr-row:nth-child(1){animation-delay:2s}
   .slide.active#s4 .jr-row:nth-child(2){animation-delay:2.18s}
   .slide.active#s4 .jr-row:nth-child(3){animation-delay:2.36s}
   .slide.active#s4 .jr-row:nth-child(4){animation-delay:2.54s}
   @keyframes jrRowIn{to{opacity:1;transform:none}}
-  .jr-row .rt{flex:1;font-family:var(--body);font-weight:500;font-size:1.02rem;color:var(--ink)}
-  .jr-pill{font-family:var(--mono);font-size:.72rem;font-weight:600;letter-spacing:.05em;text-transform:uppercase;
-    padding:.3em .7em;border-radius:6px;flex:none;opacity:0;transform:scale(.4)}
-  .jr-avatar{width:2rem;height:2rem;border-radius:50%;color:#fff;font-family:var(--mono);font-weight:700;
-    font-size:.72rem;display:flex;align-items:center;justify-content:center;flex:none;opacity:0;transform:scale(.4)}
+  .jr-row .rt{flex:1;font-family:var(--body);font-weight:500;font-size:1.2rem;color:var(--ink)}
+  .jr-pill{font-family:var(--mono);font-size:.82rem;font-weight:600;letter-spacing:.05em;text-transform:uppercase;
+    padding:.32em .75em;border-radius:6px;flex:none;opacity:0;transform:scale(.4)}
+  .jr-avatar{width:2.4rem;height:2.4rem;border-radius:50%;color:#fff;font-family:var(--mono);font-weight:700;
+    font-size:.82rem;display:flex;align-items:center;justify-content:center;flex:none;opacity:0;transform:scale(.4)}
   .slide.active#s4 .jr-pill,.slide.active#s4 .jr-avatar{animation:jrPopIn .4s cubic-bezier(.34,1.56,.64,1) both}
   .slide.active#s4 .jr-row:nth-child(1) .jr-pill,.slide.active#s4 .jr-row:nth-child(1) .jr-avatar{animation-delay:3.3s}
   .slide.active#s4 .jr-row:nth-child(2) .jr-pill,.slide.active#s4 .jr-row:nth-child(2) .jr-avatar{animation-delay:3.5s}
@@ -135,44 +134,48 @@
   .pr-medium{background:#f7ecc4;color:#7a5e05}
   .pr-low{background:#d9f0e0;color:#1f7a45}
 
-  .jr-caption{font-family:var(--mono);font-size:.85rem;letter-spacing:.12em;text-transform:uppercase;
+  .jr-caption{font-family:var(--mono);font-size:.95rem;letter-spacing:.12em;text-transform:uppercase;
     color:var(--ink2);text-align:center}
-  .jr-sprints-row{display:flex;flex-wrap:wrap;gap:.8rem;justify-content:center;max-width:52rem}
-  .jr-chip{font-family:var(--body);font-weight:600;font-size:1rem;color:var(--ink);background:#f4efe0;
-    border:1px solid rgba(20,18,10,.1);border-radius:30px;padding:.55em 1.2em;opacity:0;transform:translateY(14px) scale(.85)}
-  .slide.active#s4 .jr-chip{animation:jrChipIn .45s cubic-bezier(.34,1.56,.64,1) both}
-  .slide.active#s4 .jr-chip:nth-child(1){animation-delay:6.2s}
-  .slide.active#s4 .jr-chip:nth-child(2){animation-delay:7.05s}
-  .slide.active#s4 .jr-chip:nth-child(3){animation-delay:7.9s}
-  .slide.active#s4 .jr-chip:nth-child(4){animation-delay:8.75s}
-  .slide.active#s4 .jr-chip:nth-child(5){animation-delay:9.6s}
-  .slide.active#s4 .jr-chip:nth-child(6){animation-delay:10.45s}
+  .jr-sprints-row{display:flex;flex-wrap:wrap;gap:1.3rem;justify-content:center;max-width:60rem}
+  .jr-sprint{display:flex;flex-direction:column;align-items:center;gap:.85rem;width:11rem;
+    opacity:0;transform:translateY(14px) scale(.85)}
+  .jr-sprint .sc{width:6.6rem;height:6.6rem;border-radius:50%;background:linear-gradient(155deg,#4c9aff,#0052cc);
+    color:#fff;display:flex;align-items:center;justify-content:center;font-family:var(--display);font-weight:400;
+    font-size:2.3rem;letter-spacing:.02em;box-shadow:0 16px 28px -14px rgba(0,50,150,.55)}
+  .jr-sprint .sl{font-family:var(--body);font-weight:600;font-size:.98rem;color:var(--ink);text-align:center;line-height:1.25}
+  .slide.active#s4 .jr-sprint{animation:jrChipIn .45s cubic-bezier(.34,1.56,.64,1) both}
+  .slide.active#s4 .jr-sprint:nth-child(1){animation-delay:6.2s}
+  .slide.active#s4 .jr-sprint:nth-child(2){animation-delay:7.05s}
+  .slide.active#s4 .jr-sprint:nth-child(3){animation-delay:7.9s}
+  .slide.active#s4 .jr-sprint:nth-child(4){animation-delay:8.75s}
+  .slide.active#s4 .jr-sprint:nth-child(5){animation-delay:9.6s}
+  .slide.active#s4 .jr-sprint:nth-child(6){animation-delay:10.45s}
   @keyframes jrChipIn{to{opacity:1;transform:none}}
 
   /* tablero: cabeceras fijas + pista donde las tarjetas nacen repartidas y se deslizan a Finalizado */
-  .kb-heads{display:flex;gap:1.3rem;margin-bottom:.7rem}
-  .kb-h{width:11.6rem;font-family:var(--mono);font-size:.76rem;letter-spacing:.12em;text-transform:uppercase;
-    color:var(--ink2);text-align:center;padding-bottom:.45rem;border-bottom:2px solid rgba(20,18,10,.14)}
+  .kb-heads{display:flex;gap:1.7rem;margin-bottom:.9rem;width:59.1rem}
+  .kb-h{width:13.5rem;font-family:var(--mono);font-size:.86rem;letter-spacing:.12em;text-transform:uppercase;
+    color:var(--ink2);text-align:center;padding-bottom:.5rem;border-bottom:2px solid rgba(20,18,10,.14)}
   .kb-h.done{color:var(--felt);border-bottom-color:var(--felt)}
 
-  .kb-track{position:relative;height:14.2rem}
-  .kb-card{position:absolute;width:11.6rem;
-    left:calc(var(--c1) * 12.9rem);top:calc(var(--r1) * 2.42rem);
-    background:#fffdf7;border:1px solid rgba(20,18,10,.1);border-left:4px solid var(--gold);border-radius:8px;
-    padding:.5rem .75rem;font-family:var(--body);font-weight:500;font-size:.72rem;line-height:1.2;color:var(--ink);
+  .kb-track{position:relative;height:15.6rem;width:59.1rem}
+  .kb-card{position:absolute;width:13.5rem;
+    left:calc(var(--c1) * 15.2rem);top:calc(var(--r1) * 2.75rem);
+    background:#fff;border:1px solid rgba(20,18,10,.1);border-left:4px solid var(--gold);border-radius:8px;
+    padding:.6rem .9rem;font-family:var(--body);font-weight:500;font-size:.82rem;line-height:1.25;color:var(--ink);
     box-shadow:0 8px 16px -12px rgba(20,18,10,.3);opacity:0}
   .slide.active#s4 .kb-card{animation:kbMove 3.3s cubic-bezier(.5,0,.15,1) var(--d) both}
   @keyframes kbMove{
-    0%{opacity:0;transform:translate(calc((var(--c0) - var(--c1)) * 12.9rem), calc((var(--r0) - var(--r1)) * 2.42rem)) scale(.94)}
-    9%{opacity:1;transform:translate(calc((var(--c0) - var(--c1)) * 12.9rem), calc((var(--r0) - var(--r1)) * 2.42rem)) scale(1)}
-    52%{opacity:1;transform:translate(calc((var(--c0) - var(--c1)) * 12.9rem), calc((var(--r0) - var(--r1)) * 2.42rem)) scale(1)}
+    0%{opacity:0;transform:translate(calc((var(--c0) - var(--c1)) * 15.2rem), calc((var(--r0) - var(--r1)) * 2.75rem)) scale(.94)}
+    9%{opacity:1;transform:translate(calc((var(--c0) - var(--c1)) * 15.2rem), calc((var(--r0) - var(--r1)) * 2.75rem)) scale(1)}
+    52%{opacity:1;transform:translate(calc((var(--c0) - var(--c1)) * 15.2rem), calc((var(--r0) - var(--r1)) * 2.75rem)) scale(1)}
     100%{opacity:1;transform:translate(0,0) scale(1)}
   }
 
-  .jr-stat{margin-top:.6rem;display:flex;align-items:baseline;gap:.9rem;justify-content:center;
+  .jr-stat{margin-top:.9rem;display:flex;align-items:baseline;gap:1rem;justify-content:center;
     opacity:0;transform:scale(.7)}
-  .jr-stat .n{font-family:var(--display);font-weight:400;font-size:3.6rem;line-height:1;color:var(--felt)}
-  .jr-stat .p{font-family:var(--mono);font-size:1rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink2)}
+  .jr-stat .n{font-family:var(--display);font-weight:400;font-size:4.4rem;line-height:1;color:var(--felt)}
+  .jr-stat .p{font-family:var(--mono);font-size:1.15rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink2)}
   .slide.active#s4 .jr-stat{animation:kbStatIn .55s cubic-bezier(.34,1.56,.64,1) 15.7s both}
   @keyframes kbStatIn{0%{opacity:0;transform:scale(.6)}70%{opacity:1;transform:scale(1.08)}100%{opacity:1;transform:scale(1)}}
 </style>
@@ -272,12 +275,12 @@
         <div class="jr-phase p-sprints">
           <div class="jr-caption">Repartidas en seis sprints</div>
           <div class="jr-sprints-row">
-            <div class="jr-chip">Acceso y autenticación</div>
-            <div class="jr-chip">Privacidad y consentimiento</div>
-            <div class="jr-chip">Gestión de permisos</div>
-            <div class="jr-chip">Juegos del casino</div>
-            <div class="jr-chip">Dashboard de privacidad</div>
-            <div class="jr-chip">Backend y seguridad</div>
+            <div class="jr-sprint"><div class="sc">S1</div><div class="sl">Acceso y autenticación</div></div>
+            <div class="jr-sprint"><div class="sc">S2</div><div class="sl">Privacidad y consentimiento</div></div>
+            <div class="jr-sprint"><div class="sc">S3</div><div class="sl">Gestión de permisos</div></div>
+            <div class="jr-sprint"><div class="sc">S4</div><div class="sl">Juegos del casino</div></div>
+            <div class="jr-sprint"><div class="sc">S5</div><div class="sl">Dashboard de privacidad</div></div>
+            <div class="jr-sprint"><div class="sc">S6</div><div class="sl">Backend y seguridad</div></div>
           </div>
         </div>
 
