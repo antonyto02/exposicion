@@ -307,6 +307,37 @@
   .db-row .ftype{color:var(--muted);flex:none}
   .db-row.pk .fname{font-weight:700;color:var(--gold-dim)}
   .db-row.fk .fname{color:#0052cc}
+
+  /* ---------- SLIDE 8: seguridad, capas con iconos propios ---------- */
+  .sec-hero{width:9rem;height:9rem;color:var(--felt);position:relative;z-index:2;
+    filter:drop-shadow(0 18px 28px rgba(20,18,10,.2));opacity:0;transform:scale(.5) translateY(20px)}
+  .sec-hero svg{width:100%;height:100%;fill:none;stroke:currentColor;stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round}
+  .slide.active#s8 .sec-hero{animation:rvHeroIn .7s cubic-bezier(.34,1.56,.64,1) both}
+
+  .sec-row{display:flex;align-items:center;gap:1.6rem;position:relative;z-index:2}
+  .sec-item{display:flex;flex-direction:column;align-items:center;gap:1.1rem;opacity:0;transform:translateY(28px)}
+  .sec-item .ic{width:6rem;height:6rem;border-radius:50%;background:#fff;color:var(--gold-dim);
+    display:flex;align-items:center;justify-content:center;box-shadow:0 16px 28px -16px rgba(20,18,10,.32);flex:none}
+  .sec-item .ic svg{width:3rem;height:3rem;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+  .sec-item span{font-family:var(--mono);font-size:1.05rem;color:var(--ink2);text-align:center;max-width:9rem;line-height:1.3}
+  .sec-arrow{color:var(--muted);flex:none;width:1.8rem;height:1.8rem;opacity:0}
+  .sec-arrow svg{width:100%;height:100%;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+  .slide.active#s8 .sec-arrow{animation:s5FadeIn .4s ease both}
+
+  .slide.active#s8 .sec-item{animation:rvItemIn .5s cubic-bezier(.34,1.56,.64,1) both}
+  .slide.active#s8 .sec-item:nth-child(1){animation-delay:1.6s}
+  .slide.active#s8 .sec-arrow:nth-child(2){animation-delay:2s}
+  .slide.active#s8 .sec-item:nth-child(3){animation-delay:2.2s}
+  .slide.active#s8 .sec-arrow:nth-child(4){animation-delay:2.6s}
+  .slide.active#s8 .sec-item:nth-child(5){animation-delay:2.8s}
+  .slide.active#s8 .sec-arrow:nth-child(6){animation-delay:3.2s}
+  .slide.active#s8 .sec-item:nth-child(7){animation-delay:3.4s}
+
+  .sec-note{margin-top:1.6rem;font-family:var(--mono);font-size:1rem;color:var(--ink2);text-align:center;
+    max-width:44rem;line-height:1.5;opacity:0;position:relative;z-index:2}
+  .sec-note b{color:var(--danger);font-weight:600}
+  #s8 .rv-title{margin:1rem 0 2rem}
+  .slide.active#s8 .sec-note{animation:s5FadeIn .5s ease 4.4s both}
   .db-row.fk .ftype{color:#0052cc;font-style:italic}
 
   /* tablero: cabeceras fijas + pista donde las tarjetas nacen repartidas y se deslizan a Finalizado */
@@ -662,6 +693,39 @@
         </div>
       </div>
     </div>
+  </section>
+
+  <section class="slide" id="s8">
+    <svg class="wm-suit s1 wm" viewBox="0 0 24 24"><path d="M12 21s7-5.6 7-11a7 7 0 0 0-14 0c0 5.4 7 11 7 11z"/></svg>
+    <svg class="wm-suit s2 wm" viewBox="0 0 24 24"><path d="M6 3h9l3 3v15H6z"/></svg>
+
+    <div class="mk-kick">Seguridad</div>
+    <div class="sec-hero"><svg viewBox="0 0 24 24"><path d="M12 3l8 3.2v6.6c0 4.6-3.3 7.9-8 9.9-4.7-2-8-5.3-8-9.9V6.2L12 3z"/><path d="M8.3 12.3l2.6 2.6 5-5"/></svg></div>
+    <h2 class="rv-title">Varias capas,<br><b>ninguna de adorno</b></h2>
+
+    <div class="sec-row">
+      <div class="sec-item">
+        <div class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 6.5V12l4 2.3"/></svg></div>
+        <span>Límite de peticiones</span>
+      </div>
+      <div class="sec-arrow"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+      <div class="sec-item">
+        <div class="ic"><svg viewBox="0 0 24 24"><ellipse cx="12" cy="5.5" rx="7" ry="2.6"/><path d="M5 5.5v6c0 1.4 3.1 2.6 7 2.6s7-1.2 7-2.6v-6"/><path d="M5 11.5v6c0 1.4 3.1 2.6 7 2.6s7-1.2 7-2.6v-6"/></svg></div>
+        <span>TypeORM · sin inyección SQL</span>
+      </div>
+      <div class="sec-arrow"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+      <div class="sec-item">
+        <div class="ic"><svg viewBox="0 0 24 24"><path d="M8 8l-4 4 4 4M16 8l4 4-4 4"/></svg></div>
+        <span>React · sin XSS</span>
+      </div>
+      <div class="sec-arrow"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+      <div class="sec-item">
+        <div class="ic"><svg viewBox="0 0 24 24"><rect x="5" y="4" width="14" height="16" rx="2"/><path d="M8.5 9.5h7M8.5 13h7M8.5 16.5h4"/></svg></div>
+        <span>Validación estricta</span>
+      </div>
+    </div>
+
+    <div class="sec-note">También documentamos los riesgos que sí reconocemos, como guardar el token en <b>localStorage</b> en vez de una cookie httpOnly.</div>
   </section>
 
 </div>
