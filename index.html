@@ -431,6 +431,9 @@
 
   /* ---------- SLIDE 11: cierre, gancho a la demo en vivo ---------- */
   #s11 .rv-hero{width:27rem;height:27rem}
+  .rv-hero-link{display:inline-block;position:relative;z-index:2;cursor:pointer;
+    transition:transform .25s ease,filter .25s ease}
+  .rv-hero-link:hover{transform:scale(1.06);filter:brightness(1.06)}
 
   /* tablero: cabeceras fijas + pista donde las tarjetas nacen repartidas y se deslizan a Finalizado */
   .kb-heads{display:flex;gap:1.7rem;margin-bottom:.9rem;width:59.1rem}
@@ -894,7 +897,9 @@
     <svg class="wm-suit s2 wm" viewBox="0 0 24 24"><path d="M12 21s7-5.6 7-11a7 7 0 0 0-14 0c0 5.4 7 11 7 11z"/></svg>
 
     <h2 class="rv-title">Demostración</h2>
-    <img class="rv-hero" src="icons/chips.png" alt="Fichas de casino">
+    <a class="rv-hero-link" href="https://casino-app-blond.vercel.app/" target="_blank" rel="noopener">
+      <img class="rv-hero" src="icons/chips.png" alt="Ir al sitio en vivo">
+    </a>
   </section>
 
 </div>
