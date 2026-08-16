@@ -14,53 +14,75 @@
     --felt:#0f3d28; --felt2:#0a2a1b;
     --danger:#ef4444; --success:#2dd47a;
 
-    --bg:#f5f1e7; --grid:rgba(20,18,10,.065);
+    --bg:#cbe0c0; --grid:rgba(20,18,10,.065);
     --ink:#17140f; --ink2:#57503f; --muted:#9a8f78;
 
     --display:'Bebas Neue',sans-serif; --body:'Inter',system-ui,sans-serif; --mono:'Roboto Mono',monospace;
   }
   *{margin:0;padding:0;box-sizing:border-box}
   html{height:100%;font-size:min(1.25vw,2.2222vh)}
-  body{height:100%;background:#efe9da;font-family:var(--body);color:var(--ink);display:flex;align-items:center;justify-content:center;overflow:hidden}
-  #stage{position:relative;width:100vw;height:100vh;overflow:hidden;background:var(--bg)}
+  body{height:100%;background:#bcd6ad;font-family:var(--body);color:var(--ink);display:flex;align-items:center;justify-content:center;overflow:hidden}
+  #stage{position:relative;width:100vw;height:100vh;background:var(--bg);
+    box-sizing:border-box;border:1.1rem solid #8b5a35;
+    box-shadow:inset 0 0 0 .45rem var(--felt), inset 0 0 2.5rem rgba(0,0,0,.28)}
+
+  .pocket{position:absolute;z-index:6;width:1.4rem;height:1.4rem;border-radius:50%;
+    background:radial-gradient(circle at 35% 30%, #3a2e22, #120d08 70%);
+    border:.14rem solid #a8a8a2;
+    box-shadow:inset 0 2px 4px rgba(0,0,0,.6), 0 1px 0 rgba(255,255,255,.08)}
+  .pocket.corner{width:1.6rem;height:1.6rem}
+  .pocket.tl{top:-.4rem;left:-.4rem;transform:translate(-50%,-50%)}
+  .pocket.tr{top:-.4rem;right:-.4rem;transform:translate(50%,-50%)}
+  .pocket.bl{bottom:-.4rem;left:-.4rem;transform:translate(-50%,50%)}
+  .pocket.br{bottom:-.4rem;right:-.4rem;transform:translate(50%,50%)}
+  .pocket.mid.top{top:-.4rem;left:50%;transform:translate(-50%,-50%)}
+  .pocket.mid.bottom{bottom:-.4rem;left:50%;transform:translate(-50%,50%)}
 
   .slide{position:absolute;inset:0;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;
     background-color:var(--bg);
     background-image:
-      repeating-linear-gradient(45deg, var(--grid) 0 1px, transparent 1px 1.65rem),
-      repeating-linear-gradient(-45deg, var(--grid) 0 1px, transparent 1px 1.65rem),
+      radial-gradient(rgba(20,18,10,.16) 1.6px, transparent 1.9px),
+      radial-gradient(50% 45% at 50% 42%, rgba(255,255,255,.14), transparent 65%),
+      radial-gradient(90% 80% at 50% 50%, transparent 55%, rgba(8,28,14,.22) 100%),
       radial-gradient(62% 55% at 100% 0%, rgba(212,175,55,.16), transparent 65%),
       radial-gradient(58% 52% at 0% 100%, rgba(15,61,40,.14), transparent 62%),
       radial-gradient(38% 30% at 50% 100%, rgba(239,68,68,.05), transparent 70%);
-    background-size:auto, auto, 100% 100%, 100% 100%, 100% 100%;
+    background-size:1.65rem 1.65rem, 100% 100%, 100% 100%, 100% 100%, 100% 100%, 100% 100%;
     opacity:0;transform:scale(1.015);transition:opacity .5s ease,transform .5s ease}
   .slide.active{opacity:1;transform:none}
 
   /* ---- marcas de agua decorativas: aluden a casino (ficha/ruleta) + zero trust (escudo) ---- */
   .wm{position:absolute;pointer-events:none;stroke:var(--ink);fill:none;stroke-width:1.1}
-  .wm-chip{width:34rem;height:34rem;left:-9rem;bottom:-9rem;opacity:.05}
   .wm-shield{width:24rem;height:24rem;right:-5rem;top:-5rem;opacity:.05}
   .wm-suit{width:9rem;height:9rem;opacity:.06;fill:var(--ink);stroke:none}
   .wm-suit.s1{left:6%;top:10%}
   .wm-suit.s2{right:9%;bottom:14%}
 
-  .mark{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;gap:1.1rem}
-  .slide:not(#s1){padding-top:4.5rem}
+  .slide{padding-top:4.5rem}
   .mk-kick{font-family:var(--mono);font-size:1.9rem;letter-spacing:.32em;text-transform:uppercase;color:var(--felt);
     display:flex;align-items:center;gap:.9em;
     position:absolute;top:1.4rem;left:50%;transform:translateX(-50%);z-index:5;white-space:nowrap}
   .mk-kick::before,.mk-kick::after{content:"";width:2.6em;height:3px;background:var(--gold-dim)}
-  .mark .mk-kick{position:static;transform:none;font-size:1.3rem;white-space:normal}
-  .presenter{position:absolute;top:1.5rem;right:2.2rem;font-family:var(--mono);font-size:.82rem;
+  .presenter{position:absolute;top:1.5rem;left:2.2rem;font-family:var(--mono);font-size:.82rem;
     letter-spacing:.1em;color:var(--ink2);z-index:5;background:#fff;border:1px solid rgba(20,18,10,.08);
     border-radius:20px;padding:.4em 1em;box-shadow:0 6px 14px -8px rgba(20,18,10,.25)}
-  .mk-title{font-family:var(--display);font-weight:400;letter-spacing:.02em;font-size:13.5rem;line-height:.9;
+  .utd-logo{position:absolute;top:1.2rem;right:2.2rem;z-index:5}
+  .utd-logo img{height:4.6rem;width:auto;display:block;filter:drop-shadow(0 4px 8px rgba(20,18,10,.18))}
+  .mk-title{font-family:var(--display);font-weight:400;letter-spacing:.02em;font-size:9rem;line-height:.9;
     color:var(--ink);text-transform:uppercase;display:flex;align-items:baseline;gap:.05em;
-    flex-wrap:wrap;justify-content:center;max-width:94vw}
-  .mk-title .zero{color:var(--gold-dim);font-size:.42em;letter-spacing:.2em;margin:0 .3em}
+    flex-wrap:nowrap;justify-content:center;white-space:nowrap;max-width:94vw;
+    position:relative;z-index:2;margin-bottom:5rem}
+  .mk-title .zero{margin:0 .3em;color:var(--gold)}
   .mk-title .trust{color:var(--felt)}
-  .mk-sub{font-family:var(--mono);font-size:1.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink2)}
-  .mk-sub b{color:var(--danger);font-weight:600}
+
+  .cover-row{display:flex;gap:3.5rem;align-items:center;justify-content:center;position:relative;z-index:2}
+  .cover-row img{width:12.5rem;height:12.5rem;object-fit:contain;
+    filter:drop-shadow(0 15px 22px rgba(20,18,10,.22));opacity:0;transform:translateY(24px) scale(.85)}
+  .slide.active#s1 .cover-row img{animation:coverIconIn .55s cubic-bezier(.34,1.56,.64,1) both}
+  .slide.active#s1 .cover-row img:nth-child(1){animation-delay:.3s}
+  .slide.active#s1 .cover-row img:nth-child(2){animation-delay:.5s}
+  .slide.active#s1 .cover-row img:nth-child(3){animation-delay:.7s}
+  @keyframes coverIconIn{to{opacity:1;transform:none}}
 
   /* ---------- patrón reutilizable "reveal": icono hero arriba, título, 4 iconos entran en fila ---------- */
   /* presupuesto vertical pensado para caber en 100vh (fullscreen real): hero + titulo + fila ~40rem de 45rem disponibles */
@@ -72,7 +94,7 @@
     position:relative;z-index:2;opacity:0;transform:translateY(14px)}
   .rv-title b{color:var(--felt);font-weight:400}
   .rv-row{display:flex;gap:3.6rem;align-items:flex-start;position:relative;z-index:2;
-    flex-wrap:wrap;justify-content:center;max-width:94vw}
+    flex-wrap:wrap;justify-content:center;max-width:94vw;margin-bottom:3.4rem}
   .rv-item{display:flex;flex-direction:column;align-items:center;gap:1.1rem;opacity:0;transform:translateY(28px)}
   .rv-item img{width:9rem;height:9rem;object-fit:contain;filter:drop-shadow(0 15px 22px rgba(20,18,10,.2))}
   .rv-item span{font-family:var(--mono);font-size:1.15rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink2)}
@@ -87,6 +109,10 @@
   .slide.active .rv-item:nth-child(3){animation-delay:4.7s}
   .slide.active .rv-item:nth-child(4){animation-delay:5.05s}
   @keyframes rvItemIn{to{opacity:1;transform:none}}
+  #s3.slide.active .rv-item:nth-child(1){animation-delay:9s}
+  #s3.slide.active .rv-item:nth-child(2){animation-delay:9.35s}
+  #s3.slide.active .rv-item:nth-child(3){animation-delay:9.7s}
+  #s3.slide.active .rv-item:nth-child(4){animation-delay:10.05s}
 
   /* ---------- SLIDE 4: secuencia cronometrada dentro de un navegador con Jira ---------- */
   .jira-frame{width:70rem;max-width:94vw;border-radius:18px;background:#fff;position:relative;z-index:2;
@@ -114,7 +140,7 @@
   .p-board{z-index:3;display:flex;flex-direction:column;align-items:center}
   .slide.active#s4 .p-tasks{animation-delay:4s}
   .slide.active#s4 .p-sprints{animation-delay:12s}
-  .slide.active#s4 .p-board{animation-delay:19.5s}
+  .slide.active#s4 .p-board{animation-delay:22.75s}
 
   .jr-row{display:flex;align-items:center;gap:1.2rem;background:#fff;border:1px solid rgba(20,18,10,.07);
     border-radius:10px;padding:.9rem 1.3rem;margin-bottom:.7rem;opacity:0;transform:translateX(-18px)}
@@ -151,11 +177,11 @@
   .jr-sprint .sl{font-family:var(--body);font-weight:600;font-size:.98rem;color:var(--ink);text-align:center;line-height:1.25}
   .slide.active#s4 .jr-sprint{animation:jrChipIn .45s cubic-bezier(.34,1.56,.64,1) both}
   .slide.active#s4 .jr-sprint:nth-child(1){animation-delay:12s}
-  .slide.active#s4 .jr-sprint:nth-child(2){animation-delay:12.95s}
-  .slide.active#s4 .jr-sprint:nth-child(3){animation-delay:13.9s}
-  .slide.active#s4 .jr-sprint:nth-child(4){animation-delay:14.85s}
-  .slide.active#s4 .jr-sprint:nth-child(5){animation-delay:15.8s}
-  .slide.active#s4 .jr-sprint:nth-child(6){animation-delay:16.75s}
+  .slide.active#s4 .jr-sprint:nth-child(2){animation-delay:13.6s}
+  .slide.active#s4 .jr-sprint:nth-child(3){animation-delay:15.2s}
+  .slide.active#s4 .jr-sprint:nth-child(4){animation-delay:16.8s}
+  .slide.active#s4 .jr-sprint:nth-child(5){animation-delay:18.4s}
+  .slide.active#s4 .jr-sprint:nth-child(6){animation-delay:20s}
   @keyframes jrChipIn{to{opacity:1;transform:none}}
 
   /* ---------- SLIDE 5: wireframe generico -> mockup generico -> pantallas reales ---------- */
@@ -163,11 +189,11 @@
   .s5-phase{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:1.2rem;padding-top:.6rem}
 
   .p-generic{opacity:0}
-  .slide.active#s5 .p-generic{animation:s5GenericSeq 6.3s cubic-bezier(.4,0,.2,1) both}
+  .slide.active#s5 .p-generic{animation:s5GenericSeq 9.3s cubic-bezier(.4,0,.2,1) both}
   @keyframes s5GenericSeq{
     0%{opacity:0;transform:scale(.92) translateY(16px)}
-    8%{opacity:1;transform:scale(1) translateY(0)}
-    88%{opacity:1;transform:scale(1) translateY(0)}
+    5%{opacity:1;transform:scale(1) translateY(0)}
+    92%{opacity:1;transform:scale(1) translateY(0)}
     100%{opacity:0;transform:scale(.95) translateY(-10px)}
   }
   .s5-label{font-family:var(--mono);font-size:.95rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink2)}
@@ -177,9 +203,9 @@
   .wf-skin{position:absolute;inset:0;display:flex;flex-direction:column}
   .wf-skin.wire{background:#fff;opacity:1}
   .wf-skin.mock{background:#0a0a12;opacity:0}
-  .slide.active#s5 .wf-skin.mock{animation:wfMockIn .9s ease 3.2s both}
+  .slide.active#s5 .wf-skin.mock{animation:wfMockIn .9s ease 6.2s both}
   @keyframes wfMockIn{to{opacity:1}}
-  .slide.active#s5 .wf-skin.wire{animation:wfWireOut .9s ease 3.2s both}
+  .slide.active#s5 .wf-skin.wire{animation:wfWireOut .9s ease 6.2s both}
   @keyframes wfWireOut{to{opacity:0}}
 
   .wf-top{height:3.9rem;display:flex;align-items:center;gap:1.1rem;padding:0 1.8rem;flex:none}
@@ -213,17 +239,17 @@
   .mock .wf-card{background:#171029;border:1px solid rgba(212,175,55,.25)}
 
   .p-grid{opacity:0;transform:translateY(10px)}
-  .slide.active#s5 .p-grid{animation:jrPhaseIn .5s ease 6.3s both}
+  .slide.active#s5 .p-grid{animation:jrPhaseIn .5s ease 9.3s both}
   .shots-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.7rem 2.6rem}
   .pair{display:flex;flex-direction:column;align-items:center;gap:.7rem;
     opacity:0;transform:translateY(20px) scale(.94)}
   .slide.active#s5 .pair{animation:rvItemIn .5s cubic-bezier(.34,1.56,.64,1) both}
-  .slide.active#s5 .pair:nth-child(1){animation-delay:6.3s}
-  .slide.active#s5 .pair:nth-child(2){animation-delay:6.5s}
-  .slide.active#s5 .pair:nth-child(3){animation-delay:6.7s}
-  .slide.active#s5 .pair:nth-child(4){animation-delay:6.9s}
-  .slide.active#s5 .pair:nth-child(5){animation-delay:7.1s}
-  .slide.active#s5 .pair:nth-child(6){animation-delay:7.3s}
+  .slide.active#s5 .pair:nth-child(1){animation-delay:9.3s}
+  .slide.active#s5 .pair:nth-child(2){animation-delay:9.5s}
+  .slide.active#s5 .pair:nth-child(3){animation-delay:9.7s}
+  .slide.active#s5 .pair:nth-child(4){animation-delay:9.9s}
+  .slide.active#s5 .pair:nth-child(5){animation-delay:10.1s}
+  .slide.active#s5 .pair:nth-child(6){animation-delay:10.3s}
 
   .pair-imgs{display:flex;align-items:center;justify-content:center}
   .pair-wire,.pair-mock{height:8.2rem;object-fit:cover;object-position:top;border-radius:10px;
@@ -231,12 +257,12 @@
   .pair-wire{width:12.5rem}
   .pair-mock{width:0;margin-left:0;opacity:0}
   .slide.active#s5 .pair-mock{animation:pairMockIn .65s cubic-bezier(.4,0,.2,1) both}
-  .slide.active#s5 .pair:nth-child(1) .pair-mock{animation-delay:7.8s}
-  .slide.active#s5 .pair:nth-child(2) .pair-mock{animation-delay:8s}
-  .slide.active#s5 .pair:nth-child(3) .pair-mock{animation-delay:8.2s}
-  .slide.active#s5 .pair:nth-child(4) .pair-mock{animation-delay:8.4s}
-  .slide.active#s5 .pair:nth-child(5) .pair-mock{animation-delay:8.6s}
-  .slide.active#s5 .pair:nth-child(6) .pair-mock{animation-delay:8.8s}
+  .slide.active#s5 .pair:nth-child(1) .pair-mock{animation-delay:10.8s}
+  .slide.active#s5 .pair:nth-child(2) .pair-mock{animation-delay:11s}
+  .slide.active#s5 .pair:nth-child(3) .pair-mock{animation-delay:11.2s}
+  .slide.active#s5 .pair:nth-child(4) .pair-mock{animation-delay:11.4s}
+  .slide.active#s5 .pair:nth-child(5) .pair-mock{animation-delay:11.6s}
+  .slide.active#s5 .pair:nth-child(6) .pair-mock{animation-delay:11.8s}
   @keyframes pairMockIn{to{width:12.5rem;margin-left:1.1rem;opacity:1}}
   .pair span{font-family:var(--mono);font-size:.85rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink2)}
 
@@ -280,12 +306,12 @@
   .stack-link span{font-family:var(--mono);font-size:.85rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink2)}
 
   /* ---------- SLIDE 7: modelo de datos, las 8 tablas completas y relacionadas ---------- */
-  .db-hero{display:flex;align-items:baseline;gap:1rem;margin-bottom:1.6rem;opacity:0;transform:scale(.7)}
+  .db-hero{display:flex;align-items:baseline;gap:1rem;margin-bottom:1rem;opacity:0;transform:scale(.7)}
   .slide.active#s7 .db-hero{animation:kbStatIn .6s cubic-bezier(.34,1.56,.64,1) both}
   .db-hero .n{font-family:var(--display);font-weight:400;font-size:4.4rem;line-height:1;color:var(--felt)}
   .db-hero .lbl{font-family:var(--mono);font-size:1.3rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink2)}
 
-  .db-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.3rem;width:96vw}
+  .db-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.1rem;width:96vw}
   .db-card{background:#fff;border-radius:10px;overflow:hidden;display:flex;flex-direction:column;
     border:1px solid rgba(20,18,10,.1);box-shadow:0 16px 28px -18px rgba(20,18,10,.35);
     opacity:0;transform:translateY(22px) scale(.94)}
@@ -301,9 +327,9 @@
   @keyframes dbTableIn{to{opacity:1;transform:translateY(0) scale(1)}}
 
   .db-head{background:var(--felt);color:#fff;font-family:var(--display);font-weight:400;letter-spacing:.02em;
-    font-size:1.3rem;padding:.7rem 1rem;flex:none}
-  .db-rows{padding:.3rem 0;flex:1}
-  .db-row{display:flex;justify-content:space-between;align-items:baseline;gap:.6rem;padding:.32rem 1rem;
+    font-size:1.3rem;padding:.55rem 1rem;flex:none}
+  .db-rows{padding:.2rem 0;flex:1}
+  .db-row{display:flex;justify-content:space-between;align-items:baseline;gap:.6rem;padding:.22rem 1rem;
     font-family:var(--mono);font-size:.86rem;border-bottom:1px solid #f0ede4}
   .db-row:last-child{border-bottom:none}
   .db-row .fname{color:var(--ink)}
@@ -312,16 +338,15 @@
   .db-row.fk .fname{color:#0052cc}
 
   /* ---------- SLIDE 8: seguridad, capas con iconos propios ---------- */
-  .sec-hero{width:9rem;height:9rem;color:var(--felt);position:relative;z-index:2;
+  .sec-hero{width:9rem;height:9rem;object-fit:contain;position:relative;z-index:2;
     filter:drop-shadow(0 18px 28px rgba(20,18,10,.2));opacity:0;transform:scale(.5) translateY(20px)}
-  .sec-hero svg{width:100%;height:100%;fill:none;stroke:currentColor;stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round}
   .slide.active#s8 .sec-hero{animation:rvHeroIn .7s cubic-bezier(.34,1.56,.64,1) both}
 
   .sec-row{display:flex;align-items:center;gap:1.6rem;position:relative;z-index:2}
   .sec-item{display:flex;flex-direction:column;align-items:center;gap:1.1rem;opacity:0;transform:translateY(28px)}
   .sec-item .ic{width:6rem;height:6rem;border-radius:50%;background:#fff;color:var(--gold-dim);
     display:flex;align-items:center;justify-content:center;box-shadow:0 16px 28px -16px rgba(20,18,10,.32);flex:none}
-  .sec-item .ic svg{width:3rem;height:3rem;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+  .sec-item .ic img{width:4rem;height:4rem;object-fit:contain}
   .sec-item span{font-family:var(--mono);font-size:1.05rem;color:var(--ink2);text-align:center;max-width:9rem;line-height:1.3}
   .sec-arrow{color:var(--muted);flex:none;width:1.8rem;height:1.8rem;opacity:0}
   .sec-arrow svg{width:100%;height:100%;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
@@ -336,10 +361,13 @@
   .slide.active#s8 .sec-arrow:nth-child(6){animation-delay:3.2s}
   .slide.active#s8 .sec-item:nth-child(7){animation-delay:3.4s}
 
-  .sec-note{margin-top:1.6rem;font-family:var(--mono);font-size:1rem;color:var(--ink2);text-align:center;
-    max-width:44rem;line-height:1.5;opacity:0;position:relative;z-index:2}
-  .sec-note b{color:var(--danger);font-weight:600}
-  #s8 .rv-title{margin:1rem 0 2rem}
+  #s8 .sec-hero{width:10rem;height:10rem}
+  #s8 .rv-title{font-size:6rem;margin:1rem 0 2.2rem}
+  #s8 .sec-row{gap:3rem}
+  #s8 .sec-item .ic{width:8.5rem;height:8.5rem}
+  #s8 .sec-item .ic img{width:5.8rem;height:5.8rem}
+  #s8 .sec-item span{font-size:1.3rem;max-width:11.5rem}
+  #s8 .sec-arrow{width:2.4rem;height:2.4rem}
 
   /* ---------- SLIDE 9: pruebas, terminal con los test suites reales ---------- */
   .term-frame{width:52rem;max-width:92vw;border-radius:14px;overflow:hidden;position:relative;z-index:2;
@@ -366,8 +394,15 @@
   .term-stat .n{font-family:var(--display);font-weight:400;font-size:2.2rem;color:#3fb950;line-height:1}
   .term-stat .p{font-family:var(--mono);font-size:.9rem;color:#8a8a8a;letter-spacing:.04em}
 
-  .test-note{margin-top:1.3rem;font-family:var(--mono);font-size:1rem;color:var(--ink2);text-align:center;
-    max-width:44rem;line-height:1.5;opacity:0;position:relative;z-index:2}
+  #s9 .term-frame{width:76rem;max-width:94vw}
+  #s9 .term-bar{height:3.6rem;gap:.7rem}
+  #s9 .term-bar i{width:.9rem;height:.9rem}
+  #s9 .term-bar span{font-size:1.05rem;margin-left:1rem}
+  #s9 .term-body{padding:2.6rem 3.2rem 2.8rem;gap:1rem}
+  #s9 .term-line{font-size:1.4rem;gap:1.1rem}
+  #s9 .term-stat{margin-top:1.1rem;padding-top:1.6rem}
+  #s9 .term-stat .n{font-size:3.4rem}
+  #s9 .term-stat .p{font-size:1.3rem}
 
   /* ---------- SLIDE 10: despliegue, mismo patron de columnas del stack ---------- */
   .dep-cols{display:flex;align-items:flex-start;justify-content:center;gap:2.8rem;margin-top:1rem}
@@ -392,14 +427,10 @@
   .dep-live i{width:.55rem;height:.55rem;border-radius:50%;background:var(--success);flex:none;
     box-shadow:0 0 0 3px color-mix(in srgb,var(--success) 25%,transparent)}
 
-  .dep-note{margin-top:1.4rem;font-family:var(--mono);font-size:1.05rem;color:var(--ink2);text-align:center;
-    max-width:44rem;line-height:1.5;opacity:0;position:relative;z-index:2}
-  .dep-note b{color:var(--felt);font-weight:600}
-  .slide.active#s10 .dep-note{animation:s5FadeIn .5s ease 2.8s both}
-  .test-note b{color:var(--gold-dim);font-weight:600}
-  .slide.active#s9 .test-note{animation:s5FadeIn .5s ease 4.4s both}
-  .slide.active#s8 .sec-note{animation:s5FadeIn .5s ease 4.4s both}
   .db-row.fk .ftype{color:#0052cc;font-style:italic}
+
+  /* ---------- SLIDE 11: cierre, gancho a la demo en vivo ---------- */
+  #s11 .rv-hero{width:27rem;height:27rem}
 
   /* tablero: cabeceras fijas + pista donde las tarjetas nacen repartidas y se deslizan a Finalizado */
   .kb-heads{display:flex;gap:1.7rem;margin-bottom:.9rem;width:59.1rem}
@@ -425,38 +456,36 @@
     opacity:0;transform:scale(.7)}
   .jr-stat .n{font-family:var(--display);font-weight:400;font-size:4.4rem;line-height:1;color:var(--felt)}
   .jr-stat .p{font-family:var(--mono);font-size:1.15rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink2)}
-  .slide.active#s4 .jr-stat{animation:kbStatIn .55s cubic-bezier(.34,1.56,.64,1) 26s both}
+  .slide.active#s4 .jr-stat{animation:kbStatIn .55s cubic-bezier(.34,1.56,.64,1) 29.25s both}
   @keyframes kbStatIn{0%{opacity:0;transform:scale(.6)}70%{opacity:1;transform:scale(1.08)}100%{opacity:1;transform:scale(1)}}
 </style>
 </head>
 <body>
 <div id="stage">
+  <div class="pocket corner tl"></div>
+  <div class="pocket corner tr"></div>
+  <div class="pocket corner bl"></div>
+  <div class="pocket corner br"></div>
+  <div class="pocket mid top"></div>
+  <div class="pocket mid bottom"></div>
 
   <section class="slide active" id="s1">
     <div class="presenter">Idaly</div>
-    <svg class="wm wm-chip" viewBox="0 0 200 200"><circle cx="100" cy="100" r="92"/><circle cx="100" cy="100" r="70"/>
-      <g>
-        <rect x="96" y="6" width="8" height="26"/><rect x="96" y="168" width="8" height="26"/>
-        <rect x="6" y="96" width="26" height="8"/><rect x="168" y="96" width="26" height="8"/>
-        <rect x="96" y="6" width="8" height="26" transform="rotate(45 100 100)"/>
-        <rect x="96" y="6" width="8" height="26" transform="rotate(135 100 100)"/>
-        <rect x="96" y="6" width="8" height="26" transform="rotate(225 100 100)"/>
-        <rect x="96" y="6" width="8" height="26" transform="rotate(315 100 100)"/>
-      </g>
-    </svg>
+    <div class="utd-logo"><img src="logos/utd.png" alt="UTD"></div>
     <svg class="wm wm-shield" viewBox="0 0 200 200"><path d="M100 14 L172 42 V96 C172 142 142 172 100 188 C58 172 28 142 28 96 V42 Z"/><path d="M64 100 L90 126 L140 74"/></svg>
-    <svg class="wm-suit s1 wm" viewBox="0 0 24 24"><path d="M12 21s7-5.6 7-11a7 7 0 0 0-14 0c0 5.4 7 11 7 11z"/></svg>
-    <svg class="wm-suit s2 wm" viewBox="0 0 24 24"><path d="M12 3.5l2.5 5.4 5.9.8-4.3 4.1 1.1 5.9L12 16.9 6.8 19.7l1.1-5.9L3.6 9.7l5.9-.8L12 3.5z"/></svg>
 
-    <div class="mark">
-      <div class="mk-kick">Proyecto final integrador</div>
-      <div class="mk-title">Casino<span class="zero">/ zero /</span><span class="trust">Trust</span></div>
-      <div class="mk-sub">Laboratorio de <b>privacidad</b> y ciberseguridad</div>
+    <div class="mk-kick">Proyecto final</div>
+    <div class="mk-title">Casino<span class="zero">Zero</span><span class="trust">Trust</span></div>
+    <div class="cover-row">
+      <img src="icons/slotmachine.png" alt="">
+      <img src="icons/dice.png" alt="">
+      <img src="icons/cards.png" alt="">
     </div>
   </section>
 
   <section class="slide" id="s2">
     <div class="presenter">Idaly</div>
+    <div class="utd-logo"><img src="logos/utd.png" alt="UTD"></div>
     <svg class="wm-suit s1 wm" viewBox="0 0 24 24"><path d="M12 3.5l2.5 5.4 5.9.8-4.3 4.1 1.1 5.9L12 16.9 6.8 19.7l1.1-5.9L3.6 9.7l5.9-.8L12 3.5z"/></svg>
     <svg class="wm-suit s2 wm" viewBox="0 0 24 24"><path d="M12 21s7-5.6 7-11a7 7 0 0 0-14 0c0 5.4 7 11 7 11z"/></svg>
 
@@ -473,12 +502,13 @@
 
   <section class="slide" id="s3">
     <div class="presenter">Gerardo</div>
+    <div class="utd-logo"><img src="logos/utd.png" alt="UTD"></div>
     <svg class="wm-suit s1 wm" viewBox="0 0 24 24"><path d="M6 3h9l3 3v15H6z"/></svg>
     <svg class="wm-suit s2 wm" viewBox="0 0 24 24"><path d="M12 21s7-5.6 7-11a7 7 0 0 0-14 0c0 5.4 7 11 7 11z"/></svg>
 
     <div class="mk-kick">Objetivos y alcance</div>
     <img class="rv-hero" src="icons/target.png" alt="Objetivo">
-    <h2 class="rv-title">Convertir el problema<br>en una <b>plataforma real</b></h2>
+    <h2 class="rv-title">Diseñar una plataforma<br>de <b>concientización</b></h2>
     <div class="rv-row">
       <div class="rv-item"><img src="icons/checklist.png" alt="Scrum y Jira"><span>Scrum / Jira</span></div>
       <div class="rv-item"><img src="icons/palette.png" alt="Diseño"><span>Diseño</span></div>
@@ -489,6 +519,7 @@
 
   <section class="slide" id="s4">
     <div class="presenter">Edwin</div>
+    <div class="utd-logo"><img src="logos/utd.png" alt="UTD"></div>
     <svg class="wm-suit s1 wm" viewBox="0 0 24 24"><path d="M12 2C8.5 6 3 9.5 3 13.5A5.5 5.5 0 0 0 12 17c-.2 2.3-1 3.6-3 4.5h6c-2-.9-2.8-2.2-3-4.5a5.5 5.5 0 0 0 9-3.5C21 9.5 15.5 6 12 2z"/></svg>
     <svg class="wm-suit s2 wm" viewBox="0 0 24 24"><path d="M12 21s7-5.6 7-11a7 7 0 0 0-14 0c0 5.4 7 11 7 11z"/></svg>
 
@@ -545,12 +576,12 @@
             <div class="kb-h done">Finalizado</div>
           </div>
           <div class="kb-track">
-            <div class="kb-card" style="--c0:0;--r0:0;--c1:3;--r1:0;--d:19.5s">Acceso y autenticación</div>
-            <div class="kb-card" style="--c0:0;--r0:1;--c1:3;--r1:1;--d:19.65s">Privacidad y consentimiento</div>
-            <div class="kb-card" style="--c0:1;--r0:0;--c1:3;--r1:2;--d:19.8s">Gestión de permisos</div>
-            <div class="kb-card" style="--c0:1;--r0:1;--c1:3;--r1:3;--d:19.95s">Juegos del casino</div>
-            <div class="kb-card" style="--c0:2;--r0:0;--c1:3;--r1:4;--d:20.1s">Dashboard de privacidad</div>
-            <div class="kb-card" style="--c0:2;--r0:1;--c1:3;--r1:5;--d:20.25s">Backend y seguridad</div>
+            <div class="kb-card" style="--c0:0;--r0:0;--c1:3;--r1:0;--d:22.75s">Acceso y autenticación</div>
+            <div class="kb-card" style="--c0:0;--r0:1;--c1:3;--r1:1;--d:22.9s">Privacidad y consentimiento</div>
+            <div class="kb-card" style="--c0:1;--r0:0;--c1:3;--r1:2;--d:23.05s">Gestión de permisos</div>
+            <div class="kb-card" style="--c0:1;--r0:1;--c1:3;--r1:3;--d:23.2s">Juegos del casino</div>
+            <div class="kb-card" style="--c0:2;--r0:0;--c1:3;--r1:4;--d:23.35s">Dashboard de privacidad</div>
+            <div class="kb-card" style="--c0:2;--r0:1;--c1:3;--r1:5;--d:23.5s">Backend y seguridad</div>
           </div>
           <div class="jr-stat"><span class="n">20 / 20</span><span class="p">actividades · 100%</span></div>
         </div>
@@ -561,6 +592,7 @@
 
   <section class="slide" id="s5">
     <div class="presenter">Gustavo</div>
+    <div class="utd-logo"><img src="logos/utd.png" alt="UTD"></div>
     <svg class="wm-suit s1 wm" viewBox="0 0 24 24"><path d="M6 3h9l3 3v15H6z"/></svg>
     <svg class="wm-suit s2 wm" viewBox="0 0 24 24"><path d="M12 21s7-5.6 7-11a7 7 0 0 0-14 0c0 5.4 7 11 7 11z"/></svg>
 
@@ -629,6 +661,7 @@
 
   <section class="slide" id="s6">
     <div class="presenter">Reyes</div>
+    <div class="utd-logo"><img src="logos/utd.png" alt="UTD"></div>
     <svg class="wm-suit s1 wm" viewBox="0 0 24 24"><path d="M12 2C8.5 6 3 9.5 3 13.5A5.5 5.5 0 0 0 12 17c-.2 2.3-1 3.6-3 4.5h6c-2-.9-2.8-2.2-3-4.5a5.5 5.5 0 0 0 9-3.5C21 9.5 15.5 6 12 2z"/></svg>
     <svg class="wm-suit s2 wm" viewBox="0 0 24 24"><path d="M6 3h9l3 3v15H6z"/></svg>
 
@@ -665,6 +698,7 @@
 
   <section class="slide" id="s7">
     <div class="presenter">José</div>
+    <div class="utd-logo"><img src="logos/utd.png" alt="UTD"></div>
     <svg class="wm-suit s1 wm" viewBox="0 0 24 24"><path d="M12 3l7 2.8v5.7c0 4-2.9 6.9-7 8.7-4.1-1.8-7-4.7-7-8.7V5.8L12 3z"/><path d="M9 12l2 2 4-4"/></svg>
     <svg class="wm-suit s2 wm" viewBox="0 0 24 24"><path d="M6 3h9l3 3v15H6z"/></svg>
 
@@ -765,45 +799,44 @@
 
   <section class="slide" id="s8">
     <div class="presenter">Antonio</div>
+    <div class="utd-logo"><img src="logos/utd.png" alt="UTD"></div>
     <svg class="wm-suit s1 wm" viewBox="0 0 24 24"><path d="M12 21s7-5.6 7-11a7 7 0 0 0-14 0c0 5.4 7 11 7 11z"/></svg>
     <svg class="wm-suit s2 wm" viewBox="0 0 24 24"><path d="M6 3h9l3 3v15H6z"/></svg>
 
     <div class="mk-kick">Seguridad</div>
-    <div class="sec-hero"><svg viewBox="0 0 24 24"><path d="M12 3l8 3.2v6.6c0 4.6-3.3 7.9-8 9.9-4.7-2-8-5.3-8-9.9V6.2L12 3z"/><path d="M8.3 12.3l2.6 2.6 5-5"/></svg></div>
+    <img class="sec-hero" src="icons/shield.png" alt="Seguridad">
     <h2 class="rv-title">Seguridad<br><b>por capas</b></h2>
 
     <div class="sec-row">
       <div class="sec-item">
-        <div class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 6.5V12l4 2.3"/></svg></div>
+        <div class="ic"><img src="icons/clock.png" alt="Límite de peticiones"></div>
         <span>Límite de peticiones</span>
       </div>
       <div class="sec-arrow"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
       <div class="sec-item">
-        <div class="ic"><svg viewBox="0 0 24 24"><ellipse cx="12" cy="5.5" rx="7" ry="2.6"/><path d="M5 5.5v6c0 1.4 3.1 2.6 7 2.6s7-1.2 7-2.6v-6"/><path d="M5 11.5v6c0 1.4 3.1 2.6 7 2.6s7-1.2 7-2.6v-6"/></svg></div>
+        <div class="ic"><img src="icons/database.png" alt="TypeORM"></div>
         <span>TypeORM · sin inyección SQL</span>
       </div>
       <div class="sec-arrow"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
       <div class="sec-item">
-        <div class="ic"><svg viewBox="0 0 24 24"><path d="M8 8l-4 4 4 4M16 8l4 4-4 4"/></svg></div>
+        <div class="ic"><img src="icons/code.png" alt="React"></div>
         <span>React · sin XSS</span>
       </div>
       <div class="sec-arrow"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
       <div class="sec-item">
-        <div class="ic"><svg viewBox="0 0 24 24"><rect x="5" y="4" width="14" height="16" rx="2"/><path d="M8.5 9.5h7M8.5 13h7M8.5 16.5h4"/></svg></div>
+        <div class="ic"><img src="icons/validation.png" alt="Validación estricta"></div>
         <span>Validación estricta</span>
       </div>
     </div>
-
-    <div class="sec-note">También documentamos los riesgos que sí reconocemos, como guardar el token en <b>localStorage</b> en vez de una cookie httpOnly.</div>
   </section>
 
   <section class="slide" id="s9">
     <div class="presenter">Idaly</div>
+    <div class="utd-logo"><img src="logos/utd.png" alt="UTD"></div>
     <svg class="wm-suit s1 wm" viewBox="0 0 24 24"><path d="M12 3.5l2.5 5.4 5.9.8-4.3 4.1 1.1 5.9L12 16.9 6.8 19.7l1.1-5.9L3.6 9.7l5.9-.8L12 3.5z"/></svg>
     <svg class="wm-suit s2 wm" viewBox="0 0 24 24"><path d="M12 21s7-5.6 7-11a7 7 0 0 0-14 0c0 5.4 7 11 7 11z"/></svg>
 
     <div class="mk-kick">Pruebas</div>
-    <h2 class="rv-title" style="margin:.8rem 0 1.6rem">19 pruebas,<br><b>cero atajos</b></h2>
 
     <div class="term-frame">
       <div class="term-bar"><i></i><i></i><i></i><span>jest --config ./test/jest-e2e.json</span></div>
@@ -813,21 +846,22 @@
         <div class="term-line" style="animation-delay:1.8s"><span class="ck">✓</span><span class="suite">users.e2e-spec.ts</span><span class="cnt">perfil · fichas</span></div>
         <div class="term-line" style="animation-delay:2.1s"><span class="ck">✓</span><span class="suite">consent.e2e-spec.ts</span><span class="cnt">cookies</span></div>
         <div class="term-line" style="animation-delay:2.4s"><span class="ck">✓</span><span class="suite">events.e2e-spec.ts</span><span class="cnt">permisos</span></div>
-        <div class="term-line warn" style="animation-delay:2.9s"><span class="ck">!</span><span class="suite">6to registro en el mismo minuto → bloqueado por el límite de peticiones</span></div>
-        <div class="term-stat" style="animation-delay:3.4s"><span class="n">19 / 19</span><span class="p">tests passed · 100%</span></div>
+        <div class="term-line" style="animation-delay:2.7s"><span class="ck">✓</span><span class="suite">games.e2e-spec.ts</span><span class="cnt">partidas · fichas</span></div>
+        <div class="term-line" style="animation-delay:3s"><span class="ck">✓</span><span class="suite">policy.e2e-spec.ts</span><span class="cnt">aviso de privacidad</span></div>
+        <div class="term-line warn" style="animation-delay:3.5s"><span class="ck">!</span><span class="suite">6to registro en el mismo minuto → bloqueado por el límite de peticiones</span></div>
+        <div class="term-stat" style="animation-delay:4s"><span class="n">19 / 19</span><span class="p">tests passed · 100%</span></div>
       </div>
     </div>
-
-    <div class="test-note">Cada prueba con su caso positivo y su caso negativo. Una de ellas, <b>sin buscarlo</b>, confirmó que el límite de peticiones funciona de verdad.</div>
   </section>
 
   <section class="slide" id="s10">
     <div class="presenter">Gerardo</div>
+    <div class="utd-logo"><img src="logos/utd.png" alt="UTD"></div>
     <svg class="wm-suit s1 wm" viewBox="0 0 24 24"><path d="M6 3h9l3 3v15H6z"/></svg>
     <svg class="wm-suit s2 wm" viewBox="0 0 24 24"><path d="M12 3l7 2.8v5.7c0 4-2.9 6.9-7 8.7-4.1-1.8-7-4.7-7-8.7V5.8L12 3z"/><path d="M9 12l2 2 4-4"/></svg>
 
     <div class="mk-kick">Despliegue</div>
-    <h2 class="rv-title" style="margin:.8rem 0 1.6rem">Ya está<br><b>en producción</b></h2>
+    <img class="rv-hero" src="icons/server.png" alt="Servidor" style="margin-bottom:1.6rem">
 
     <div class="dep-cols">
       <div class="dep-col fe">
@@ -851,8 +885,16 @@
         </div>
       </div>
     </div>
+  </section>
 
-    <div class="dep-note">Con esto cerramos la teoría. <b>Ahora, la demostración en vivo de Casino Zero Trust.</b></div>
+  <section class="slide" id="s11">
+    <div class="presenter">Gerardo</div>
+    <div class="utd-logo"><img src="logos/utd.png" alt="UTD"></div>
+    <svg class="wm-suit s1 wm" viewBox="0 0 24 24"><path d="M12 3.5l2.5 5.4 5.9.8-4.3 4.1 1.1 5.9L12 16.9 6.8 19.7l1.1-5.9L3.6 9.7l5.9-.8L12 3.5z"/></svg>
+    <svg class="wm-suit s2 wm" viewBox="0 0 24 24"><path d="M12 21s7-5.6 7-11a7 7 0 0 0-14 0c0 5.4 7 11 7 11z"/></svg>
+
+    <h2 class="rv-title">Demostración</h2>
+    <img class="rv-hero" src="icons/chips.png" alt="Fichas de casino">
   </section>
 
 </div>
